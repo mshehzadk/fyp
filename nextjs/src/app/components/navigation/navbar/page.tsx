@@ -17,15 +17,20 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
         console.log(pathname)
       }, [pathname]);
 
+      if(pathname === '/login'){
+        return <></>
+    }
+
     return (
+       
         <div>
-            <div className="w-full h-20 bg-nav-blue sticky top-0 drop-shadow-md">
+            <div className="w-full h-20 bg-black sticky top-0 drop-shadow-md">
                 <div className="container mx-auto px-4 h-full">
                     <div className="flex justify-evenly items-center h-full">
                     
                                 <div className='flex '>
                                 <Logo />
-                                <h1 className='hidden md:block text-gray-800 font-serif italic text-xl font-bold  mt-5 ml-2'>Dublingo</h1>
+                                <h1 className='hidden md:block text-white font-serif text-xl font-bold mt-5 '>Dublingo</h1>
                                 </div>
                                 
                                 <button
@@ -45,20 +50,20 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                                         />
                                     </svg>
                                 </button>
-                                <ul className="hidden md:flex gap-x-14 text-black font-sans ">
+                                <ul className="hidden md:flex gap-x-14 text-gray-100 font-mono font-bold   ">
                                     <li>
                                         <Link href="/"  >
-                                            <p className={`${active === '/' ? 'bg-blue-500 text-white' : 'bg-blue-50 text-gray-800'} shadow-inner rounded-lg px-6 py-2`}>Home</p>
+                                            <p className={`${active === '/' ? 'bg-white text-gray-800 rounded-[18px]' : ' nav'}    px-6 py-2`}>Home</p>
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href="/team">
-                                            <p  className={` ${active === '/team' ? 'bg-blue-500 text-white' : 'bg-blue-50 text-gray-800'} shadow-inner rounded-lg px-6 py-2`}>Team</p>
+                                            <p  className={` ${active === '/team' ? 'bg-white text-gray-800 rounded-[18px]' : 'nav'}  px-6 py-2`}>Team</p>
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href="/services">
-                                            <p className={`${active === '/services' ? 'bg-blue-500 text-white' : 'bg-blue-50 text-gray-800'} shadow-inner rounded-lg px-6 py-2`}>Services</p>
+                                            <p className={`${active === '/services' ? 'bg-white text-gray-800  rounded-[18px]' : ' nav'}  px-6 py-2`}>Services</p>
                                         </Link>
                                     </li>
                                 </ul>
