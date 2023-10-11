@@ -154,7 +154,7 @@ export default function SignUp() {
                                     {loading ? 'Processing' : 'Sign Up'}
                                 </button>
                             </div>
-                            <div className="mx-6 mt-2 mb-6">
+                            <div className="mx-6 mt-2 mb-8">
                                 <button
                                     onClick={onLogin}
                                     className="w-full px-4 py-2 font-bold text-white bg-gray-400 rounded-md hover:bg-indigo-600 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700"
