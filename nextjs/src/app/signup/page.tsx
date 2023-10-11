@@ -46,32 +46,8 @@ export default function SignUp() {
 
     return (
         <div className="flex item-center justify-center bg-gray-300 min-h-screen">
-            <div className="flex  flex-col md:flex-row m-16 w-[60%] ">
-                <div className="bg-black w-[50%] rounded-md hidden md:block">
-                    <Link href="/">
-                        <div className="flex flex-row relative m-4 items-center justify-center">
-                            <Image
-                                src={logo}
-                                alt="Logo"
-                                width={'70'}
-                                height={'70'}
-                                className=""
-                            />
-                            <h1 className="font-ubuntu font-bold text-3xl">
-                                <span className="text-blue-500">Dub</span>
-                                <span className="text-white">Lingo</span>
-                            </h1>
-                        </div>
-                    </Link>
-                    <div className="flex flex-col items-center justify-center m-4">
-                        <h1 className="text-white text-4xl p-4">
-                            Welcome to our website
-                        </h1>
-                        <p className="text-white text-lg p-4">
-                        Your one-stop for dubbing Urdu Content into Arabic
-                        </p>
-                    </div>
-                </div>
+            <div className="flex  flex-col item-center justify-center md:flex-row m-16 w-[60%] ">
+              
                 <div className="bg-gray-50 w-[75%] md:w-[50%] rounded-md ">
                     <div className="w-full max-w-md space-y-2">
                         <div className="m-6">
@@ -146,7 +122,7 @@ export default function SignUp() {
                                     required
                                 />
                             </div>
-                            <div className="mx-6 mt-3">
+                            <div className="mx-6 mt-8">
                                 <button
                                     onClick={onSignUp}
                                     className="w-full px-4 py-2 font-bold text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700"
@@ -154,7 +130,7 @@ export default function SignUp() {
                                     {loading ? 'Processing' : 'Sign Up'}
                                 </button>
                             </div>
-                            <div className="mx-6 mt-2 mb-8">
+                            <div className="mx-6 mt-3 mb-8">
                                 <button
                                     onClick={onLogin}
                                     className="w-full px-4 py-2 font-bold text-white bg-gray-400 rounded-md hover:bg-indigo-600 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700"
