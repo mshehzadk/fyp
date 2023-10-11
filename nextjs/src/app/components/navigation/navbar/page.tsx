@@ -17,7 +17,7 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
         console.log(pathname)
       }, [pathname]);
 
-      if(pathname === '/login'){
+      if(pathname === '/login' || pathname === '/signup'){
         return <></>
     }
 
