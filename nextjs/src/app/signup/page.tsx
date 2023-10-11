@@ -10,7 +10,6 @@ import Image from 'next/image';
 
 export default function SignUp() {
     const [loading, setLoading] = React.useState(false);
-    const [disabled, setDisabled] = React.useState(false);
     const router = useRouter();
     const [user, setUser] = React.useState({
         username: '',
@@ -37,24 +36,13 @@ export default function SignUp() {
     };
     const onLogin = async () => {
         try {
-            setLoading(true);
             router.push('/login');
         } catch (error: any) {
             console.log('Login Error: ', error.message);
             toast.error(error.message);
         }
     };
-    useEffect(() => {
-        if (
-            user.username.length > 0 &&
-            user.email.length > 0 &&
-            user.password.length > 0
-        ) {
-            setDisabled(false);
-        } else {
-            setDisabled(true);
-        }
-    }, [user]);
+
 
     return (
         <div className="flex item-center justify-center bg-gray-300 min-h-screen">
@@ -119,7 +107,7 @@ export default function SignUp() {
                                     htmlFor="email"
                                     className="block font-bold text-gray-700"
                                 >
-                                    Email address
+                                    Email
                                 </label>
                                 <input
                                     id="email"
@@ -163,7 +151,7 @@ export default function SignUp() {
                                     onClick={onSignUp}
                                     className="w-full px-4 py-2 font-bold text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700"
                                 >
-                                    {loading ? 'Processing' : 'SignUp'}
+                                    {loading ? 'Processing' : 'Sign Up'}
                                 </button>
                             </div>
                             <div className="mx-6 mt-2 mb-6">
