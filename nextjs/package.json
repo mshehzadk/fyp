@@ -14,7 +14,7 @@
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.5.3",
-    "next": "latest",
+    "next": "^13.5.4",
     "nodemailer": "^6.9.5",
     "react": "latest",
     "react-dom": "latest",
