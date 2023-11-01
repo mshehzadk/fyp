@@ -41,6 +41,11 @@ const Sidebar = ({isOpen,toggle,}: any)=> {
                             <p>Team</p>
                         </Link>
                     </li>
+                    <li>
+                        <Link href="/urduvideo" onClick={toggle}>
+                            <p>Try Now</p>
+                        </Link>
+                    </li>
                 </ul>
             </div>
         </div>
