@@ -46,6 +46,11 @@ const Sidebar = ({isOpen,toggle,}: any)=> {
                             <p>Try Now</p>
                         </Link>
                     </li>
+                    <li>
+                        <Link href="/login" onClick={toggle}>
+                            <p>Log Out</p>
+                        </Link>
+                    </li>
                 </ul>
             </div>
         </div>
