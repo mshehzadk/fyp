@@ -1,60 +1,51 @@
-import React, { useState } from "react";
-import axios, { AxiosRequestConfig } from "axios";
+import { useState } from 'react';
 
 function VideoUpload() {
-  const [file, setFile] = useState<File | undefined>();
-  const [progress, setProgress] = useState(0);
-  const [error, setError] = useState(null);
-  const [submitting, setSubmitting] = useState(false);
+  const [file, setFile] = useState(null);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
-  async function handleSubmit() {
-    const data = new FormData();
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+  };
 
-    if (!file) return;
+  const handleUpload = async () => {
+    if (file) {
+      const formData = new FormData();
+      formData.append('video', file);
 
-    setSubmitting(true);
+      try {
+        const response = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData,
+          onUploadProgress: (progressEvent) => {
+            const progress = (progressEvent.loaded / progressEvent.total) * 100;
+            setUploadProgress(progress);
+          },
+        });
 
-    data.append("file", file);
-
-    const config: AxiosRequestConfig = {
-        onUploadProgress: function (progressEvent) {
-            const percentComplete = Math.round(
-                (progressEvent.loaded * 100) / (progressEvent.total || 1)
-            );
-
-            setProgress(percentComplete);
-        },
-    };
-
-    try {
-        await axios.post("/api/users/videos", data, config);
-    } catch (e: any) {
-        setError(e.message);
-    } finally {
-        setSubmitting(false);
-        setProgress(0);
+        if (response.ok) {
+          console.log('Video uploaded successfully.');
+        } else {
+          console.error('Failed to upload video.');
+        }
+      } catch (error) {
+        console.error('Error uploading video:', error);
+      }
     }
-  }
-
-  function handleSetFile(event: React.ChangeEvent<HTMLInputElement>) {
-    const files = event.target.files;
-
-    if (files?.length) {
-      setFile(files[0]);
-    }
-  }
+  };
 
   return (
     <div>
-      {error && <p>{error}</p>}
-      {submitting && <p>{progress}%</p>}
-      <form action="POST">
+      <input type="file" onChange={handleFileChange} />
+      <button onClick={handleUpload}>Upload</button>
+      {uploadProgress > 0 && (
         <div>
-          <label htmlFor="file">File</label>
-          <input type="file" id="file" accept=".mp4" onChange={handleSetFile} />
+          Uploading: {uploadProgress.toFixed(2)}%
+          <progress value={uploadProgress} max="100"></progress>
         </div>
-      </form>
-      <button onClick={handleSubmit}>Upload video</button>
+      )}
+      {file && <VideoPlayer file={file} />}
     </div>
   );
 }

@@ -1,14 +1,14 @@
-function VideoPlayer({ id }: { id: string }) {
+function VideoPlayer({ file }) {
+    const objectURL = URL.createObjectURL(file);
+  
     return (
-      <video
-        src={`../video.mp4`}
-        width="800px"
-        height="auto"
-        controls
-        autoPlay
-        id="video-player"
-      />
+      <div>
+        <video controls>
+          <source src={objectURL} type="video/mp4" />
+        </video>
+      </div>
     );
   }
   
   export default VideoPlayer;
+  

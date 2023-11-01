@@ -1,86 +1,58 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from "next";
-import busboy from "busboy";
-import fs from "fs";
+import formidable from 'formidable';
+import fs from 'fs';
+import path from 'path';
 
 export const config = {
   api: {
-    bodyParser: false,
+    bodyParser: false, // Disable body parsing, we use formidable for file uploads
   },
 };
 
-function uploadVideoStream(req: NextApiRequest, res: NextApiResponse) {
-  const bb = busboy({ headers: req.headers });
+export default async (req, res) => {
+  const form = new formidable.IncomingForm();
+  form.uploadDir = path.join(process.cwd(), 'public/videos'); // Set the upload directory
+  form.keepExtensions = true; // Keep file extensions
 
-  bb.on("file", (_, file, info) => {
-    // auth-api.mp4
-    const fileName = info.filename;
-    const filePath = `../${fileName}`;
-
-    const stream = fs.createWriteStream(filePath);
-
-    file.pipe(stream);
+  form.on('file', (name, file) => {
+    // Rename the uploaded file with a unique name or perform other actions
   });
 
-  bb.on("close", () => {
-    res.writeHead(200, { Connection: "close" });
-    res.end(`That's the end`);
+  form.parse(req, (err, fields, files) => {
+    if (err) {
+      return res.status(500).json({ error: 'Error uploading file.' });
+    }
+
+    // If you need to process the uploaded file, you can do it here
+
+    res.status(200).json({ success: true });
+  });
+};
+import formidable from 'formidable';
+import fs from 'fs';
+import path from 'path';
+
+export const config = {
+  api: {
+    bodyParser: false, // Disable body parsing, we use formidable for file uploads
+  },
+};
+
+export default async (req, res) => {
+  const form = new formidable.IncomingForm();
+  form.uploadDir = path.join(process.cwd(), 'public/videos'); // Set the upload directory
+  form.keepExtensions = true; // Keep file extensions
+
+  form.on('file', (name, file) => {
+    // Rename the uploaded file with a unique name or perform other actions
   });
 
-  req.pipe(bb);
-  return;
-}
+  form.parse(req, (err, fields, files) => {
+    if (err) {
+      return res.status(500).json({ error: 'Error uploading file.' });
+    }
 
-const CHUNK_SIZE_IN_BYTES = 1000000; // 1 mb
+    // If you need to process the uploaded file, you can do it here
 
-function getVideoStream(req: NextApiRequest, res: NextApiResponse) {
-  const range = req.headers.range;
-
-  if (!range) {
-    return res.status(400).send("Rang must be provided");
-  }
-
-  const videoId = req.query.videoId;
-
-  const videoPath = `../${videoId}.mp4`;
-
-  const videoSizeInBytes = fs.statSync(videoPath).size;
-
-  const chunkStart = Number(range.replace(/\D/g, ""));
-
-  const chunkEnd = Math.min(
-    chunkStart + CHUNK_SIZE_IN_BYTES,
-    videoSizeInBytes - 1
-  );
-
-  const contentLength = chunkEnd - chunkStart + 1;
-
-  const headers = {
-    "Content-Range": `bytes ${chunkStart}-${chunkEnd}/${videoSizeInBytes}`,
-    "Accept-Ranges": "bytes",
-    "Content-Length": contentLength,
-    "Content-Type": "video/mp4",
-  };
-
-  res.writeHead(206, headers);
-  const videoStream = fs.createReadStream(videoPath, {
-    start: chunkStart,
-    end: chunkEnd,
+    res.status(200).json({ success: true });
   });
-
-  videoStream.pipe(res);
-}
-
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const method = req.method;
-
-  if (method === "GET") {
-    return getVideoStream(req, res);
-  }
-
-  if (method === "POST") {
-    return uploadVideoStream(req, res);
-  }
-
-  return res.status(405).json({ error: `Method ${method} is not allowed` });
-}
+};
