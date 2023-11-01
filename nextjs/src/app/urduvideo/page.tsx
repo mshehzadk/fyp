@@ -8,7 +8,7 @@ export default function urduvideo() {
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
             <h1>Urdu Video</h1>
             <VideoUpload />
-            <VideoPlayer id="../video.mp4" />
+            <VideoPlayer id="video.mp4" />
         </main>
     );
 }

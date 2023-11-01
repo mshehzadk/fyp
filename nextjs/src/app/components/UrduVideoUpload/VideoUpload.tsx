@@ -1,31 +1,62 @@
-import formidable from 'formidable';
-import fs from 'fs';
-import { IncomingMessage } from 'http';
-import path from 'path';
+import React, { useState } from "react";
+import axios, { AxiosRequestConfig } from "axios";
 
-export const config = {
-  api: {
-    bodyParser: false, // Disable body parsing, we use formidable for file uploads
-  },
-};
+function VideoUpload() {
+  const [file, setFile] = useState<File | undefined>();
+  const [progress, setProgress] = useState(0);
+  const [error, setError] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default async (req: IncomingMessage, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { error?: string; success?: boolean; }): void; new(): any; }; }; }) => {
-  const form = new formidable.IncomingForm();
-  form.uploadDir = path.join(process.cwd(), 'public/videos'); // Set the upload directory
-  form.keepExtensions = true; // Keep file extensions
+  async function handleSubmit() {
+    const data = new FormData();
 
-  form.on('file', (name, file) => {
-    // Rename the uploaded file with a unique name or perform other actions
-  });
+    if (!file) return;
 
-  form.parse(req, (err, fields) => {
-    if (err) {
-      return res.status(500).json({ error: 'Error uploading file.' });
+    setSubmitting(true);
+
+    data.append("file", file);
+
+    const config: AxiosRequestConfig = {
+      onUploadProgress: function (progressEvent) {
+        const percentComplete = progressEvent.total ? Math.round(
+          (progressEvent.loaded * 100) / progressEvent.total
+        ) : 0;
+
+        setProgress(percentComplete);
+      },
+    };
+
+    try {
+      await axios.post("/api/users/VideoUpload", data, config);
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setSubmitting(false);
+      setProgress(0);
     }
+  }
 
-    // If you need to process the uploaded file, you can do it here
+  function handleSetFile(event: React.ChangeEvent<HTMLInputElement>) {
+    const files = event.target.files;
 
-    res.status(200).json({ success: true });
-  });
-};
+    if (files?.length) {
+      setFile(files[0]);
+    }
+  }
+
+  return (
+    <div>
+      {error && <p>{error}</p>}
+      {submitting && <p>{progress}%</p>}
+      <form action="POST">
+        <div>
+          <label htmlFor="file">File</label>
+          <input type="file" id="file" accept=".mp4" onChange={handleSetFile} />
+        </div>
+      </form>
+      <button onClick={handleSubmit}>Upload video</button>
+    </div>
+  );
+}
+
+export default VideoUpload;
