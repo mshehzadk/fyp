@@ -1,62 +1,13 @@
-import React, { useState } from "react";
-import axios, { AxiosRequestConfig } from "axios";
+'user client';
 
-function VideoUpload() {
-  const [file, setFile] = useState<File | undefined>();
-  const [progress, setProgress] = useState(0);
-  const [error, setError] = useState(null);
-  const [submitting, setSubmitting] = useState(false);
+import React from "react";
 
-  async function handleSubmit() {
-    const data = new FormData();
 
-    if (!file) return;
-
-    setSubmitting(true);
-
-    data.append("file", file);
-
-    const config: AxiosRequestConfig = {
-      onUploadProgress: function (progressEvent) {
-        const percentComplete = progressEvent.total ? Math.round(
-          (progressEvent.loaded * 100) / progressEvent.total
-        ) : 0;
-
-        setProgress(percentComplete);
-      },
-    };
-
-    try {
-      await axios.post("/api/users/VideoUpload", data, config);
-    } catch (e) {
-      setError(e.message);
-    } finally {
-      setSubmitting(false);
-      setProgress(0);
-    }
-  }
-
-  function handleSetFile(event: React.ChangeEvent<HTMLInputElement>) {
-    const files = event.target.files;
-
-    if (files?.length) {
-      setFile(files[0]);
-    }
-  }
+export default function VideoUpload() {
 
   return (
     <div>
-      {error && <p>{error}</p>}
-      {submitting && <p>{progress}%</p>}
-      <form action="POST">
-        <div>
-          <label htmlFor="file">File</label>
-          <input type="file" id="file" accept=".mp4" onChange={handleSetFile} />
-        </div>
-      </form>
-      <button onClick={handleSubmit}>Upload video</button>
+      <h1>Video Upload</h1>
     </div>
-  );
+  )
 }
-
-export default VideoUpload;
