@@ -48,14 +48,18 @@ export default function VideoUpload() {
     <div>
       <div>
         <form onSubmit={onSubmit}>
-          <input type="file"
-            name="file"
-            accept="video/mp4"
-            onChange={onFileChange}
-          />
-          {file && <div style={{ textAlign: 'right' }}>
-            <input type="submit" value="Upload" />
-          </div>}
+          <div style={{display: "flex"}}>
+            <div style={{textAlign:'left', flex: '1'}}>
+            <input type="file"
+              name="file"
+              accept="video/mp4"
+              onChange={onFileChange}
+            />
+            </div>
+            {file && <div style={{ textAlign: 'right', flex: '1' }}>
+              <input type="submit" value="Upload" />
+            </div>}
+            </div>
         </form>
       </div>
       <div>
