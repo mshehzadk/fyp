@@ -1,6 +1,7 @@
 'use client';
 
 import VideoUpload from "../components/UrduVideoUpload/VideoUpload";
+import urduTranscription from "../components/urduTranscription/urduTranscription";
 
 export default function urduvideo() {
     return (
