@@ -1,6 +1,6 @@
 'use client';
 
-import UrduTranscription from '../components/urduTranscription/urduTranscription';
+import UrduTranscription from '../components/urduTranscriptionComponents/urduTranscription';
 
 export default function urduTranscription() {
     return (
