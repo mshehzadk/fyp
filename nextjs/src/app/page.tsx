@@ -43,7 +43,7 @@ export default function Home() {
   };
 
   return (
-    <main data-theme='light' className="flex min-h-screen flex-col items-center justify-between py-6 px-24">
+    <main className="flex min-h-screen flex-col items-center justify-between py-6 px-24">
         <h1 className="text-black font-semibold text-2xl decoration-sky-700  mb-4 underline underline-offset-[8px]  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:decoration-orange-400 duration-300">Demo Video</h1>
       <div className="relative w-[80%] max-w-6xl mx-auto my-8 rounded-xl overflow-hidden">
         <div className="absolute top-4 right-4 z-10">

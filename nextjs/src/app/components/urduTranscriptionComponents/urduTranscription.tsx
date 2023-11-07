@@ -7,7 +7,7 @@ export default function urduTranscription() {
         <div className="Transcription Video">
         <div>
             <div>
-                <button >Click Me</button>
+                <button className="btn">Click Me</button>
             </div>
             <div className="Transcriptions">
 
