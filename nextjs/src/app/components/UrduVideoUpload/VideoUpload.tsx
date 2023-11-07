@@ -1,9 +1,11 @@
 import { useState } from "react";
+import Link from "next/link"; // Import the Link component for going to next page button
 
 export default function VideoUpload() {
   const [file, setFile] = useState<File | null>(null);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState<boolean>(false);
+  const [isVideoUploaded, setVideoUploaded]= useState<boolean>(false);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevent form refresh
@@ -34,6 +36,7 @@ export default function VideoUpload() {
       console.log(e.message);
     } finally {
       setIsUploading(false); // Set the isUploading state to false when the upload is complete
+      setVideoUploaded(true); // Set the isVideoUploaded state to true when the upload is complete
     }
   };
 
@@ -41,6 +44,7 @@ export default function VideoUpload() {
     if (e.target.files?.length) {
       setFile(e.target.files[0]);
       setVideoUrl(null); // Clear the previous video URL
+      setVideoUploaded(false); // Set false to receive a new video
     }
   };
 
@@ -70,6 +74,17 @@ export default function VideoUpload() {
             <source src={videoUrl} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
+        ) : null}
+      </div>
+      <div>
+        {isVideoUploaded ? (
+          <Link href="/urduTranscription">
+            <p
+                className={`'bg-white text-gray-800 rounded-[18px]'`}
+            >
+                Home
+            </p>
+          </Link>
         ) : null}
       </div>
     </div>
