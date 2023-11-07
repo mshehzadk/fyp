@@ -5,7 +5,7 @@ export default function VideoUpload() {
   const [file, setFile] = useState<File | null>(null);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState<boolean>(false);
-  const [isVideoUploaded, setVideoUploaded]= useState<boolean>(false);
+  const [isVideoUploaded, setVideoUploaded] = useState<boolean>(false);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevent form refresh
@@ -52,18 +52,18 @@ export default function VideoUpload() {
     <div>
       <div>
         <form onSubmit={onSubmit}>
-          <div style={{display: "flex"}}>
-            <div style={{textAlign:'left', flex: '1'}}>
-            <input type="file"
-              name="file"
-              accept="video/mp4"
-              onChange={onFileChange}
-            />
+          <div style={{ display: "flex" }}>
+            <div style={{ textAlign: 'left', flex: '1' }}>
+              <input type="file"
+                name="file"
+                accept="video/mp4"
+                onChange={onFileChange}
+              />
             </div>
             {file && <div style={{ textAlign: 'right', flex: '1' }}>
-              <input type="submit" value="Upload" />
+              { isVideoUploaded==false ? (<input type="submit" value="Upload" />) : (<input type="submit" value="Uploaded" disabled />)}
             </div>}
-            </div>
+          </div>
         </form>
       </div>
       <div>
@@ -80,9 +80,9 @@ export default function VideoUpload() {
         {isVideoUploaded ? (
           <Link href="/urduTranscription">
             <p
-                className={`'bg-white text-gray-800 rounded-[18px]'`}
+              className={`'bg-white text-gray-800 rounded-[18px]'`}
             >
-                Home
+              Urdu Transcription
             </p>
           </Link>
         ) : null}
