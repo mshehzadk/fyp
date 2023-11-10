@@ -12,6 +12,7 @@
     "@svgr/webpack": "^8.1.0",
     "axios": "^1.5.1",
     "bcryptjs": "^2.4.3",
+    "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.5.3",
     "next": "^13.5.4",
