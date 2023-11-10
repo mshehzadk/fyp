@@ -3,24 +3,18 @@
     "startTime": "00:00:00",
     "endTime": "00:00:05",
     "speaker": "Speaker 1",
-    "transcription": "Assalam o Alaikum, mera naam Zahid hai."
+    "transcription": "Hello"
   },
   {
-    "startTime": "00:00:05",
-    "endTime": "00:00:10",
-    "speaker": "Speaker 2",
-    "transcription": "Wa Alaikum Assalam, mera naam Ali hai."
-  },
-  {
-    "startTime": "00:00:10",
-    "endTime": "00:00:15",
+    "startTime": "00:00:00",
+    "endTime": "00:00:05",
     "speaker": "Speaker 1",
-    "transcription": "Kya haal hai Ali?"
+    "transcription": "Hello"
   },
   {
-    "startTime": "00:00:15",
-    "endTime": "00:00:20",
-    "speaker": "Speaker 2",
-    "transcription": "Main theek hoon, tum kaise ho?"
+    "startTime": "00:00:00",
+    "endTime": "00:00:05",
+    "speaker": "Speaker 1",
+    "transcription": "Hello kiya haal hain theek ho"
   }
 ]

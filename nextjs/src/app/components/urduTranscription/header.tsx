@@ -7,7 +7,7 @@ export default function Header() {
             <p className="text-white font-bold">
                  Urdu Transcription
             </p>
-            <Link href="/addTranscription" className="bg-white p-2">
+            <Link href="/addTranscription" className="bg-white mx-5">
                 Add Transcription
             </Link>
         </div>
