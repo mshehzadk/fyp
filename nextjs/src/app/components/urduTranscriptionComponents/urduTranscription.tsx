@@ -8,12 +8,8 @@ export default function urduTranscription() {
     return (
         <div className="Transcription Video" style={{display:'flex'}}>
             <div className="Transcription" style={{flex:'1',textAlign: 'right'}}>
-                <div>
-                    <button className="btn">Click Me</button>
-                </div>
-                <div className="Transcriptions">
-
-                </div>
+                <p>Zahid</p>
+                
             </div>
             <div className="Video" style={{flex:'1',textAlign: 'right'}}>
                 {( videoRef ? 

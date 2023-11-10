@@ -1,8 +1,9 @@
 from flask_cors import CORS
 from flask import Flask, jsonify, request
+import json
 import os
 
-UPLOAD_FOLDER = './uploads'
+UPLOAD_FOLDER = './data'
 
 app = Flask(__name__) 
 CORS(app)
@@ -27,6 +28,14 @@ def upload_file():
         filename = 'video.mp4'
         file.save(os.path.join(UPLOAD_FOLDER, filename))
         return 'File uploaded successfully', 200
+
+# Send data from JSON file to the client
+@app.route('/api/urduTranscription', methods=['GET'])
+def get_urduTranscription():
+    filename='urduTranscription.json'
+    with open(os.path.join(UPLOAD_FOLDER, filename), 'r') as f:
+        data = json.load(f)
+    return jsonify(data)
 
 
 if __name__ == '__main__':
