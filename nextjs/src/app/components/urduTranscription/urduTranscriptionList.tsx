@@ -3,12 +3,12 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
 export default function urduTranscriptionList() {
-    const [transcription, setTranscription] = useState<JSON>();
+    const [data, setData] = useState<JSON>();
     try {
         useEffect(() => {
             fetch('http://localhost:8080/api/urduTranscription').then((response) => {
                 response.json().then((data) => {
-                    setTranscription(data);
+                    setData(data);
                 })
             })
 
@@ -23,8 +23,8 @@ export default function urduTranscriptionList() {
     }
     return (
         <div>
-            {transcription && Array.isArray(transcription) && transcription.map((item: any, index: number) => (
-                <div key={index} className="p-4 border border-slate-300 my-3 flex gap-2">
+            {data && Array.isArray(data) && data.map((item: any, index: number) => (
+                <div key={index} className="p-4 border border-slate-300 my-5 flex gap-2">
                     <div>
                         <div className="flex">
                             <div className="font-bold text-xl" >{item.speaker}</div>
@@ -41,7 +41,7 @@ export default function urduTranscriptionList() {
                     </div>
                 </div>
             ))}
-            {!transcription && <div>Loading......</div>}
+            {!data && <div>Loading......</div>}
         </div>
 
 
