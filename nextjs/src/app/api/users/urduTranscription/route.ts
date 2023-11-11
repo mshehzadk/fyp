@@ -1,4 +1,8 @@
-const baseUrl = "http://localhost:8000/urduTranscription"
+const baseUrl = "http://localhost:8000"
+
+
+export const getUrduTranscription = async () => {
+}
 
 
 
