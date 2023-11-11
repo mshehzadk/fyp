@@ -8,8 +8,8 @@ export default function Header() {
             <p className="text-white font-bold">
                  Urdu Transcription
             </p>
-            <Link href="/addTranscription" className="bg-white mx-5">
-                Add Transcription <AiOutlinePlus size={18} />
+            <Link href="/addTranscription" className="bg-white mx-5 flex">
+                Add Transcription <AiOutlinePlus className="ml-2" size={18} />
             </Link>
         </div>
     )
