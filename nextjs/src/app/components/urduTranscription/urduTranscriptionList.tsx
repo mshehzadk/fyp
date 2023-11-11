@@ -17,6 +17,7 @@ export default function urduTranscriptionList() {
     catch (error: any) {
         console.log(error);
     }
+    
 
     function handleEdit() {
         console.log("Edit");
