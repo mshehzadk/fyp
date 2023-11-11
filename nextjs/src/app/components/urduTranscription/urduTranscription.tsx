@@ -23,7 +23,9 @@ export default function urduTranscription() {
         console.log(error);
     }
 
-
+   function handleEdit() {
+    console.log("Edit");
+   }
 
     return (
         <div className="Transcription Video" style={{ display: 'flex' }}>
@@ -32,14 +34,16 @@ export default function urduTranscription() {
                 <Urdutranscriptionlist />
                 <div>
                     {transcription && Array.isArray(transcription) && transcription.map((item: any, index: number) => (
-                        <div key={index} className="p-4 border border-salte-300 my-3 flex justify-between gap-5 items-start">
+                        <div key={index} className="p-4 border border-salte-300 my-3 flex justify-between gap-5">
                             <div>
                                 <div className="flex justify-between">
-                                    <div className="font-bold text-xl">{item.speaker}</div>
-                                    <div className="m-2">{item.startTime}</div>
-                                    <div className="m-2">{item.endTime}</div>
+                                    <input className="font-bold text-xl" value={item.speaker} onChange={handleEdit}></input>
+                                    <input className="m-2" value={item.startTime}></input>
+                                    <input className="m-2" value={item.endTime} ></input>
                                 </div>
-                                <div>{item.transcription}</div>
+                                <div>
+                                    <input value={item.transcription}></input>
+                                </div>
                             </div>
                             <div>
                                 <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2">Edit</button>
