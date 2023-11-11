@@ -9,8 +9,6 @@ export default function urduTranscriptionList() {
             fetch('http://localhost:8080/api/urduTranscription').then((response) => {
                 response.json().then((data) => {
                     setTranscription(data);
-                    console.log(data);
-
                 })
             })
 
@@ -26,18 +24,18 @@ export default function urduTranscriptionList() {
     return (
         <div>
             {transcription && Array.isArray(transcription) && transcription.map((item: any, index: number) => (
-                <div key={index} className="p-4 border border-salte-300 my-3 flex justify-between gap-5">
+                <div key={index} className="p-4 border border-slate-300 my-3 flex gap-2">
                     <div>
-                        <div className="flex justify-between">
-                            <input className="font-bold text-xl" value={item.speaker} onChange={handleEdit}></input>
-                            <input className="m-2" value={item.startTime}></input>
-                            <input className="m-2" value={item.endTime} ></input>
+                        <div className="flex">
+                            <div className="font-bold text-xl" >{item.speaker}</div>
+                            <div className="m-2" >{item.startTime}</div>
+                            <div className="m-2" >{item.startTime}</div>
                         </div>
-                        <div>
-                            <input value={item.transcription}></input>
+                        <div className="flex">
+                            <div>{item.transcription}</div>
                         </div>
                     </div>
-                    <div>
+                    <div className="flex">
                         <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2">Edit</button>
                         <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2">Delete</button>
                     </div>

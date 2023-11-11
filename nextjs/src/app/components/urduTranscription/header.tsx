@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AiOutlinePlus } from "react-icons/ai";
 
 
 export default function Header() {
@@ -8,7 +9,7 @@ export default function Header() {
                  Urdu Transcription
             </p>
             <Link href="/addTranscription" className="bg-white mx-5">
-                Add Transcription
+                Add Transcription <AiOutlinePlus size={18} />
             </Link>
         </div>
     )
