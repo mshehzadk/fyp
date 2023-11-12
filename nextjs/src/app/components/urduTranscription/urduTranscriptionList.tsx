@@ -39,19 +39,35 @@ export default function urduTranscriptionList() {
         setEditTrigger(true);
 
     }
+
+    const saveEdit = () => {
+        setEditTrigger(false);
+        setEditIndex(-1);
+    }
+
     return (
         <div>
 
             {data && Array.isArray(data) && data.map((item: any, index: number) => (
                 <div key={index} className="p-4 border border-slate-300 my-5 flex gap-2">
                     {editTrigger && editIndex === index ?
-                        <div>Zahid</div>
+                        <div>
+                            <div>
+                                <div className="flex"></div>
+                                <input className="font-bold text-xl" value={speakerName} onChange={(e:any) => setSpeakerName(e.target.value)}></input>
+                                <input className="m-2" value={startTime} onChange={(e:any) => setStartTime(e.target.value)}></input>
+                                <input className="m-2" value={endTime} onChange={(e:any) => setEndTime(e.target.value)}></input>
+                            </div>
+                            <div className="flex">
+                                <input value={transcription} onChange={(e:any) => setTranscription(e.target.value)}></input>
+                            </div>
+                        </div>
                         :
                         <div onDoubleClick={() => editTheRow(item.speaker, item.startTime, item.endTime, item.transcription, index)}>
                             <div className="flex">
                                 <div className="font-bold text-xl">{item.speaker}</div>
                                 <div className="m-2" >{item.startTime}</div>
-                                <div className="m-2" >{item.startTime}</div>
+                                <div className="m-2" >{item.endTime}</div>
                             </div>
                             <div className="flex">
                                 <div>{item.transcription}</div>
@@ -62,14 +78,14 @@ export default function urduTranscriptionList() {
                         {editTrigger && editIndex === index ?
 
                             <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2"
-                                onClick={() => handleEdit(item.speaker, item.startTime, item.endTime, item.transcription, index)}
+                                onClick={() => saveEdit()}
                             >Save</button>
                             :
                             <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2"
                                 onClick={() => handleEdit(item.speaker, item.startTime, item.endTime, item.transcription, index)}
                             >Edit</button>
                         }
-                        {!editTrigger && <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2">Delete</button>}
+                        {!(editIndex === index) && <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2">Delete</button>}
 
                     </div>
                 </div>
