@@ -1,8 +1,8 @@
-const baseUrl = "http://localhost:8000"
 
+import { NextApiRequest, NextApiResponse } from 'next';
+import fs from 'fs';
+import path from 'path';
 
-export const getUrduTranscription = async () => {
-}
 
 
 
