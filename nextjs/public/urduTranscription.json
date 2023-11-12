@@ -1,1 +1,23 @@
-{}
+{
+    "transcription":
+    [
+          {
+            "startTime": "00:00:00",
+            "endTime": "00:00:05",
+            "speaker": "Speaker 1",
+            "transcription": "Hello"
+          },
+          {
+            "startTime": "00:00:00",
+            "endTime": "00:00:05",
+            "speaker": "Speaker 1",
+            "transcription": "Hello"
+          },
+          {
+            "startTime": "00:00:00",
+            "endTime": "00:00:05",
+            "speaker": "Speaker 1",
+            "transcription": "Hello kiya haal hain theek ho"
+          }
+    ]
+}

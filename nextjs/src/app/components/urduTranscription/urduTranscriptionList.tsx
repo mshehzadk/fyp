@@ -3,6 +3,7 @@ import { HtmlHTMLAttributes, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { set } from "mongoose";
 
+
 export default function urduTranscriptionList() {
     const [data, setData] = useState<JSON>();
     const [editTrigger, setEditTrigger] = useState(false);
@@ -18,8 +19,13 @@ export default function urduTranscriptionList() {
                     setData(data);
                 })
             })
-
-
+            let idata={
+                "speaker": "speakerName",
+                "startTime": "startTime",
+                "endTime": "endTime",
+                "transcription": "transcription"
+            }
+           
         }, []);
     }
     catch (error: any) {
@@ -82,7 +88,7 @@ export default function urduTranscriptionList() {
                             >Save</button>
                             :
                             <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2"
-                                onClick={() => handleEdit(item.speaker, item.startTime, item.endTime, item.transcription, index)}
+                                onClick={() => editTheRow(item.speaker, item.startTime, item.endTime, item.transcription, index)}
                             >Edit</button>
                         }
                         {!(editIndex === index) && <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2">Delete</button>}
