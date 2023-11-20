@@ -2,11 +2,13 @@
 import { HtmlHTMLAttributes, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { set } from "mongoose";
+import { AiOutlinePlus } from "react-icons/ai";
 
 
 export default function urduTranscriptionList() {
     const [data, setData] = useState<JSON>();
     const [editTrigger, setEditTrigger] = useState(false);
+    const [addTranscriptionModal, setAddTranscriptionModal] = useState(false);
     const [speakerName, setSpeakerName] = useState("");
     const [startTime, setStartTime] = useState("");
     const [endTime, setEndTime] = useState("");
@@ -19,24 +21,21 @@ export default function urduTranscriptionList() {
                     setData(data);
                 })
             })
-            let idata={
+            let idata = {
                 "speaker": "speakerName",
                 "startTime": "startTime",
                 "endTime": "endTime",
                 "transcription": "transcription"
             }
-           
+
         }, []);
     }
     catch (error: any) {
         console.log(error);
     }
 
-    const handleEdit = (speaker: String, startTime: String, endTime: String, transcription: String, index: number) => {
-        setEditTrigger(true);
-    }
-
     const editTheRow = (speaker: String, startTime: String, endTime: String, transcription: String, index: number) => {
+        setAddTranscriptionModal(false);
         setSpeakerName(speaker.toString());
         setStartTime(startTime.toString());
         setEndTime(endTime.toString());
@@ -51,8 +50,71 @@ export default function urduTranscriptionList() {
         setEditIndex(-1);
     }
 
+    const addTranscription = () => {
+        setEditTrigger(false);
+        setAddTranscriptionModal(true);
+    }
+
+    const SaveChanges = async () => {
+        const response = await fetch('http://localhost:8080/add_transcription', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                speaker: speakerName,
+                startTime: startTime,
+                endTime: endTime,
+                transcription: transcription
+            })
+        });
+
+        if (response.ok) {
+            console.log('Data sent successfully');
+            setAddTranscriptionModal(false);
+        } else {
+            console.error('Error sending data');
+        }
+    }
+
+    const IgnoreChanges = () => {
+        setAddTranscriptionModal(false);
+    }
+
     return (
         <div>
+            <>
+                <div className="flex justify-between items-center bg-slate-800 px-3 py-3">
+                    <p className="text-white font-bold">
+                        Urdu Transcription
+                    </p>
+                    <button className="bg-white mx-5 flex" onClick={addTranscription}>
+                        Add Transcription <AiOutlinePlus className="ml-2" size={18} />
+                    </button>
+                </div>
+                {
+                    addTranscriptionModal &&
+                    <div>
+                        <div>
+                            <div className="flex"></div>
+                            <input className="font-bold text-xl" placeholder="Enter Speaker Name" value={speakerName} onChange={(e: any) => setSpeakerName(e.target.value)}></input>
+                            <input className="m-2" placeholder="Start Time" value={startTime} onChange={(e: any) => setStartTime(e.target.value)}></input>
+                            <input className="m-2" placeholder="End Time" value={endTime} onChange={(e: any) => setEndTime(e.target.value)}></input>
+                        </div>
+                        <div className="flex">
+                            <input placeholder="Trnascription" value={transcription} onChange={(e: any) => setTranscription(e.target.value)}></input>
+                        </div>
+                        <div>
+                            <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2" onClick={SaveChanges}>
+                                Save
+                            </button>
+                            <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2" onClick={IgnoreChanges}>
+                                Ingore
+                            </button>
+                        </div>
+                    </div>
+                }
+            </>
 
             {data && Array.isArray(data) && data.map((item: any, index: number) => (
                 <div key={index} className="p-4 border border-slate-300 my-5 flex gap-2">
@@ -60,12 +122,12 @@ export default function urduTranscriptionList() {
                         <div>
                             <div>
                                 <div className="flex"></div>
-                                <input className="font-bold text-xl" value={speakerName} onChange={(e:any) => setSpeakerName(e.target.value)}></input>
-                                <input className="m-2" value={startTime} onChange={(e:any) => setStartTime(e.target.value)}></input>
-                                <input className="m-2" value={endTime} onChange={(e:any) => setEndTime(e.target.value)}></input>
+                                <input className="font-bold text-xl" value={speakerName} onChange={(e: any) => setSpeakerName(e.target.value)}></input>
+                                <input className="m-2" value={startTime} onChange={(e: any) => setStartTime(e.target.value)}></input>
+                                <input className="m-2" value={endTime} onChange={(e: any) => setEndTime(e.target.value)}></input>
                             </div>
                             <div className="flex">
-                                <input value={transcription} onChange={(e:any) => setTranscription(e.target.value)}></input>
+                                <input value={transcription} onChange={(e: any) => setTranscription(e.target.value)}></input>
                             </div>
                         </div>
                         :
@@ -91,7 +153,7 @@ export default function urduTranscriptionList() {
                                 onClick={() => editTheRow(item.speaker, item.startTime, item.endTime, item.transcription, index)}
                             >Edit</button>
                         }
-                        {!(editIndex === index) && <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2">Delete</button>}
+                        {!(editTrigger) && <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2">Delete</button>}
 
                     </div>
                 </div>

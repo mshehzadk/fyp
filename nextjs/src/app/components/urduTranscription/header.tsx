@@ -13,7 +13,29 @@ export default function Header() {
         setAddTranscriptionModal(true);
     }
 
-    const SaveChanges = () => {
+    const SaveChanges = async () => {
+        const response = await fetch('http://localhost:8080/add_transcription', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                speaker: speakerName,
+                startTime: startTime,
+                endTime: endTime,
+                transcription: transcription
+            })
+        });
+
+        if (response.ok) {
+            console.log('Data sent successfully');
+            setAddTranscriptionModal(false);
+        } else {
+            console.error('Error sending data');
+        }
+    }
+
+    const IgnoreChanges = () => {
         setAddTranscriptionModal(false);
     }
     return (
@@ -41,6 +63,9 @@ export default function Header() {
                     <div>
                         <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2" onClick={SaveChanges}>
                             Save
+                        </button>
+                        <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2" onClick={IgnoreChanges}>
+                            Ingore
                         </button>
                     </div>
                 </div>

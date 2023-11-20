@@ -37,6 +37,29 @@ def get_urduTranscription():
         data = json.load(f)
     return jsonify(data)
 
+# Add new transcription to JSON files
+@app.route('/add_transcription', methods=['POST'])
+def add_transcription():
+    filename='urduTranscription.json'
+    data = request.get_json()
+
+    # Load existing data
+    with open(os.path.join(UPLOAD_FOLDER, filename), 'r', encoding='utf8') as json_file:
+        transcriptions = json.load(json_file)
+
+    # Add new transcription
+    transcriptions.append(data)
+
+    # Sort transcriptions by start time
+    transcriptions.sort(key=lambda x: x['startTime'])
+
+    # Write back to file
+    with open(os.path.join(UPLOAD_FOLDER, filename), 'w', encoding='utf8') as json_file:
+        json.dump(transcriptions, json_file, ensure_ascii=False)
+
+    return 'Transcription added successfully', 200
+
+
 
 if __name__ == '__main__':
     if not os.path.exists(UPLOAD_FOLDER):

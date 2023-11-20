@@ -9,7 +9,6 @@ export default function urduTranscription() {
     return (
         <div className="Transcription Video" style={{ display: 'flex' }}>
             <div className="Transcription" style={{ flex: '1', textAlign: 'right' }}>
-                <Headertranscription />
                 <Urdutranscriptionlist />
             </div>
             <div className="Video" style={{ flex: '1', textAlign: 'right' }}>
