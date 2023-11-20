@@ -59,7 +59,28 @@ def add_transcription():
 
     return 'Transcription added successfully', 200
 
+# Delete transcription from JSON files
+@app.route('/delete_transcription', methods=['POST'])
+def delete_transcription():
+    filename='urduTranscription.json'
+    index = request.get_json().get('index')
 
+    # Load existing data
+    with open(os.path.join(UPLOAD_FOLDER, filename), 'r', encoding='utf8') as json_file:
+        transcriptions = json.load(json_file)
+
+    # Check if index is valid
+    if index < 0 or index >= len(transcriptions):
+        return 'Invalid index', 400
+
+    # Remove transcription at index
+    del transcriptions[index]
+
+    # Write back to file
+    with open(os.path.join(UPLOAD_FOLDER, filename), 'w', encoding='utf8') as json_file:
+        json.dump(transcriptions, json_file, ensure_ascii=False)
+
+    return 'Transcription deleted successfully', 200
 
 if __name__ == '__main__':
     if not os.path.exists(UPLOAD_FOLDER):

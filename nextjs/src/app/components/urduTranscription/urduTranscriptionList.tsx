@@ -43,6 +43,31 @@ export default function urduTranscriptionList() {
         setEditTrigger(false);
         setEditIndex(-1);
     }
+    
+    const DeleteTranscription = async (index:number) => {
+
+        setEditIndex(index);
+        const response = await fetch('http://localhost:8080/delete_transcription', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                index: index
+            })
+        });
+        setData(undefined);
+
+        fetch('http://localhost:8080/api/urduTranscription').then((response) => {
+                response.json().then((data) => {
+                    setData(data);
+                })
+            })
+
+
+        setEditIndex(-1);
+    
+    }
 
     const addTranscription = () => {
         setSpeakerName("");
@@ -70,15 +95,15 @@ export default function urduTranscriptionList() {
         setData(undefined);
 
         fetch('http://localhost:8080/api/urduTranscription').then((response) => {
-                response.json().then((data) => {
-                    setData(data);
-                })
+            response.json().then((data) => {
+                setData(data);
             })
+        })
 
 
         if (response.ok) {
             console.log('Data sent successfully');
-            
+
             setAddTranscriptionModal(false);
         } else {
             console.error('Error sending data');
@@ -88,6 +113,7 @@ export default function urduTranscriptionList() {
     const IgnoreChanges = () => {
         setAddTranscriptionModal(false);
     }
+
 
     return (
         <div>
@@ -161,7 +187,10 @@ export default function urduTranscriptionList() {
                                 onClick={() => editTheRow(item.speaker, item.startTime, item.endTime, item.transcription, index)}
                             >Edit</button>
                         }
-                        {!(editTrigger) && <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2">Delete</button>}
+                        {!(editTrigger) && 
+                        <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2" onClick={()=> DeleteTranscription(index)}>
+                            Delete
+                        </button>}
 
                     </div>
                 </div>
