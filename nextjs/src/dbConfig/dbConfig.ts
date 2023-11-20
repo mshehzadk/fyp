@@ -12,7 +12,7 @@ export async function connect() {
     connection.on("error", (error) => {
       console.log("MONGODB connection error");
       console.log(error);
-      process.exit(1);
+      //process.exit(1);
     });
   } catch (error) {
     console.log("Something went wrong while connecting to the database!");
