@@ -13,9 +13,10 @@
     "axios": "^1.5.1",
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^7.5.3",
+    "mongoose": "^7.6.5",
     "next": "latest",
     "nodemailer": "^6.9.5",
+    "punycode": "^2.3.1",
     "react": "latest",
     "react-dom": "latest",
     "react-hot-toast": "^2.4.1"
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.4",
     "@types/jsonwebtoken": "^9.0.3",
+    "@types/mongoose": "^5.11.97",
     "@types/node": "latest",
     "@types/nodemailer": "^6.4.11",
     "@types/react": "latest",
