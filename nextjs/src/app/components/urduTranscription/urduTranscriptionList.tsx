@@ -21,12 +21,6 @@ export default function urduTranscriptionList() {
                     setData(data);
                 })
             })
-            let idata = {
-                "speaker": "speakerName",
-                "startTime": "startTime",
-                "endTime": "endTime",
-                "transcription": "transcription"
-            }
 
         }, []);
     }
@@ -51,6 +45,10 @@ export default function urduTranscriptionList() {
     }
 
     const addTranscription = () => {
+        setSpeakerName("");
+        setStartTime("");
+        setEndTime("");
+        setTranscription("");
         setEditTrigger(false);
         setAddTranscriptionModal(true);
     }
@@ -69,8 +67,18 @@ export default function urduTranscriptionList() {
             })
         });
 
+        setData(undefined);
+
+        fetch('http://localhost:8080/api/urduTranscription').then((response) => {
+                response.json().then((data) => {
+                    setData(data);
+                })
+            })
+
+
         if (response.ok) {
             console.log('Data sent successfully');
+            
             setAddTranscriptionModal(false);
         } else {
             console.error('Error sending data');
