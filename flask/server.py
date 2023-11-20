@@ -33,7 +33,7 @@ def upload_file():
 @app.route('/api/urduTranscription', methods=['GET'])
 def get_urduTranscription():
     filename='urduTranscription.json'
-    with open(os.path.join(UPLOAD_FOLDER, filename), 'r') as f:
+    with open(os.path.join(UPLOAD_FOLDER, filename), 'r', encoding='utf8') as f:
         data = json.load(f)
     return jsonify(data)
 
