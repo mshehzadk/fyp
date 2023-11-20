@@ -78,7 +78,8 @@ export default function urduTranscriptionList() {
         setAddTranscriptionModal(true);
     }
 
-    const SaveChanges = async () => {
+    const SaveChanges = async (event : any) => {
+        event.preventDefault();
         const response = await fetch('http://localhost:8080/add_transcription', {
             method: 'POST',
             headers: {
@@ -131,15 +132,15 @@ export default function urduTranscriptionList() {
                     <div>
                         <div>
                             <div className="flex"></div>
-                            <input className="font-bold text-xl" placeholder="Enter Speaker Name" value={speakerName} onChange={(e: any) => setSpeakerName(e.target.value)}></input>
-                            <input className="m-2" placeholder="Start Time" value={startTime} onChange={(e: any) => setStartTime(e.target.value)}></input>
-                            <input className="m-2" placeholder="End Time" value={endTime} onChange={(e: any) => setEndTime(e.target.value)}></input>
+                            <input className="font-bold text-xl" placeholder="Enter Speaker Name" value={speakerName} onChange={(e: any) => setSpeakerName(e.target.value)} required></input>
+                            <input className="m-2" type="time" placeholder="Start Time" value={startTime} onChange={(e: any) => setStartTime(e.target.value)} required></input>
+                            <input className="m-2" placeholder="End Time" value={endTime} onChange={(e: any) => setEndTime(e.target.value)} required></input>
                         </div>
                         <div className="flex">
                             <input placeholder="Trnascription" value={transcription} onChange={(e: any) => setTranscription(e.target.value)}></input>
                         </div>
                         <div>
-                            <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2" onClick={SaveChanges}>
+                            <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2" onClick={(e) => SaveChanges(e)}>
                                 Save
                             </button>
                             <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2" onClick={IgnoreChanges}>
