@@ -39,7 +39,40 @@ export default function urduTranscriptionList() {
 
     }
 
-    const saveEdit = () => {
+    const saveEdit =async (event:any) => {
+        event.preventDefault();
+        const response = await fetch('http://localhost:8080/update_transcription', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                speaker: speakerName,
+                startTime: startTime,
+                endTime: endTime,
+                transcription: transcription,
+                index: editIndex
+            })
+        });
+
+        setData(undefined);
+
+        fetch('http://localhost:8080/api/urduTranscription').then((response) => {
+            response.json().then((data) => {
+                setData(data);
+            })
+        })
+
+
+        if (response.ok) {
+            console.log('Data sent successfully');
+
+            setAddTranscriptionModal(false);
+        } else {
+            console.error('Error sending data');
+        }
+
+
         setEditTrigger(false);
         setEditIndex(-1);
     }
@@ -133,7 +166,7 @@ export default function urduTranscriptionList() {
                         <div>
                             <div className="flex"></div>
                             <input className="font-bold text-xl" placeholder="Enter Speaker Name" value={speakerName} onChange={(e: any) => setSpeakerName(e.target.value)} required></input>
-                            <input className="m-2" type="time" placeholder="Start Time" value={startTime} onChange={(e: any) => setStartTime(e.target.value)} required></input>
+                            <input className="m-2" placeholder="Start Time" value={startTime} onChange={(e: any) => setStartTime(e.target.value)} required></input>
                             <input className="m-2" placeholder="End Time" value={endTime} onChange={(e: any) => setEndTime(e.target.value)} required></input>
                         </div>
                         <div className="flex">
@@ -181,7 +214,7 @@ export default function urduTranscriptionList() {
                         {editTrigger && editIndex === index ?
 
                             <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2"
-                                onClick={() => saveEdit()}
+                                onClick={(e) => saveEdit(e)}
                             >Save</button>
                             :
                             <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2"

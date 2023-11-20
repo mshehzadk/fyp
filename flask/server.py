@@ -82,6 +82,44 @@ def delete_transcription():
 
     return 'Transcription deleted successfully', 200
 
+# Update transcription in JSON files
+@app.route('/update_transcription', methods=['POST'])
+def update_transcription():
+    filename='urduTranscription.json'
+    data = request.get_json()
+    index = data.get('index')
+    new_transcription = data.get('transcription')
+    speaker = data.get('speaker')
+    startTime=data.get('startTime')
+    endTime=data.get('endTime')
+
+    # Load existing data
+    with open(os.path.join(UPLOAD_FOLDER, filename), 'r', encoding='utf8') as json_file:
+        transcriptions = json.load(json_file)
+
+    # Check if index is valid
+    if index < 0 or index >= len(transcriptions):
+        return 'Invalid index', 400
+
+    # Update transcription at index
+    if speaker:
+        transcriptions[index]['speaker'] = speaker
+    if startTime:
+        transcriptions[index]['startTime'] = startTime
+    if endTime:
+        transcriptions[index]['endTime'] = endTime
+    if new_transcription:
+        transcriptions[index]['transcription'] = new_transcription
+
+
+    # Sort transcriptions by start time
+    transcriptions.sort(key=lambda x: x['startTime'])
+    # Write back to file
+    with open(os.path.join(UPLOAD_FOLDER, filename), 'w', encoding='utf8') as json_file:
+        json.dump(transcriptions, json_file, ensure_ascii=False)
+
+    return 'Transcription updated successfully', 200
+
 if __name__ == '__main__':
     if not os.path.exists(UPLOAD_FOLDER):
         os.makedirs(UPLOAD_FOLDER)
