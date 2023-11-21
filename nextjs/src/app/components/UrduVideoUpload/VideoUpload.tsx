@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link"; // Import the Link component for going to next page button
 
 export default function VideoUpload() {
@@ -61,7 +61,7 @@ export default function VideoUpload() {
               />
             </div>
             {file && <div style={{ textAlign: 'right', flex: '1' }}>
-              { isVideoUploaded==false ? (<input type="submit" value="Upload" />) : (<input type="submit" value="Uploaded" disabled />)}
+              {isVideoUploaded == false ? (<input type="submit" value="Upload" />) : (<input type="submit" value="Uploaded" disabled />)}
             </div>}
           </div>
         </form>
