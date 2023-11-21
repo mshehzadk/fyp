@@ -1,5 +1,5 @@
 from flask_cors import CORS
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_file
 import json
 import os
 
@@ -119,6 +119,12 @@ def update_transcription():
         json.dump(transcriptions, json_file, ensure_ascii=False)
 
     return 'Transcription updated successfully', 200
+
+# Send Arabic video to the client
+@app.route('/get_arabicVideo')
+def get_video():
+    filename='arabicVideo.mp4'
+    return send_file(os.path.join(UPLOAD_FOLDER, filename), mimetype='video/mp4')
 
 if __name__ == '__main__':
     if not os.path.exists(UPLOAD_FOLDER):

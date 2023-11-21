@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Urdutranscriptionlist from "../urduTranscription/urduTranscriptionList";
 import Link from "next/link";
 
-export default function urduTranscription() {
+export default function arabicTranslation() {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [data, setData] = useState<any>(null);
 
