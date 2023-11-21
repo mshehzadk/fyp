@@ -14,6 +14,8 @@ export default function urduTranscriptionList() {
     const [endTime, setEndTime] = useState("");
     const [transcription, setTranscription] = useState("");
     const [editIndex, setEditIndex] = useState(-1);
+    const [dateFormat, setDateFormat] = useState(true);
+
     try {
         useEffect(() => {
             fetch('http://localhost:8080/api/urduTranscription').then((response) => {
@@ -39,8 +41,14 @@ export default function urduTranscriptionList() {
 
     }
 
-    const saveEdit =async (event:any) => {
+    const saveEdit = async (event: any) => {
         event.preventDefault();
+        // Check if the value is a valid time string
+        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9]$/;
+        if (!pattern.test(startTime) || !pattern.test(endTime)) {
+            alert("Please enter a valid time string in the format HH:MM:SS");
+            return;
+        }
         const response = await fetch('http://localhost:8080/update_transcription', {
             method: 'POST',
             headers: {
@@ -55,7 +63,6 @@ export default function urduTranscriptionList() {
             })
         });
 
-        setData(undefined);
 
         fetch('http://localhost:8080/api/urduTranscription').then((response) => {
             response.json().then((data) => {
@@ -76,8 +83,8 @@ export default function urduTranscriptionList() {
         setEditTrigger(false);
         setEditIndex(-1);
     }
-    
-    const DeleteTranscription = async (index:number) => {
+
+    const DeleteTranscription = async (index: number) => {
 
         setEditIndex(index);
         const response = await fetch('http://localhost:8080/delete_transcription', {
@@ -89,17 +96,16 @@ export default function urduTranscriptionList() {
                 index: index
             })
         });
-        setData(undefined);
 
         fetch('http://localhost:8080/api/urduTranscription').then((response) => {
-                response.json().then((data) => {
-                    setData(data);
-                })
+            response.json().then((data) => {
+                setData(data);
             })
+        })
 
 
         setEditIndex(-1);
-    
+
     }
 
     const addTranscription = () => {
@@ -111,8 +117,14 @@ export default function urduTranscriptionList() {
         setAddTranscriptionModal(true);
     }
 
-    const SaveChanges = async (event : any) => {
+    const SaveChanges = async (event: any) => {
         event.preventDefault();
+        // Check if the value is a valid time string
+        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9]$/;
+        if (!pattern.test(startTime) || !pattern.test(endTime)) {
+            alert("Please enter a valid time string in the format HH:MM:SS");
+            return;
+        }
         const response = await fetch('http://localhost:8080/add_transcription', {
             method: 'POST',
             headers: {
@@ -125,8 +137,6 @@ export default function urduTranscriptionList() {
                 transcription: transcription
             })
         });
-
-        setData(undefined);
 
         fetch('http://localhost:8080/api/urduTranscription').then((response) => {
             response.json().then((data) => {
@@ -148,6 +158,24 @@ export default function urduTranscriptionList() {
         setAddTranscriptionModal(false);
     }
 
+    const TimeUpdate = (event: any, type: string) => {
+        event.preventDefault();
+        const value = event.target.value;
+        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9]$/;
+        if (!pattern.test(value)) {
+            setDateFormat(false);
+        }
+        else {
+            setDateFormat(true);
+        }
+
+        if (type === 's') {
+            setStartTime(event.target.value);
+        }
+        else if (type === 'e') {
+            setEndTime(event.target.value);
+        }
+    }
 
     return (
         <div>
@@ -165,9 +193,10 @@ export default function urduTranscriptionList() {
                     <div>
                         <div>
                             <div className="flex"></div>
-                            <input className="font-bold text-xl" placeholder="Enter Speaker Name" value={speakerName} onChange={(e: any) => setSpeakerName(e.target.value)} required></input>
-                            <input className="m-2" placeholder="Start Time" value={startTime} onChange={(e: any) => setStartTime(e.target.value)} required></input>
-                            <input className="m-2" placeholder="End Time" value={endTime} onChange={(e: any) => setEndTime(e.target.value)} required></input>
+                            <input className="font-bold text-xl" placeholder="Enter Speaker Name" value={speakerName} onChange={(e: any) => setSpeakerName(e.target.value)}></input>
+                            <input className="m-2" placeholder="Start Time" value={startTime} onChange={(e: any) => TimeUpdate(e, 's')}></input>
+                            <input className="m-2" placeholder="End Time" value={endTime} onChange={(e: any) => TimeUpdate(e, 'e')}></input>
+                            {!dateFormat && <div className="text-red-500">Please enter a valid time string in the format HH:MM:SS</div>}
                         </div>
                         <div className="flex">
                             <input placeholder="Trnascription" value={transcription} onChange={(e: any) => setTranscription(e.target.value)}></input>
@@ -191,8 +220,17 @@ export default function urduTranscriptionList() {
                             <div>
                                 <div className="flex"></div>
                                 <input className="font-bold text-xl" value={speakerName} onChange={(e: any) => setSpeakerName(e.target.value)}></input>
-                                <input className="m-2" value={startTime} onChange={(e: any) => setStartTime(e.target.value)}></input>
-                                <input className="m-2" value={endTime} onChange={(e: any) => setEndTime(e.target.value)}></input>
+                                <input className="m-2"
+                                    value={startTime}
+                                    onChange={(e: any) => TimeUpdate(e, 's')}>
+
+                                </input>
+                                <input className="m-2"
+                                    value={endTime}
+                                    onChange={(e: any) => TimeUpdate(e, 'e')}>
+
+                                </input>
+                                {!dateFormat && <div className="text-red-500">Please enter a valid time string in the format HH:MM:SS</div>}
                             </div>
                             <div className="flex">
                                 <input value={transcription} onChange={(e: any) => setTranscription(e.target.value)}></input>
@@ -221,10 +259,10 @@ export default function urduTranscriptionList() {
                                 onClick={() => editTheRow(item.speaker, item.startTime, item.endTime, item.transcription, index)}
                             >Edit</button>
                         }
-                        {!(editTrigger) && 
-                        <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2" onClick={()=> DeleteTranscription(index)}>
-                            Delete
-                        </button>}
+                        {!(editTrigger) &&
+                            <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2" onClick={() => DeleteTranscription(index)}>
+                                Delete
+                            </button>}
 
                     </div>
                 </div>
