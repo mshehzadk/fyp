@@ -2,6 +2,7 @@ from flask_cors import CORS
 from flask import Flask, jsonify, request, send_file
 import json
 import os
+from time import sleep
 
 UPLOAD_FOLDER = './data'
 
@@ -124,6 +125,7 @@ def update_transcription():
 @app.route('/get_arabicVideo')
 def get_video():
     filename='arabicVideo.mp4'
+    sleep(10)
     return send_file(os.path.join(UPLOAD_FOLDER, filename), mimetype='video/mp4')
 
 if __name__ == '__main__':
