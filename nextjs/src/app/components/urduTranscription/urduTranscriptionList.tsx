@@ -43,6 +43,10 @@ export default function urduTranscriptionList() {
 
     const saveEdit = async (event: any) => {
         event.preventDefault();
+        if (speakerName === "" || startTime === "" || endTime === "" || transcription === "") {
+            alert("Please fill all the fields");
+            return;
+        }
         // Check if the value is a valid time string
         const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9]$/;
         if (!pattern.test(startTime) || !pattern.test(endTime)) {
@@ -75,6 +79,7 @@ export default function urduTranscriptionList() {
             console.log('Data sent successfully');
 
             setAddTranscriptionModal(false);
+            setDateFormat(true);
         } else {
             console.error('Error sending data');
         }
@@ -117,8 +122,12 @@ export default function urduTranscriptionList() {
         setAddTranscriptionModal(true);
     }
 
-    const SaveChanges = async (event: any) => {
+    const SaveNew = async (event: any) => {
         event.preventDefault();
+        if (speakerName === "" || startTime === "" || endTime === "" || transcription === "") {
+            alert("Please fill all the fields");
+            return;
+        }
         // Check if the value is a valid time string
         const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9]$/;
         if (!pattern.test(startTime) || !pattern.test(endTime)) {
@@ -149,6 +158,7 @@ export default function urduTranscriptionList() {
             console.log('Data sent successfully');
 
             setAddTranscriptionModal(false);
+            setDateFormat(true);
         } else {
             console.error('Error sending data');
         }
@@ -202,7 +212,7 @@ export default function urduTranscriptionList() {
                             <input placeholder="Trnascription" value={transcription} onChange={(e: any) => setTranscription(e.target.value)}></input>
                         </div>
                         <div>
-                            <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2" onClick={(e) => SaveChanges(e)}>
+                            <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2" onClick={(e) => SaveNew(e)}>
                                 Save
                             </button>
                             <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2" onClick={IgnoreChanges}>
