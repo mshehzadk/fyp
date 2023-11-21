@@ -40,9 +40,11 @@ export default function urduTranscription() {
                 <Link href='/urduvideo' style={{ flex: '1', textAlign: 'right' }}>
                     <div>Urdu Video</div>
                 </Link>
+                {data && 
                 <Link href='/arabicTranslation' style={{ flex: '1', textAlign: 'left' }}>
                     <div>Arabic Translation</div>
                 </Link>
+                }
             </div>
         </div>
 
