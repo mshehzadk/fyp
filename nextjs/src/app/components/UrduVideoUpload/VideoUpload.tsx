@@ -50,31 +50,33 @@ export default function VideoUpload() {
 
   return (
     <div>
-      <div>
-        <form onSubmit={onSubmit}>
-          <div style={{ display: "flex" }}>
-            <div style={{ textAlign: 'left', flex: '1' }}>
-              <input type="file"
-                name="file"
-                accept="video/mp4"
-                onChange={onFileChange}
-              />
+      <div className="w-screen">
+        <div>
+          <form onSubmit={onSubmit}>
+            <div style={{ display: "flex" }}>
+              <div style={{ textAlign: 'left', flex: '1' }}>
+                <input type="file"
+                  name="file"
+                  accept="video/mp4"
+                  onChange={onFileChange}
+                />
+              </div>
+              {file && <div style={{ textAlign: 'right', flex: '1' }}>
+                {isVideoUploaded == false ? (<input type="submit" value="Upload" />) : (<input type="submit" value="Uploaded" disabled />)}
+              </div>}
             </div>
-            {file && <div style={{ textAlign: 'right', flex: '1' }}>
-              {isVideoUploaded == false ? (<input type="submit" value="Upload" />) : (<input type="submit" value="Uploaded" disabled />)}
-            </div>}
-          </div>
-        </form>
-      </div>
-      <div>
-        {isUploading ? (
-          <div>Loading...</div> // This is where your spinner would go
-        ) : videoUrl ? (
-          <video controls>
-            <source src={videoUrl} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        ) : null}
+          </form>
+        </div>
+        <div>
+          {isUploading ? (
+            <div>Loading...</div> // This is where your spinner would go
+          ) : videoUrl ? (
+            <video controls>
+              <source src={videoUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          ) : null}
+        </div>
       </div>
       <div>
         {isVideoUploaded ? (
