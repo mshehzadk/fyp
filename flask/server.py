@@ -134,21 +134,43 @@ def get_arabicTranslation():
 @app.route('/add_Translation', methods=['POST'])
 def add_Translation():
     filename='arabicTranslation.json'
+    filenameUrdu='urduTranscription.json'
     data = request.get_json()
+    new_Translation = data.get('translation')
+    speaker = data.get('speaker')
+    startTime=data.get('startTime')
+    endTime=data.get('endTime')
+
 
     # Load existing data
     with open(os.path.join(UPLOAD_FOLDER, filename), 'r', encoding='utf8') as json_file:
         Translations = json.load(json_file)
 
+    # Load existing data
+    with open(os.path.join(UPLOAD_FOLDER, filenameUrdu), 'r', encoding='utf8') as json_file:
+        Transcriptions = json.load(json_file)
+
     # Add new Translation
     Translations.append(data)
+
+    # Add new Transcription
+    new_transcription = {'speaker': speaker, 'startTime': startTime, 'endTime': endTime, 'transcription': new_Translation}
+
+    Transcriptions.append(new_transcription)
 
     # Sort Translations by start time
     Translations.sort(key=lambda x: x['startTime'])
 
+    # Sort Transcriptions by start time
+    Transcriptions.sort(key=lambda x: x['startTime'])
+
     # Write back to file
     with open(os.path.join(UPLOAD_FOLDER, filename), 'w', encoding='utf8') as json_file:
         json.dump(Translations, json_file, ensure_ascii=False)
+
+    # Write back to file
+    with open(os.path.join(UPLOAD_FOLDER, filenameUrdu), 'w', encoding='utf8') as json_file:
+        json.dump(Transcriptions, json_file, ensure_ascii=False)
 
     return 'Translation added successfully', 200
 
