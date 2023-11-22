@@ -28,9 +28,9 @@
     "@types/busboy": "^1.5.2",
     "@types/formidable": "^3.4.4",
     "@types/jsonwebtoken": "^9.0.3",
-    "@types/node": "latest",
+    "@types/node": "20.9.4",
     "@types/nodemailer": "^6.4.11",
-    "@types/react": "latest",
+    "@types/react": "18.2.38",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
     "daisyui": "^3.9.4",
@@ -39,6 +39,6 @@
     "json-server": "^0.17.4",
     "postcss": "latest",
     "tailwindcss": "^3.3.5",
-    "typescript": "latest"
+    "typescript": "5.3.2"
   }
 }
