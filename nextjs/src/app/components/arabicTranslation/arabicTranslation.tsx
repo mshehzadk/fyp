@@ -90,7 +90,7 @@ export default function arabicTranslation() {
     const DeleteTranslation = async (index: number) => {
 
         setEditIndex(index);
-        const response = await fetch('http://localhost:8080/delete_translation', {
+        const response = await fetch('http://localhost:8080/delete_Translation', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -132,7 +132,7 @@ export default function arabicTranslation() {
             alert("Please enter a valid time string in the format HH:MM:SS");
             return;
         }
-        const response = await fetch('http://localhost:8080/add_translation', {
+        const response = await fetch('http://localhost:8080/add_Translation', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

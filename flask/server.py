@@ -181,7 +181,7 @@ def update_Translation():
     filename='arabicTranslation.json'
     data = request.get_json()
     index = data.get('index')
-    new_Translation = data.get('Translation')
+    new_Translation = data.get('translation')
     speaker = data.get('speaker')
     startTime=data.get('startTime')
     endTime=data.get('endTime')
@@ -202,7 +202,7 @@ def update_Translation():
     if endTime:
         Translations[index]['endTime'] = endTime
     if new_Translation:
-        Translations[index]['Translation'] = new_Translation
+        Translations[index]['translation'] = new_Translation
 
 
     # Sort Translations by start time
