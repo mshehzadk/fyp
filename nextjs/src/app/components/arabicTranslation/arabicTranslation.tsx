@@ -113,6 +113,12 @@ export default function arabicTranslation() {
             })
         })
 
+        fetch('http://localhost:8080/api/urduTranscription').then((response) => {
+                response.json().then((data) => {
+                    setUrduTranscription(data);
+                })
+            })
+
 
         setEditIndex(-1);
 
@@ -157,6 +163,12 @@ export default function arabicTranslation() {
                 setData(data);
             })
         })
+
+        fetch('http://localhost:8080/api/urduTranscription').then((response) => {
+                response.json().then((data) => {
+                    setUrduTranscription(data);
+                })
+            })
 
 
         if (response.ok) {

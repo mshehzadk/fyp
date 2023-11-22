@@ -156,22 +156,34 @@ def add_Translation():
 @app.route('/delete_Translation', methods=['POST'])
 def delete_Translation():
     filename='arabicTranslation.json'
+    filenameUrdu='urduTranscription.json'
     index = request.get_json().get('index')
 
     # Load existing data
     with open(os.path.join(UPLOAD_FOLDER, filename), 'r', encoding='utf8') as json_file:
         Translations = json.load(json_file)
 
+    # Load existing data
+    with open(os.path.join(UPLOAD_FOLDER, filenameUrdu), 'r', encoding='utf8') as json_file:
+        Transcriptions = json.load(json_file)
+
     # Check if index is valid
-    if index < 0 or index >= len(Translations):
+    if index < 0 or (index >= len(Translations) and index >= len(Transcriptions)):
         return 'Invalid index', 400
 
     # Remove Translation at index
     del Translations[index]
 
+    # Remove Transcription at index
+    del Transcriptions[index]
+
     # Write back to file
     with open(os.path.join(UPLOAD_FOLDER, filename), 'w', encoding='utf8') as json_file:
         json.dump(Translations, json_file, ensure_ascii=False)
+
+    # Write back to file
+    with open(os.path.join(UPLOAD_FOLDER, filenameUrdu), 'w', encoding='utf8') as json_file:
+        json.dump(Transcriptions, json_file, ensure_ascii=False)
 
     return 'Translation deleted successfully', 200
 
