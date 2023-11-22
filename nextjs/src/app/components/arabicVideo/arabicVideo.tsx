@@ -27,7 +27,7 @@ export default function arabicVideo() {
         <div>
             <div className="ArabicVideo" >
                 {isLoading && <p>Loading...</p>}
-                <video width="320" height="240" controls
+                <video controls
 
                     onLoadStart={() => setIsLoading(true)}
                     onLoadedData={() => setIsLoading(false)}
