@@ -50,7 +50,7 @@ export default function VideoUpload() {
 
   return (
     <div>
-      <div className="w-screen">
+      <div>
         <div>
           <form onSubmit={onSubmit}>
             <div style={{ display: "flex" }}>
