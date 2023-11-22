@@ -121,6 +121,98 @@ def update_transcription():
 
     return 'Transcription updated successfully', 200
 
+
+# Send data from JSON file to the client
+@app.route('/api/arabicTranslation', methods=['GET'])
+def get_arabicTranslation():
+    filename='arabicTranslation.json'
+    with open(os.path.join(UPLOAD_FOLDER, filename), 'r', encoding='utf8') as f:
+        data = json.load(f)
+    return jsonify(data)
+
+# Add new Translation to JSON files
+@app.route('/add_Translation', methods=['POST'])
+def add_Translation():
+    filename='arabicTranslation.json'
+    data = request.get_json()
+
+    # Load existing data
+    with open(os.path.join(UPLOAD_FOLDER, filename), 'r', encoding='utf8') as json_file:
+        Translations = json.load(json_file)
+
+    # Add new Translation
+    Translations.append(data)
+
+    # Sort Translations by start time
+    Translations.sort(key=lambda x: x['startTime'])
+
+    # Write back to file
+    with open(os.path.join(UPLOAD_FOLDER, filename), 'w', encoding='utf8') as json_file:
+        json.dump(Translations, json_file, ensure_ascii=False)
+
+    return 'Translation added successfully', 200
+
+# Delete Translation from JSON files
+@app.route('/delete_Translation', methods=['POST'])
+def delete_Translation():
+    filename='arabicTranslation.json'
+    index = request.get_json().get('index')
+
+    # Load existing data
+    with open(os.path.join(UPLOAD_FOLDER, filename), 'r', encoding='utf8') as json_file:
+        Translations = json.load(json_file)
+
+    # Check if index is valid
+    if index < 0 or index >= len(Translations):
+        return 'Invalid index', 400
+
+    # Remove Translation at index
+    del Translations[index]
+
+    # Write back to file
+    with open(os.path.join(UPLOAD_FOLDER, filename), 'w', encoding='utf8') as json_file:
+        json.dump(Translations, json_file, ensure_ascii=False)
+
+    return 'Translation deleted successfully', 200
+
+# Update Translation in JSON files
+@app.route('/update_Translation', methods=['POST'])
+def update_Translation():
+    filename='arabicTranslation.json'
+    data = request.get_json()
+    index = data.get('index')
+    new_Translation = data.get('Translation')
+    speaker = data.get('speaker')
+    startTime=data.get('startTime')
+    endTime=data.get('endTime')
+
+    # Load existing data
+    with open(os.path.join(UPLOAD_FOLDER, filename), 'r', encoding='utf8') as json_file:
+        Translations = json.load(json_file)
+
+    # Check if index is valid
+    if index < 0 or index >= len(Translations):
+        return 'Invalid index', 400
+
+    # Update Translation at index
+    if speaker:
+        Translations[index]['speaker'] = speaker
+    if startTime:
+        Translations[index]['startTime'] = startTime
+    if endTime:
+        Translations[index]['endTime'] = endTime
+    if new_Translation:
+        Translations[index]['Translation'] = new_Translation
+
+
+    # Sort Translations by start time
+    Translations.sort(key=lambda x: x['startTime'])
+    # Write back to file
+    with open(os.path.join(UPLOAD_FOLDER, filename), 'w', encoding='utf8') as json_file:
+        json.dump(Translations, json_file, ensure_ascii=False)
+
+    return 'Translation updated successfully', 200
+
 # Send Arabic video to the client
 @app.route('/get_arabicVideo')
 def get_video():
