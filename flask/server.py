@@ -191,6 +191,7 @@ def delete_Translation():
 @app.route('/update_Translation', methods=['POST'])
 def update_Translation():
     filename='arabicTranslation.json'
+    filenameUrdu='urduTranscription.json'
     data = request.get_json()
     index = data.get('index')
     new_Translation = data.get('translation')
@@ -202,6 +203,10 @@ def update_Translation():
     with open(os.path.join(UPLOAD_FOLDER, filename), 'r', encoding='utf8') as json_file:
         Translations = json.load(json_file)
 
+    # Load existing data
+    with open(os.path.join(UPLOAD_FOLDER, filenameUrdu), 'r', encoding='utf8') as json_file:
+        Transcriptions = json.load(json_file)
+
     # Check if index is valid
     if index < 0 or index >= len(Translations):
         return 'Invalid index', 400
@@ -209,19 +214,30 @@ def update_Translation():
     # Update Translation at index
     if speaker:
         Translations[index]['speaker'] = speaker
+        Transcriptions[index]['speaker'] = speaker
     if startTime:
         Translations[index]['startTime'] = startTime
+        Transcriptions[index]['startTime'] = startTime
     if endTime:
         Translations[index]['endTime'] = endTime
+        Transcriptions[index]['endTime'] = endTime
     if new_Translation:
         Translations[index]['translation'] = new_Translation
 
 
     # Sort Translations by start time
     Translations.sort(key=lambda x: x['startTime'])
+
+    # Sort Transcriptions by start time
+    Transcriptions.sort(key=lambda x: x['startTime'])
+
     # Write back to file
     with open(os.path.join(UPLOAD_FOLDER, filename), 'w', encoding='utf8') as json_file:
         json.dump(Translations, json_file, ensure_ascii=False)
+
+    # Write back to file
+    with open(os.path.join(UPLOAD_FOLDER, filenameUrdu), 'w', encoding='utf8') as json_file:
+        json.dump(Transcriptions, json_file, ensure_ascii=False)
 
     return 'Translation updated successfully', 200
 

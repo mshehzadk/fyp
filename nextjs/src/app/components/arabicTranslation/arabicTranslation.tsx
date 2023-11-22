@@ -79,6 +79,12 @@ export default function arabicTranslation() {
             })
         })
 
+        fetch('http://localhost:8080/api/urduTranscription').then((response) => {
+                response.json().then((data) => {
+                    setUrduTranscription(data);
+                })
+            })
+
 
         if (response.ok) {
             console.log('Data sent successfully');
