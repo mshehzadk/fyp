@@ -194,11 +194,28 @@ export default function arabicTranslation() {
 
     return (
         <div>
-            <div>
+            <div className="urduTranscription">
                 <div>
-
+                    <div className="flex justify-between items-center bg-slate-800 px-3 py-3">
+                        <p className="text-white font-bold">
+                            Urdu Transcription
+                        </p>
+                    </div>
+                    {urduTranscription && Array.isArray(urduTranscription) && urduTranscription.map((item: any, index: number) => (
+                        <div key={index} className="p-4 border border-slate-300 my-5 flex gap-2">
+                            <div className="flex">
+                                <div className="font-bold text-xl">{item.speaker}</div>
+                                <div className="m-2" >{item.startTime}</div>
+                                <div className="m-2" >{item.endTime}</div>
+                            </div>
+                            <div className="flex">
+                                <div>{item.transcription}</div>
+                            </div>
+                        </div>
+                    ))}
+                    {!urduTranscription && <div>Loading......</div>}
                 </div>
-                <div className="">
+                <div className="arabicTranslation">
                     <>
                         <div className="flex justify-between items-center bg-slate-800 px-3 py-3">
                             <p className="text-white font-bold">
