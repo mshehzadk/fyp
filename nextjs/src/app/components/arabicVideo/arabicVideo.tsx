@@ -4,16 +4,21 @@ import Link from "next/link";
 import { set } from "mongoose";
 
 export default function arabicVideo() {
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [videoSrc, setVideoSrc] = useState<string>("");
 
-
-    const Download = () => {
-        fetch("http://localhost:8080/get_arabicVideo", {
-            method: 'GET',
-        })
+    useEffect(() => {
+        fetch('http://localhost:8080/get_arabicVideo')
             .then(response => response.blob())
             .then(blob => {
-                const url = window.URL.createObjectURL(blob);
+                const videoUrl = URL.createObjectURL(blob);
+                setVideoSrc(videoUrl);
+                setIsLoading(false);
+            });
+    }, []);
+
+    const Download = () => {
+                const url = videoSrc;
                 const a = document.createElement('a');
                 a.style.display = 'none';
                 a.href = url;
@@ -21,20 +26,15 @@ export default function arabicVideo() {
                 document.body.appendChild(a);
                 a.click();
                 window.URL.revokeObjectURL(url);
-            });
+            
     }
+
     return (
         <div>
             <div className="ArabicVideo" >
-                {isLoading && <p>Loading...</p>}
-                <video controls
-
-                    onLoadStart={() => setIsLoading(true)}
-                    onLoadedData={() => setIsLoading(false)}
-                    src="http://localhost:8080/get_arabicVideo">
-                    Your browser does not support the video tag.
-                </video>
-
+                {isLoading ?
+                    <p>Loading...</p> :
+                    <video src={videoSrc} controls />}
             </div>
             <div style={{ display: 'flex' }}>
                 <Link href='/arabicTranslation' style={{ flex: '1', textAlign: 'right' }}>
