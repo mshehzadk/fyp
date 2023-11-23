@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { IoMdDownload } from "react-icons/io";
+import { HashLoader } from "react-spinners";
 
 export default function arabicVideo() {
     const [isLoading, setIsLoading] = useState(true);
@@ -34,7 +35,7 @@ export default function arabicVideo() {
             <div className="w-[80%] h-[70%] bg-base-100 shadow-xl rounded-xl border border-gray-200 mb-12" >
                 {isLoading ?
                     <div className="flex justify-center items-center w-full h-full rounded-2xl shadow-2xl">
-                        <div className="justify-center loading loading-balls w-[30%] h-[30%]"></div>
+                        <HashLoader color="#007cf4"/>
                     </div> :
                     <video className="w-full h-full rounded-2xl shadow-2xl" src={videoSrc} controls />
                 }
