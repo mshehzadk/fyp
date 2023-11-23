@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { set } from "mongoose";
+import { IoMdDownload } from "react-icons/io";
 
 export default function arabicVideo() {
     const [isLoading, setIsLoading] = useState(true);
@@ -18,30 +18,32 @@ export default function arabicVideo() {
     }, []);
 
     const Download = () => {
-                const url = videoSrc;
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = url;
-                a.setAttribute('download', 'test.video');
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-            
+        const url = videoSrc;
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.setAttribute('download', 'test.video');
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+
     }
 
     return (
-        <div>
-            <div className="ArabicVideo" >
+        <div className="w-screen h-screen flex flex-col justify-center items-center py-0">
+            <div className="ArabicVideo w-[80%] h-[70%] bg-base-100 shadow-2xl rounded-xl border border-gray-200 mb-12" >
                 {isLoading ?
-                    <p>Loading...</p> :
-                    <video src={videoSrc} controls />}
+                    <p className="w-full h-full rounded-2xl shadow-2xl">Loading...</p> :
+                    <video className="w-full h-full rounded-2xl shadow-2xl" src={videoSrc} controls />
+                }
             </div>
-            <div style={{ display: 'flex' }}>
-                <Link href='/arabicTranslation' style={{ flex: '1', textAlign: 'right' }}>
+            <div className="flex flex-row justify-between w-[80%] mt-5 ">
+                <Link className="btn sm:btn-sm md:btn-md lg:btn-md btn-info transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 shadow-md" href='/arabicTranslation'>
                     <div>Arabic Translation</div>
                 </Link>
                 {!isLoading &&
-                    <button onClick={Download} style={{ flex: '1', textAlign: 'left' }}>
+                    <button type="button" className="btn sm:btn-sm md:btn-md lg:btn-md btn-info transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 shadow-md" onClick={Download}>
+                        <IoMdDownload className="inline-block mr-2" />
                         Download Video
                     </button>
                 }
