@@ -31,18 +31,20 @@ export default function arabicVideo() {
 
     return (
         <div className="w-screen h-screen flex flex-col justify-center items-center py-0">
-            <div className="ArabicVideo w-[80%] h-[70%] bg-base-100 shadow-2xl rounded-xl border border-gray-200 mb-12" >
+            <div className="w-[80%] h-[70%] bg-base-100 shadow-xl rounded-xl border border-gray-200 mb-12" >
                 {isLoading ?
-                    <p className="w-full h-full rounded-2xl shadow-2xl">Loading...</p> :
+                    <div className="flex justify-center items-center w-full h-full rounded-2xl shadow-2xl">
+                        <div className="justify-center loading loading-balls w-[30%] h-[30%]"></div>
+                    </div> :
                     <video className="w-full h-full rounded-2xl shadow-2xl" src={videoSrc} controls />
                 }
             </div>
             <div className="flex flex-row justify-between w-[80%] mt-5 ">
-                <Link className="btn sm:btn-sm md:btn-md lg:btn-md btn-info transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 shadow-md" href='/arabicTranslation'>
+                <Link className="btn sm:btn-sm md:btn-md lg:btn-md btn-info transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 shadow-md border border-gray-200" href='/arabicTranslation'>
                     <div>Arabic Translation</div>
                 </Link>
                 {!isLoading &&
-                    <button type="button" className="btn sm:btn-sm md:btn-md lg:btn-md btn-info transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 shadow-md" onClick={Download}>
+                    <button type="button" className="btn sm:btn-sm md:btn-md lg:btn-md btn-info transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 shadow-md border border-gray-200" onClick={Download}>
                         <IoMdDownload className="inline-block mr-2" />
                         Download Video
                     </button>
