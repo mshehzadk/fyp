@@ -3,25 +3,26 @@ import Head from 'next/head';
 
 const services = [
   {
-    title: 'Web Development',
-    description: 'Build modern and responsive websites tailored to your business needs.',
-    icon: '/icons/web-development-icon.svg',
-  },
-  {
-    title: 'Mobile App Development',
-    description: 'Create cross-platform mobile applications for iOS and Android.',
+    title: 'Arabic Transcription',
+    description: 'Accurately transcribe Arabic audio content into written text. This service is ideal for extracting valuable information, creating subtitles, or facilitating the translation process.',
     icon: '/icons/mobile-app-icon.svg',
   },
   {
-    title: 'UI/UX Design',
-    description: 'Design intuitive and user-friendly interfaces to enhance user experience.',
+    title: 'Urdu Transcription',
+    description: 'Convert the transcribed Arabic text into Urdu, providing a comprehensive transcription service that caters specifically to Urdu speakers. This step ensures linguistic accuracy and cultural relevance.',
     icon: '/icons/ui-ux-icon.svg',
   },
   {
-    title: 'Digital Marketing',
-    description: 'Boost your online presence with effective digital marketing strategies.',
+    title: 'Emotion Detection',
+    description: 'Employ advanced technology to analyze the emotional tone and nuances within the content. This service identifies and categorizes emotions expressed in the video, offering valuable insights for content creators and marketers.',
     icon: '/icons/digital-marketing-icon.svg',
   },
+  {
+    title: 'Voice Cloning',
+    description: 'Utilize cutting-edge voice cloning technology to replicate the original Arabic voice in Urdu. This process ensures a seamless transition from the source language to the target language, delivering a natural and authentic Urdu voiceover.',
+    icon: '/icons/web-development-icon.svg',
+  },
+  
 ];
 
 const Services = () => {
