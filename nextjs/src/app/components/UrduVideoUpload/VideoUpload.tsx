@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Link from "next/link"; // Import the Link component for going to next page button
+import Link from "next/link";
 
 export default function VideoUpload() {
   const [file, setFile] = useState<File | null>(null);
@@ -8,10 +8,10 @@ export default function VideoUpload() {
   const [isVideoUploaded, setVideoUploaded] = useState<boolean>(false);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Prevent form refresh
+    e.preventDefault();
     if (!file) return alert('No file selected.');
 
-    setIsUploading(true); // Set the isUploading state to true when the upload starts
+    setIsUploading(true);
 
     try {
       const data = new FormData();
@@ -21,6 +21,7 @@ export default function VideoUpload() {
         method: 'POST',
         body: data,
       });
+
       const resquestForFlask = await fetch('http://localhost:8080/uploadUrduVideo', {
         method: 'POST',
         body: data,
@@ -30,63 +31,77 @@ export default function VideoUpload() {
         throw new Error(await resForNextApi.text());
       }
 
-      // Create a local URL for the file to use in the video player
       setVideoUrl(URL.createObjectURL(file));
     } catch (e: any) {
       console.log(e.message);
     } finally {
-      setIsUploading(false); // Set the isUploading state to false when the upload is complete
-      setVideoUploaded(true); // Set the isVideoUploaded state to true when the upload is complete
+      setIsUploading(false);
+      setVideoUploaded(true);
     }
   };
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.length) {
       setFile(e.target.files[0]);
-      setVideoUrl(null); // Clear the previous video URL
-      setVideoUploaded(false); // Set false to receive a new video
+      setVideoUrl(null);
+      setVideoUploaded(false);
     }
   };
 
   return (
-    <div>
-      <div>
-        <form onSubmit={onSubmit}>
-          <div style={{ display: "flex" }}>
-            <div style={{ textAlign: 'left', flex: '1' }}>
-              <input type="file"
-                name="file"
-                accept="video/mp4"
-                onChange={onFileChange}
-              />
-            </div>
-            {file && <div style={{ textAlign: 'right', flex: '1' }}>
-              {isVideoUploaded == false ? (<input type="submit" value="Upload" />) : (<input type="submit" value="Uploaded" disabled />)}
-            </div>}
+    <div className="container mx-auto mt-8 p-4 bg-gray-100 rounded-lg shadow-md">
+      <header className=" bg-slate-400 text-white py-20">
+        <div className="container mx-auto text-center">
+          <h1 className="text-4xl font-bold mb-4">ARABIC VIDEO TO URDU VIDEOS</h1>
+          <p className="text-lg">DUB VIDEOS FROM ARABIC TO URDU TO YOUR HEATS CONTENT</p>
+        </div>
+      </header>
+
+      <form onSubmit={onSubmit} className="flex items-center justify-between">
+        <div className="flex-1 pr-4">
+          <input
+            type="file"
+            name="file"
+            accept="video/mp4"
+            onChange={onFileChange}
+            className="w-full py-2 px-4 border rounded focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        {file && (
+          <div>
+            {isVideoUploaded ? (
+              <button type="button" className="py-2 px-4 bg-gray-400 rounded cursor-not-allowed" disabled>
+                Uploaded
+              </button>
+            ) : (
+              <button type="submit" className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
+                Upload
+              </button>
+            )}
           </div>
-        </form>
-      </div>
-      <div>
+        )}
+      </form>
+
+      <div className="mt-4">
         {isUploading ? (
-          <div>Loading...</div> // This is where your spinner would go
+          <div>Loading...</div>
         ) : videoUrl ? (
-          <video controls>
+          <video controls className="w-full">
             <source src={videoUrl} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         ) : null}
       </div>
-      <div>
-        {isVideoUploaded ? (
-          <Link href="/urduTranscription">
-            <p
-              className={`'bg-white text-gray-800 rounded-[18px]'`}
-            >
-              Urdu Transcription
-            </p>
-          </Link>
-        ) : null}
-      </div>
+
+      <div className="mt-4">
+          {isVideoUploaded ? (
+            <Link href="/urduTranscription">
+              <p className={`bg-white text-gray-800 rounded-md p-3 hover:bg-slate-400 transition-all duration-300 transform hover:scale-103s  hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s`}>
+                Urdu Transcription
+              </p>
+            </Link>
+          ) : null}
+        </div>
     </div>
   );
 }

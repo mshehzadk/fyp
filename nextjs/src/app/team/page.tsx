@@ -2,11 +2,11 @@
 import Head from 'next/head';
 
 const teamMembers = [
-  { name: 'Ali Tajir', role: 'Developer', image: 'ali.jpg', details: 'Ali is an experienced developer...' },
-  { name: 'Zahid Imran', role: 'Developer', image: '/images/zahid.jpg', details: 'Zahid is a passionate developer...' },
-  { name: 'Muhammad Shehzad', role: 'Developer', image: '/images/shehzad.jpg', details: 'Shehzad is a skilled developer...' },
-  { name: 'Mahreen Alam', role: 'Supervisor', image: '/images/mahreen.jpg', details: 'Mahreen supervises and guides the team...' },
-  { name: 'GrayHat', role: 'External Collaborator', image: '/images/greyhat.jpg', details: 'Greyhat collaborates with us on various projects...' },
+  { name: 'Ali Tajir', role: 'Developer', image: 'ali.jpg', details: 'Ali is an experienced developer' },
+  { name: 'Zahid Imran', role: 'Developer', image: '/images/zahid.jpg', details: 'Zahid is a passionate developer' },
+  { name: 'Muhammad Shehzad', role: 'Developer', image: '/images/shehzad.jpg', details: 'Shehzad is a skilled developer' },
+  { name: 'Mahreen Alam', role: 'Supervisor', image: '/images/mahreen.jpg', details: 'Mahreen supervises and guides the team' },
+  { name: 'GrayHat', role: 'External Collaborator', image: '/images/greyhat.jpg', details: 'Grayhat collaborates with us on DUBLINGO project' },
 ];
 
 export default function Team() {
@@ -14,15 +14,15 @@ export default function Team() {
     
     <div className="flex flex-col items-center justify-center min-h-screen p-10">
     {/* Left Margin */}
-    <div className="bg-blue-500 h-full w-40 absolute top-25 left-0"></div>
+    <div className= " h-full w-40 absolute top-25 left-0 bg-slate-400"></div>
 
     {/* Right Margin */}
-    <div className="bg-blue-500 h-full w-40 absolute top-25 right-0"></div>
+    <div className=" h-full w-40 absolute top-25 right-0  bg-slate-400"></div>
 
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 p-10 ">
         {teamMembers.slice(3, 4).map((member, index) => (
-          <div key={index} className="relative bg-white p-5 rounded-lg shadow-md overflow-hidden flex flex-col items-center hover:shadow-xltransition duration-300 transform hover:scale-105 hover:shadow-xl hover:border-blue-500 border border-transparent hover:border-2">
+          <div key={index} className="relative bg-white p-5 rounded-lg shadow-md overflow-hidden flex flex-col items-center hover:shadow-xltransition duration-300 transform hover:scale-125 hover:shadow-xl hover:border-blue-500 border border-transparent hover:border-2">
             <img
               src={member.image}
               alt={member.name}
@@ -48,7 +48,7 @@ export default function Team() {
 
 
         {teamMembers.slice(4, 5).map((member, index) => (
-          <div key={index} className="relative bg-white p-5 rounded-lg shadow-md overflow-hidden flex flex-col items-center transition duration-300 transform hover:scale-105 hover:shadow-xl hover:border-blue-500 border border-transparent hover:border-2">
+          <div key={index} className="relative bg-white p-5 rounded-lg shadow-md overflow-hidden flex flex-col items-center transition duration-300 transform hover:scale-125 hover:shadow-xl hover:border-blue-500 border border-transparent hover:border-2">
             <img
               src={member.image}
               alt={member.name}
@@ -63,7 +63,7 @@ export default function Team() {
         ))}
 
         {teamMembers.slice(0, 3).map((member, index) => (
-          <div key={index} className="relative bg-white p-5 rounded-lg shadow-md overflow-hidden flex flex-col items-center transition duration-300 transform hover:scale-105 hover:shadow-xl hover:border-blue-500 border border-transparent hover:border-2">
+          <div key={index} className="relative bg-white p-5 rounded-lg shadow-md overflow-hidden flex flex-col items-center transition duration-300 transform hover:scale-125 hover:shadow-xl hover:border-blue-500 border border-transparent hover:border-2">
             <img
               src={member.image}
               alt={member.name}
