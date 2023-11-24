@@ -11,11 +11,18 @@ const teamMembers = [
 
 export default function Team() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-2">
+    
+    <div className="flex flex-col items-center justify-center min-h-screen p-10">
+    {/* Left Margin */}
+    <div className="bg-blue-500 h-full w-40 absolute top-25 left-0"></div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+    {/* Right Margin */}
+    <div className="bg-blue-500 h-full w-40 absolute top-25 right-0"></div>
+
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 p-10 ">
         {teamMembers.slice(3, 4).map((member, index) => (
-          <div key={index} className="relative bg-white p-5 rounded-lg shadow-md overflow-hidden flex flex-col items-center">
+          <div key={index} className="relative bg-white p-5 rounded-lg shadow-md overflow-hidden flex flex-col items-center hover:shadow-xltransition duration-300 transform hover:scale-105 hover:shadow-xl hover:border-blue-500 border border-transparent hover:border-2">
             <img
               src={member.image}
               alt={member.name}
@@ -30,7 +37,7 @@ export default function Team() {
         ))}
 
         {/* Logo */}
-        <div className="relative p-5 rounded-lg shadow-md overflow-hidden flex flex-col items-center bg-sky-500">
+        <div className="relative p-5 rounded-lg overflow-hidden flex flex-col items-center">
           <img
             src="/images/your-logo.jpg"
             alt="Company Logo"
@@ -41,7 +48,7 @@ export default function Team() {
 
 
         {teamMembers.slice(4, 5).map((member, index) => (
-          <div key={index} className="relative bg-white p-5 rounded-lg shadow-md overflow-hidden flex flex-col items-center">
+          <div key={index} className="relative bg-white p-5 rounded-lg shadow-md overflow-hidden flex flex-col items-center transition duration-300 transform hover:scale-105 hover:shadow-xl hover:border-blue-500 border border-transparent hover:border-2">
             <img
               src={member.image}
               alt={member.name}
@@ -56,7 +63,7 @@ export default function Team() {
         ))}
 
         {teamMembers.slice(0, 3).map((member, index) => (
-          <div key={index} className="relative bg-white p-5 rounded-lg shadow-md overflow-hidden">
+          <div key={index} className="relative bg-white p-5 rounded-lg shadow-md overflow-hidden flex flex-col items-center transition duration-300 transform hover:scale-105 hover:shadow-xl hover:border-blue-500 border border-transparent hover:border-2">
             <img
               src={member.image}
               alt={member.name}
