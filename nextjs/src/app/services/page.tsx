@@ -34,7 +34,7 @@ const Services = () => {
 
       <header className=" bg-slate-400 text-white py-10">
         <div className="container mx-auto text-center">
-          <h1 className="text-4xl font-bold mb-4">Our Services</h1>
+          <h1 className="text-4xl font-bold mb-4">OUR SERVICES</h1>
           <p className="text-lg">Discover the range of services we offer to meet your business goals.</p>
         </div>
       </header>

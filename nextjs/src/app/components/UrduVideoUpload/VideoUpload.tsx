@@ -49,10 +49,10 @@ export default function VideoUpload() {
   };
 
   return (
-    <div className="container mx-auto mt-8 p-4 bg-gray-100 rounded-lg shadow-md">
-      <header className=" bg-slate-400 text-white py-20">
+    <div className="container mx-auto mt-0 p-2 bg-gray-100 rounded-lg shadow-md">
+      <header className=" bg-slate-400 text-white py-5">
         <div className="container mx-auto text-center">
-          <h1 className="text-4xl font-bold mb-4">ARABIC VIDEO TO URDU VIDEOS</h1>
+          <h1 className="text-2xl font-bold mb-4">ARABIC VIDEO TO URDU VIDEOS</h1>
           <p className="text-lg">DUB VIDEOS FROM ARABIC TO URDU TO YOUR HEATS CONTENT</p>
         </div>
       </header>
