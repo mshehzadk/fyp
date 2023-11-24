@@ -190,14 +190,18 @@ export default function urduTranscriptionList() {
     return (
         <div>
             <>
-                <div className="flex justify-between items-center bg-slate-800 px-3 py-3">
-                    <p className="text-white font-bold">
-                        Urdu Transcription
-                    </p>
-                    <button className="bg-white mx-5 flex" onClick={addTranscription}>
-                        Add Transcription <AiOutlinePlus className="ml-2" size={18} />
-                    </button>
+            <div className="flex justify-between items-center bg-slate-800 px-4 py-3">
+                <p className="text-white font-bold text-lg">Urdu Transcription</p>
+                <button
+                    className="bg-white px-4 py-2 flex items-center text-slate-800 hover:bg-slate-700 hover:text-white transition-all duration-300"
+                    onClick={addTranscription}>
+                    <span className="mr-2 text-blue-500 hover:underline cursor-pointer">
+                    Add Transcription
+                    </span>
+                    <AiOutlinePlus size={18} />
+                </button>
                 </div>
+
                 {
                     addTranscriptionModal &&
                     <div>
@@ -258,23 +262,33 @@ export default function urduTranscriptionList() {
                             </div>
                         </div>
                     }
-                    <div className="flex">
-                        {editTrigger && editIndex === index ?
+                   <div className="flex">
+  {editTrigger && editIndex === index ?
+    <button
+      className="bg-slate-800 text-white px-4 py-2 rounded-md m-2 hover:bg-slate-700 focus:outline-none focus:ring focus:border-blue-300 transition-all duration-300"
+      onClick={(e) => saveEdit(e)}
+    >
+      Save
+    </button>
+    :
+    <>
+      <button
+        className="bg-slate-800 text-white px-4 py-2 rounded-md m-2 hover:bg-slate-700 focus:outline-none focus:ring focus:border-blue-300 transition-all duration-300"
+        onClick={() => editTheRow(item.speaker, item.startTime, item.endTime, item.transcription, index)}
+      >
+        Edit
+      </button>
+      {!editTrigger &&
+        <button
+          className="bg-slate-800 text-white px-4 py-2 rounded-md m-2 hover:bg-slate-700 focus:outline-none focus:ring focus:border-blue-300 transition-all duration-300"
+          onClick={() => DeleteTranscription(index)}
+        >
+          Delete
+        </button>}
+    </>
+  }
+</div>
 
-                            <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2"
-                                onClick={(e) => saveEdit(e)}
-                            >Save</button>
-                            :
-                            <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2"
-                                onClick={() => editTheRow(item.speaker, item.startTime, item.endTime, item.transcription, index)}
-                            >Edit</button>
-                        }
-                        {!(editTrigger) &&
-                            <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2" onClick={() => DeleteTranscription(index)}>
-                                Delete
-                            </button>}
-
-                    </div>
                 </div>
             ))}
 
