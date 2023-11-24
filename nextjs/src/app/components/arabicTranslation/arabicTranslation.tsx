@@ -42,7 +42,7 @@ export default function arabicTranslation() {
           <Urdutranscriptionlist />
         </div>
         <div
-          className="w-1/2 pl-3 overflow-auto max-h-[60vh] "
+          className="w-1/2 pl-3 overflow-auto max-h-[60vh]"
           onScroll={handleScroll}
           ref={rightColumnRef}
         >
