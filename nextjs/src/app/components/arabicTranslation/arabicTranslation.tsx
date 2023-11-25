@@ -34,8 +34,9 @@ export default function arabicTranslation() {
     catch (error: any) {
         console.log(error);
     }
+  };
 
-    const editTheRow = (speaker: String, startTime: String, endTime: String, Translation: String, index: number) => {
+  const editTheRow = (speaker: String, startTime: String, endTime: String, Translation: String, index: number) => {
         setAddTranslationModal(false);
         setSpeakerName(speaker.toString());
         setStartTime(startTime.toString());

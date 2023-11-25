@@ -2,51 +2,60 @@
 import { useEffect, useRef, useState } from "react";
 import Urdutranscriptionlist from "./urduTranscriptionList";
 import Link from "next/link";
+import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
-export default function urduTranscription() {
-    const videoRef = useRef<HTMLVideoElement>(null);
-    const [data, setData] = useState<any>(null);
+export default function UrduTranscription() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [data, setData] = useState<any>(null);
 
+  useEffect(() => {
     try {
-        useEffect(() => {
-            fetch('http://localhost:8080/api/urduTranscription').then((response) => {
-                response.json().then((data) => {
-                    setData(data);
-                })
-            })
-
-        }, []);
+      fetch('http://localhost:8080/api/urduTranscription')
+        .then((response) => response.json())
+        .then((data) => setData(data));
+    } catch (error: any) {
+      console.log(error);
     }
-    catch (error: any) {
-        console.log(error);
-    }
+  }, []);
 
-    return (
-        <div>
-            <div className="Transcription Video" style={{ display: 'flex' }}>
-                <div className="Transcription" style={{ flex: '1', textAlign: 'right' }}>
-                    <Urdutranscriptionlist />
-                </div>
-                <div className="Video" style={{ flex: '1', textAlign: 'right' }}>
-                    {(videoRef ?
-                        <video ref={videoRef} controls muted>
-                            <source src='/video.mp4' type="video/mp4" />
-                            Your browser does not support the video tag.
-                        </video> :
-                        <div>Loading.......</div>)}
-                </div>
-            </div>
-            <div  style={{display: 'flex'}}>
-                <Link href='/urduvideo' style={{ flex: '1', textAlign: 'right' }}>
-                    <div>Urdu Video</div>
-                </Link>
-                {data && 
-                <Link href='/arabicTranslation' style={{ flex: '1', textAlign: 'left' }}>
-                    <div>Arabic Translation</div>
-                </Link>
-                }
-            </div>
+  return (
+    <div>
+      <div className="flex">
+        <div className="w-1/2 text-right overflow-y-auto max-h-[60vh]">
+        <Urdutranscriptionlist />
         </div>
-
-    )
+        <div className="w-1/2 text-right">
+            <div className="flex justify-between items-center bg-slate-800 px-3 py-3">
+                        <p className="text-white  font-bold ">
+                            Urdu Video
+                        </p>
+            </div>
+          {videoRef ? (
+            <video ref={videoRef} controls muted className="w-full">
+              <source src="/video.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          ) : (
+            <div>Loading.......</div>
+          )}
+        </div>
+      </div>
+        <div className="flex mt-4 space-x-4">
+        <Link href="/urduvideo" className="flex-1">
+            <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center">
+            <FaArrowLeft className="mr-2" />
+            Urdu Video
+            </div>
+        </Link>
+        {data && (
+            <Link href="/arabicTranslation" className="flex-1">
+            <div className= " bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center">
+                Arabic Translation
+                <FaArrowRight className="ml-2" />
+            </div>
+            </Link>
+        )}
+        </div>
+    </div>
+  );
 }
