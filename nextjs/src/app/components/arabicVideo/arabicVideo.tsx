@@ -1,47 +1,52 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { set } from "mongoose";
+import { IoMdDownload } from "react-icons/io";
+import { HashLoader } from "react-spinners";
 
 export default function arabicVideo() {
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [videoSrc, setVideoSrc] = useState<string>("");
 
-
-    const Download = () => {
-        fetch("http://localhost:8080/get_arabicVideo", {
-            method: 'GET',
-        })
+    useEffect(() => {
+        fetch('http://localhost:8080/get_arabicVideo')
             .then(response => response.blob())
             .then(blob => {
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = url;
-                a.setAttribute('download', 'test.video');
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
+                const videoUrl = URL.createObjectURL(blob);
+                setVideoSrc(videoUrl);
+                setIsLoading(false);
             });
+    }, []);
+
+    const Download = () => {
+        const url = videoSrc;
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.setAttribute('download', 'test.video');
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+
     }
+
     return (
-        <div>
-            <div className="ArabicVideo" >
-                {isLoading && <p>Loading...</p>}
-                <video width="320" height="240" controls
-
-                    onLoadStart={() => setIsLoading(true)}
-                    onLoadedData={() => setIsLoading(false)}
-                    src="http://localhost:8080/get_arabicVideo">
-                    Your browser does not support the video tag.
-                </video>
-
+        <div className="w-screen h-screen flex flex-col justify-center items-center py-0">
+            <div className="w-[80%] h-[70%] bg-base-100 shadow-xl rounded-xl border border-gray-200 mb-12" >
+                {isLoading ?
+                    <div className="flex justify-center items-center w-full h-full rounded-2xl shadow-2xl">
+                        <HashLoader color="#007cf4"/>
+                    </div> :
+                    <video className="w-full h-full rounded-2xl shadow-2xl" src={videoSrc} controls />
+                }
             </div>
-            <div style={{ display: 'flex' }}>
-                <Link href='/arabicTranslation' style={{ flex: '1', textAlign: 'right' }}>
+            <div className="flex flex-row justify-between w-[80%] mt-5 ">
+                <Link className="btn sm:btn-sm md:btn-md lg:btn-md btn-info transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 shadow-md border border-gray-200" href='/arabicTranslation'>
                     <div>Arabic Translation</div>
                 </Link>
                 {!isLoading &&
-                    <button onClick={Download} style={{ flex: '1', textAlign: 'left' }}>
+                    <button type="button" className="btn sm:btn-sm md:btn-md lg:btn-md btn-info transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 shadow-md border border-gray-200" onClick={Download}>
+                        <IoMdDownload className="inline-block mr-2" />
                         Download Video
                     </button>
                 }
