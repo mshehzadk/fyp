@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { AiOutlinePlus } from "react-icons/ai";
+import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
 export default function arabicTranslation() {
     const [urduTranscription, setUrduTranscription] = useState<JSON>();
@@ -43,7 +44,6 @@ export default function arabicTranslation() {
         setTranslation(Translation.toString());
         setEditIndex(index);
         setEditTrigger(true);
-
     }
 
     const saveEdit = async (event: any) => {
@@ -72,7 +72,6 @@ export default function arabicTranslation() {
             })
         });
 
-
         fetch('http://localhost:8080/api/arabicTranslation').then((response) => {
             response.json().then((data) => {
                 setData(data);
@@ -85,23 +84,19 @@ export default function arabicTranslation() {
                 })
             })
 
-
         if (response.ok) {
             console.log('Data sent successfully');
-
             setAddTranslationModal(false);
             setDateFormat(true);
         } else {
             console.error('Error sending data');
         }
 
-
         setEditTrigger(false);
         setEditIndex(-1);
     }
 
     const DeleteTranslation = async (index: number) => {
-
         setEditIndex(index);
         const response = await fetch('http://localhost:8080/delete_Translation', {
             method: 'POST',
@@ -125,9 +120,7 @@ export default function arabicTranslation() {
                 })
             })
 
-
         setEditIndex(-1);
-
     }
 
     const addTranslation = () => {
@@ -176,10 +169,8 @@ export default function arabicTranslation() {
                 })
             })
 
-
         if (response.ok) {
             console.log('Data sent successfully');
-
             setAddTranslationModal(false);
             setDateFormat(true);
         } else {
@@ -210,14 +201,14 @@ export default function arabicTranslation() {
         }
     }
 
-    return (
-        <div>
-            <div className="urduTranscription">
-                <div>
-                    <div className="flex justify-between items-center bg-slate-800 px-3 py-3">
-                        <p className="text-white font-bold">
-                            Urdu Transcription
-                        </p>
+  return (
+    <div className="container mx-auto p-4 overflow-hidden">
+      <div className="flex overflow-x-auto">
+        <div className="urduTranscription w-1/2 pr-3 overflow-auto max-h-[60vh]">
+          <div className="bg-slate-800 px-3 py-3">
+            <p className="text-white font-bold">
+              Urdu Transcription
+            </p>
                     </div>
                     {urduTranscription && Array.isArray(urduTranscription) && urduTranscription.map((item: any, index: number) => (
                         <div key={index} className="p-4 border border-slate-300 my-5 flex gap-2">
@@ -233,13 +224,16 @@ export default function arabicTranslation() {
                     ))}
                     {!urduTranscription && <div>Loading......</div>}
                 </div>
-                <div className="arabicTranslation">
-                    <>
-                        <div className="flex justify-between items-center bg-slate-800 px-3 py-3">
+                <div className="arabicTranslation w-1/2 pl-3 overflow-auto max-h-[60vh]">
+                     <>
+                        <div className="bg-slate-800 flex justify-between items-center px-3 py-3">
                             <p className="text-white font-bold">
                                 Arabic Translation
                             </p>
-                            <button className="bg-white mx-5 flex" onClick={addTranslation}>
+                            <button
+                                className="bg-white mx-5 flex"
+                                onClick={addTranslation}
+                                >
                                 Add Translation <AiOutlinePlus className="ml-2" size={18} />
                             </button>
                         </div>
@@ -327,16 +321,26 @@ export default function arabicTranslation() {
                 </div>
             </div>
 
-            <div style={{ display: 'flex' }}>
-                <Link href='/urduTranscription' style={{ flex: '1', textAlign: 'right' }}>
-                    <div>Urdu Transcription</div>
+            <div className="flex mt-4 space-x-4">
+                <div className="w-1/2">
+                <Link href='/urduTranscription' className="flex-1 text-right">
+                    <div className=" bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center">
+                    <FaArrowLeft className="mr-2" />
+                    Urdu Transcription
+                    </div>
                 </Link>
-                {data &&
-                    <Link href='/arabicVideo' style={{ flex: '1', textAlign: 'left' }}>
-                        <div>Arabic Video</div>
+                </div>
+                {data && 
+                <div className="w-1/2">
+                    <Link href='/arabicVideo' className="flex-1 text-left">
+                    <div className= "bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center">
+                        Arabic Video
+                        <FaArrowRight className="ml-2" />
+                    </div>
                     </Link>
+                </div>
                 }
-            </div>
+      </div>
         </div >
     )
 }
