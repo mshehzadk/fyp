@@ -13,9 +13,9 @@ const services = [
     icon: '/icons/ui-ux-icon.svg',
   },
   {
-    title: 'Emotion Detection',
-    description: 'Employ advanced technology to analyze the emotional tone and nuances within the content. This service identifies and categorizes emotions expressed in the video, offering valuable insights for content creators and marketers.',
-    icon: '/icons/digital-marketing-icon.svg',
+    title: 'Speaker Diarization',
+    description: 'Leveraging cutting-edge technology, our Speaker Diarization feature precisely identifies and categorizes speakers, ensuring seamless and natural transitions in dubbed content. This advanced analysis captures emotional tones and nuances, providing invaluable insights for content creators and marketers. Experience a seamless fusion of technology and creativity as we bring a new dimension to language localization.',
+    icon: '/icons/speaker-diarization-icon.svg',
   },
   {
     title: 'Voice Cloning',
@@ -25,29 +25,31 @@ const services = [
   
 ];
 
+// ... (existing code)
+
 const Services = () => {
   return (
-    <div className="min-h-screen bg-gray-100 ">
+    <div className="min-h-screen bg-gray-100 px-0">
       <Head>
         <title>Our Services</title>
         <meta name="description" content="Explore our range of services for your business." />
       </Head>
 
-      <header className=" bg-slate-400 text-white py-10">
+      <header className="bg-slate-400 text-white py-10">
         <div className="container mx-auto text-center">
           <h1 className="text-4xl font-bold mb-4">OUR SERVICES</h1>
           <p className="text-lg">Discover the range of services we offer to meet your business goals.</p>
         </div>
       </header>
 
-      <section className="container mx-auto py-12">
+      <section className="container mx-auto py-12 p-5">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {services.map((service, index) => (
             <div key={index} className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center transition duration-300 transform hover:scale-105 hover:shadow-xl hover:border-blue-500 border border-transparent hover:border-2">
               <img
                 src={service.icon}
                 alt={service.title}
-                className="w-16 h-16 object-contain mb-4"
+                className="w-full h-16 object-contain mb-4 bg-teal-600 mx-auto flex-shrink-0"
               />
               <h2 className="text-xl font-bold mb-2 text-center">{service.title}</h2>
               <p className="text-gray-600 text-center">{service.description}</p>
@@ -55,6 +57,7 @@ const Services = () => {
           ))}
         </div>
       </section>
+
     </div>
   );
 };
