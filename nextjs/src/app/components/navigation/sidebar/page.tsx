@@ -27,8 +27,8 @@ const Sidebar = ({isOpen,toggle,}: any)=> {
 
                 <ul className="sidebar-nav text-center leading-relaxed text-xl">
                     <li>
-                        <Link href="/" onClick={toggle}>
-                            <p>Home</p>
+                        <Link href="/about" onClick={toggle}>
+                            <p>About Us</p>
                         </Link>
                     </li>
                     <li>
@@ -37,13 +37,8 @@ const Sidebar = ({isOpen,toggle,}: any)=> {
                         </Link>
                     </li>
                     <li>
-                        <Link href="/team" onClick={toggle}>
-                            <p>Team</p>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/urduvideo" onClick={toggle}>
-                            <p>Try Now</p>
+                        <Link href="/contacts" onClick={toggle}>
+                            <p>Contacts</p>
                         </Link>
                     </li>
                 </ul>
