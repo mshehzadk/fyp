@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { IoMdDownload } from "react-icons/io";
 import { HashLoader } from "react-spinners";
-import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
 export default function arabicVideo() {
     const [isLoading, setIsLoading] = useState(true);
@@ -41,25 +40,17 @@ export default function arabicVideo() {
                     <video className="w-full h-full rounded-2xl shadow-2xl" src={videoSrc} controls />
                 }
             </div>
-            <div className="flex w-[80%] mt-5">
-    <Link href='/arabicTranslation' className="flex-1 text-right">
-        <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center w-50%">
-            <FaArrowLeft className="mr-2" />
-            Arabic Translation
-        </div>
-    </Link>
-    {!isLoading &&
-        <button
-            type="button"
-            className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center w-full"
-            onClick={Download}
-        >
-            <IoMdDownload className="inline-block mr-2" />
-            Download Video
-        </button>
-    }
-</div>
-
+            <div className="flex flex-row justify-between w-[80%] mt-5 ">
+                <Link className="btn sm:btn-sm md:btn-md lg:btn-md btn-info transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 shadow-md border border-gray-200" href='/arabicTranslation'>
+                    <div>Arabic Translation</div>
+                </Link>
+                {!isLoading &&
+                    <button type="button" className="btn sm:btn-sm md:btn-md lg:btn-md btn-info transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 shadow-md border border-gray-200" onClick={Download}>
+                        <IoMdDownload className="inline-block mr-2" />
+                        Download Video
+                    </button>
+                }
+            </div>
         </div>
 
     )
