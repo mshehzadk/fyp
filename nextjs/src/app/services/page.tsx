@@ -25,7 +25,6 @@ const services = [
   
 ];
 
-// ... (existing code)
 
 const Services = () => {
   return (
