@@ -25,6 +25,7 @@ const services = [
   
 ];
 
+
 const Services = () => {
   return (
     <div className="min-h-screen bg-gray-100 ">
