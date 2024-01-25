@@ -34,7 +34,7 @@ const Services = () => {
         <meta name="description" content="Explore our range of services for your business." />
       </Head>
 
-      <header className="bg-slate-400 text-white py-10">
+      <header className="bg-slate-400 text-white py-5">
         <div className="container mx-auto text-center">
           <h1 className="text-4xl font-bold mb-4">OUR SERVICES</h1>
           <p className="text-lg">Discover the range of services we offer to meet your business goals.</p>
