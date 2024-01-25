@@ -49,11 +49,14 @@ export default function VideoUpload() {
   };
 
   return (
+
+
+
     <div className="container mx-auto mt-0 p-2 bg-gray-100 rounded-lg shadow-md">
       <header className=" bg-slate-400 text-white py-5">
         <div className="container mx-auto text-center">
-          <h1 className="text-2xl font-bold mb-4">ARABIC VIDEO TO URDU VIDEOS</h1>
-          <p className="text-lg">DUB VIDEOS FROM ARABIC TO URDU TO YOUR HEATS CONTENT</p>
+          <h1 className="text-2xl font-bold mb-4">URDU VIDEO TO ARABIC VIDEOS</h1>
+          <p className="text-lg">DUB VIDEOS FROM URDU TO ARABIC TO YOUR HEATS CONTENT</p>
         </div>
       </header>
 
@@ -81,7 +84,15 @@ export default function VideoUpload() {
           </div>
         )}
       </form>
-
+      <div className="mt-4">
+          {isVideoUploaded ? (
+            <Link href="/urduTranscription">
+              <p className={`bg-white text-gray-800 rounded-md p-3 hover:bg-slate-400 transition-all duration-300 transform hover:scale-103s  hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s`}>
+                Urdu Transcription
+              </p>
+            </Link>
+          ) : null}
+      </div>
       <div className="mt-4">
         {isUploading ? (
           <div>Loading...</div>
@@ -92,16 +103,8 @@ export default function VideoUpload() {
           </video>
         ) : null}
       </div>
-
-      <div className="mt-4">
-          {isVideoUploaded ? (
-            <Link href="/urduTranscription">
-              <p className={`bg-white text-gray-800 rounded-md p-3 hover:bg-slate-400 transition-all duration-300 transform hover:scale-103s  hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s`}>
-                Urdu Transcription
-              </p>
-            </Link>
-          ) : null}
-        </div>
     </div>
+
+
   );
 }
