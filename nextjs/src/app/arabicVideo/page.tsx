@@ -5,7 +5,7 @@ import ArabicVideo from '../components/arabicVideo/arabicVideo';
 export default function arabicTransaltion() {
     
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
+        <main className="flex  flex-col items-center justify-between  ">
             <ArabicVideo />
         </main>
     );
