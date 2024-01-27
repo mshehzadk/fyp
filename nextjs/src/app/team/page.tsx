@@ -65,13 +65,7 @@ export default function Team() {
           </button>
         </div>
 
-        {/* Details Section */}
-        {selectedMember === member && (
-          <div className="mt-4 overflow-auto">
-            <h3 className="text-lg font-semibold">Details</h3>
-            <p>{member.details}</p>
-          </div>
-        )}
+
       </div>
     </div>
   );
@@ -84,33 +78,53 @@ export default function Team() {
       </Head>
 
       {/* Header */}
-      <header className="bg-slate-400 text-white py-3 text-center relative transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover:bg-orange-400 duration-300">
-        {/* ... (previous code) */}
+      <header className="bg-slate-400 text-white py-5 text-center relative transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover:bg-orange-400 duration-300">
+        <div className="container mx-auto">
+          <h1 className="text-4xl font-bold mb-1">Team Members</h1>
+          <p className="text-lg">Get to know our Team.</p>
+        </div>
+        {/* Left Margin */}
+        <div className="h-full w-full lg:w-60 absolute top-0 left-0">
+          <div className="h-full w-full bg-gradient-to-r from-slate-700 to-transparent"></div>
+        </div>
+        {/* Right Margin */}
+        <div className="h-full w-full lg:w-60 absolute top-0 right-0">
+          <div className="h-full w-full bg-gradient-to-l from-slate-700 to-transparent"></div>
+        </div>
       </header>
 
- {/* Cards Section */}
       {/* Cards Section */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-10 h-full">
-        <div className="col-span-1 bg-red-500 h-full">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-10 mx-auto justify-center">
+        <div className="col-span-1 bg-red-500 h-100 relative">
           {generateColumnContent(teamMembers[0], 'bg-red-100')}
         </div>
-        <div className="col-span-1 bg-blue-500 h-full">
+        <div className="col-span-1 bg-blue-500 h-100 relative">
           {generateColumnContent(teamMembers[1], 'bg-blue-100')}
         </div>
-        <div className="col-span-1 bg-green-500 h-full">
+        <div className="col-span-1 bg-green-500 h-100 relative">
           {generateColumnContent(teamMembers[2], 'bg-green-100')}
         </div>
       </div>
-      {/* New Features Section */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-10 h-full">
-        <div className="col-span-1 bg-yellow-500">
-          {generateColumnContent(teamMembers[0], 'bg-green-100')}
+      
+
+{/* Details Popup */}
+      {selectedMember && (
+        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center z-50">
+          <div className="p-16 rounded-lg overflow-auto w-96 bg-white border-black border border-transparent hover:border-2 animate__animated animate__infinite animate__bounce">
+            <div className="text-right">
+              <button
+                onClick={() => setSelectedMember(null)}
+                className="text-gray-600 hover:text-gray-800 focus:outline-none"
+              >
+                Close
+              </button>
+            </div>
+            <h3 className="text-lg font-semibold mb-2">Details</h3>
+            <p>{selectedMember.details}</p>
+          </div>
         </div>
-        <div className="col-span-0"></div>
-        <div className="col-span-1 bg-purple-500">
-          {generateColumnContent(teamMembers[2], 'bg-green-100')}
-        </div>
-      </div>
+      )}
+      
     </div>
   );
 }
