@@ -253,6 +253,10 @@ export default function urduTranscriptionList() {
                 }
             </>
 
+
+
+
+
             {data && Array.isArray(data) && data.map((item: any, index: number) => (
                 <div key={index} className="p-2 border border-slate-300 my-5 flex gap-2 bg-cyan-400">
                     {editTrigger && editIndex === index ?

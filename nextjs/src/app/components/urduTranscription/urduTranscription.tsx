@@ -21,7 +21,7 @@ export default function UrduTranscription() {
   return (
     <div>
       <div className="flex">
-        <div className="w-1/2 text-right overflow-y-auto max-h-[67vh] bg-black border-b-2">
+        <div className="w-1/2 text-right overflow-y-auto max-h-[67vh] bg-black border-b-2 border-t-2">
         <Urdutranscriptionlist />
         </div>
         <div className="w-1/2 text-right">
@@ -49,7 +49,7 @@ export default function UrduTranscription() {
           </Link>
           {data && (
               <Link href="/arabicTranslation" className="flex-1">
-              <div className= " bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-centertransform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
+              <div className= " bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
                   Arabic Translation
                   <FaArrowRight className="ml-2" />
               </div>
