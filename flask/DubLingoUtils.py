@@ -325,6 +325,7 @@ def delete_all_files_in_folder(folder_path):
             if os.path.isfile(file_path):
                 os.remove(file_path)
                 print(f"File {file_path} deleted successfully.")
+        os.rmdir(folder_path)
         print("All files deleted in the folder.")
     except FileNotFoundError:
         print(f"Folder {folder_path} not found.")

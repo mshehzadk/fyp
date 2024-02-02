@@ -6,8 +6,8 @@ from time import sleep
 import DubLingoUtils as dl
 
 
-spleeter_url='https://18b6-34-30-19-188.ngrok-free.app/'    # replace with your URL
-whisperX_url='https://4cd1-34-135-217-204.ngrok-free.app/'  # replace with your URL
+spleeter_url='https://7a43-104-154-247-56.ngrok-free.app/'    # replace with your URL
+whisperX_url='https://1364-34-125-154-236.ngrok-free.app/'  # replace with your URL
 voice_clone_url=spleeter_url  # replace with your URL
 output_dir='./data/'
 # Replace this with the actual path to your video file
@@ -20,7 +20,7 @@ output_video_path=output_dir+'arabicVideo.mp4'
 target_language='ar'
 
 app = Flask(__name__) 
-CORS(app)
+
 
 
 @app.route('/', methods=['GET'])
@@ -46,6 +46,7 @@ def upload_file():
     if file:
         file.save(video_path)
         return 'File uploaded successfully', 200
+
 
 # Send data from JSON file to the client
 @app.route('/api/urduTranscription', methods=['GET'])
