@@ -6,8 +6,8 @@ from time import sleep
 import DubLingoUtils as dl
 
 
-spleeter_url='https://79e6-104-154-247-56.ngrok-free.app/'    # replace with your URL
-whisperX_url='https://dff0-34-125-154-236.ngrok-free.app/'  # replace with your URL
+spleeter_url='https://65b9-104-154-247-56.ngrok-free.app/'    # replace with your URL
+whisperX_url='https://062d-34-125-154-236.ngrok-free.app/'  # replace with your URL
 voice_clone_url=spleeter_url  # replace with your URL
 output_dir='./data/'
 # Replace this with the actual path to your video file

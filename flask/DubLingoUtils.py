@@ -45,6 +45,7 @@ def Transcription(url,source_wav_vocals_filename,source_json_filename,output_dir
     def convert_response_to_json(response_content):
         # Extract the transcription content from the response
         transcription_content = json.loads(response_content)['result']
+        print(transcription_content)
 
         # Remove the escape characters from the transcription string
         transcription_content = transcription_content.replace('\\n', '\n')
