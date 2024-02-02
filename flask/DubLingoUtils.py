@@ -344,3 +344,13 @@ def create_folder(folder_path):
         print(f"Folder {folder_path} already exists.")
     except Exception as e:
         print(f"Error creating folder {folder_path}: {e}")
+
+# Function to max sentence id
+def max_sentence_id(json_file):
+    with open(json_file, 'r', encoding='utf-8') as json_file:
+        data = json.load(json_file)
+    max_id = 0
+    for entry in data:
+        if entry["sentence_id"] > max_id:
+            max_id = entry["sentence_id"]
+    return max_id
