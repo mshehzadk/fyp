@@ -33,8 +33,10 @@ def home():
 
 @app.route('/uploadUrduVideo', methods=['POST'])
 def upload_file():
-    # Remove existing files from data directory
-    dl.delete_all_files_in_folder(output_dir)
+    #check if path exist
+    if dl.check_path_exist(output_dir):
+        # Remove existing files from data directory
+        dl.delete_all_files_in_folder(output_dir)
     # Create a new directory for the current session
     dl.create_folder(output_dir)
     # Check if the post request has the file part
@@ -52,7 +54,7 @@ def upload_file():
         dl.get_speaker_wise_audio(output_dir+source_wav_vocals_filename,output_dir+target_json_filename,output_dir)
         dl.generate_and_save_audio(output_dir+target_json_filename,output_dir,voice_clone_url)
         dl.combined_audio_music(output_dir+target_json_filename,output_dir+source_wav_music_filename,output_dir)
-        dl.replace_audio(input_video_path, output_dir+source_wav_music_filename, output_video_path)
+        dl.replace_audio(video_path, output_dir+source_wav_music_filename, output_video_path)
         return 'File uploaded successfully', 200
 
 
@@ -389,7 +391,7 @@ def get_video():
         dl.get_speaker_wise_audio(output_dir+source_wav_vocals_filename,output_dir+target_json_filename,output_dir)
         dl.generate_and_save_audio(output_dir+target_json_filename,output_dir,voice_clone_url)
         dl.combined_audio_music(output_dir+target_json_filename,output_dir+source_wav_music_filename,output_dir)
-        dl.replace_audio(input_video_path, output_dir+source_wav_music_filename, output_video_path)
+        dl.replace_audio(video_path, output_dir+source_wav_music_filename, output_video_path)
     return send_file(filename, mimetype='video/mp4')
 
 if __name__ == '__main__':
