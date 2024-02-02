@@ -6,8 +6,8 @@ from time import sleep
 import DubLingoUtils as dl
 
 
-spleeter_url='https://65b9-104-154-247-56.ngrok-free.app/'    # replace with your URL
-whisperX_url='https://062d-34-125-154-236.ngrok-free.app/'  # replace with your URL
+spleeter_url='https://2f99-34-125-35-222.ngrok-free.app/'    # replace with your URL
+whisperX_url='https://4fe8-34-90-24-148.ngrok-free.app/'  # replace with your URL
 voice_clone_url=spleeter_url  # replace with your URL
 output_dir='./data/'
 # Replace this with the actual path to your video file
@@ -20,7 +20,7 @@ output_video_path=output_dir+'arabicVideo.mp4'
 target_language='ar'
 
 app = Flask(__name__) 
-
+CORS(app)
 
 
 @app.route('/', methods=['GET'])
@@ -45,6 +45,14 @@ def upload_file():
         return 'No selected file', 400
     if file:
         file.save(video_path)
+        filename=source_json_filename
+        dl.music_vocals_separation(spleeter_url,video_path,output_dir,source_wav_vocals_filename,source_wav_music_filename)
+        dl.Transcription(whisperX_url,source_wav_vocals_filename,filename,output_dir)
+        dl.translation(output_dir,source_json_filename,target_json_filename,target_language)
+        dl.get_speaker_wise_audio(output_dir+source_wav_vocals_filename,output_dir+target_json_filename,output_dir)
+        dl.generate_and_save_audio(output_dir+target_json_filename,output_dir,voice_clone_url)
+        dl.combined_audio_music(output_dir+target_json_filename,output_dir+source_wav_music_filename,output_dir)
+        dl.replace_audio(input_video_path, output_dir+source_wav_music_filename, output_video_path)
         return 'File uploaded successfully', 200
 
 
@@ -218,7 +226,7 @@ def get_arabicTranslation():
     filename=target_json_filename
     # Check if the file exists
     if not dl.check_path_exist(output_dir+filename):
-        dl.translation(output_dir,source_json_filename,target_language,target_language)
+        dl.translation(output_dir,source_json_filename,target_json_filename,target_language)
     with open(output_dir+filename, 'r', encoding='utf8') as f:
         data = json.load(f)
     return jsonify(data)

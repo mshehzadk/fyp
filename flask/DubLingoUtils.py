@@ -123,13 +123,13 @@ def translation(output_dir,source_json_filename,target_json_filename,target_lang
         translated_data = []
 
         for sentence in data:
-            translated_text = translate_text(sentence['text'],target_langauge)
+            translated_text = translate_text(sentence['transcription'],target_langauge)
             translated_sentence = {
                 'speaker': sentence['speaker'],
-                'startTime': sentence['start_time'],
-                'endTime': sentence['end_time'],
+                'startTime': sentence['startTime'],
+                'endTime': sentence['endTime'],
                 'translation': translated_text,
-                'sentence_id': sentence['sentence_']
+                'sentence_id': sentence['sentence_id']
             }
             translated_data.append(translated_sentence)
 
@@ -161,7 +161,7 @@ def get_speaker_wise_audio(audio_file,json_file,output_dir):
       """
 
       # Load the JSON file
-      with open(json_file) as f:
+      with open(json_file,encoding='utf8') as f:
           data = json.load(f)
 
       # Create a dictionary to store the audio chunks
@@ -179,8 +179,8 @@ def get_speaker_wise_audio(audio_file,json_file,output_dir):
           frame_rate = wav.getframerate()
 
           # Convert start and end times from milliseconds to frames
-          start_time_ms = int(time_in_milliSecond(entry["starttime"]))  # Example: start time in milliseconds
-          end_time_ms = int(time_in_milliSecond(entry["endtime"]))    # Example: end time in milliseconds
+          start_time_ms = int(time_in_milliSecond(entry["startTime"]))  # Example: start time in milliseconds
+          end_time_ms = int(time_in_milliSecond(entry["endTime"]))    # Example: end time in milliseconds
 
           start_frame = int(start_time_ms / 1000 * frame_rate)
           end_frame = int(end_time_ms / 1000 * frame_rate)
@@ -241,12 +241,12 @@ def generate_and_save_audio(json_file,output_dir,url):
             file.write(response.content)
 
 
-    with open(json_file, 'r', encoding='utf-8') as json_file:
+    with open(json_file, 'r', encoding='utf8') as json_file:
         data = json.load(json_file)
     for entry in data:
         speaker_name = entry["speaker"]
         sentence_id = entry["sentence_id"]
-        text = entry["text"]
+        text = entry["translation"]
 
         # Generate audio for the current sentence
         generate_audio(text, speaker_name, sentence_id,url,output_dir)
@@ -291,8 +291,8 @@ def combined_audio_music(json_file,audio_file,output_dir):
         clip = wave.open(audio_name, "rb")
 
         # Convert timestamps to ms
-        start = time_in_milliSecond(sentence["starttime"])
-        end = time_in_milliSecond(sentence["endtime"])
+        start = time_in_milliSecond(sentence["startTime"])
+        end = time_in_milliSecond(sentence["endTime"])
 
         overwrite_frames(audio_file, audio_name, start, end, audio_file)
 

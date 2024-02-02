@@ -15,6 +15,7 @@ export default function urduTranscriptionList() {
     const [transcription, setTranscription] = useState("");
     const [editIndex, setEditIndex] = useState(-1);
     const [dateFormat, setDateFormat] = useState(true);
+    const effectCalled = useRef<Boolean>(false);
 
     try {
         useEffect(() => {
@@ -48,9 +49,9 @@ export default function urduTranscriptionList() {
             return;
         }
         // Check if the value is a valid time string
-        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9],[0-9][0-9]$/;
+        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9],[0-9][0-9][0-9]$/;
         if (!pattern.test(startTime) || !pattern.test(endTime)) {
-            alert("Please enter a valid time string in the format HH:MM:SS,MS");
+            alert("Please enter a valid time string in the format HH:MM:SS,MSS");
             return;
         }
         const response = await fetch('http://localhost:8080/update_transcription', {
@@ -129,9 +130,9 @@ export default function urduTranscriptionList() {
             return;
         }
         // Check if the value is a valid time string
-        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9],[0-9][0-9]$/;
+        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9],[0-9][0-9][0-9]$/;
         if (!pattern.test(startTime) || !pattern.test(endTime)) {
-            alert("Please enter a valid time string in the format HH:MM:SS,MS");
+            alert("Please enter a valid time string in the format HH:MM:SS,MSS");
             return;
         }
         const response = await fetch('http://localhost:8080/add_transcription', {
@@ -171,7 +172,7 @@ export default function urduTranscriptionList() {
     const TimeUpdate = (event: any, type: string) => {
         event.preventDefault();
         const value = event.target.value;
-        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9],[0-9][0-9]$/;
+        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9],[0-9][0-9][0-9]$/;
         if (!pattern.test(value)) {
             setDateFormat(false);
         }
