@@ -33,6 +33,11 @@ def home():
 
 @app.route('/uploadUrduVideo', methods=['POST'])
 def upload_file():
+    # Remove existing files from data directory
+    dl.delete_all_files_in_folder(output_dir)
+    # Create a new directory for the current session
+    dl.create_folder(output_dir)
+    # Check if the post request has the file part
     if 'file' not in request.files:
         return 'No file part in the request', 400
     file = request.files['file']
