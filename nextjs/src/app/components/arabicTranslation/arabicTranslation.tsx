@@ -63,9 +63,9 @@ export default function ArabicTranslation() {
             return;
         }
         // Check if the value is a valid time string
-        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9]$/;
+        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9],[0-9][0-9]$/;
         if (!pattern.test(startTime) || !pattern.test(endTime)) {
-            alert("Please enter a valid time string in the format HH:MM:SS");
+            alert("Please enter a valid time string in the format HH:MM:SS,MS");
             return;
         }
 
@@ -150,9 +150,9 @@ export default function ArabicTranslation() {
             return;
         }
         // Check if the value is a valid time string
-        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9]$/;
+        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9],[0-9][0-9]$/;
         if (!pattern.test(startTime) || !pattern.test(endTime)) {
-            alert("Please enter a valid time string in the format HH:MM:SS");
+            alert("Please enter a valid time string in the format HH:MM:SS,MS");
             return;
         }
 
@@ -197,7 +197,7 @@ export default function ArabicTranslation() {
     const TimeUpdate = (event: any, type: string) => {
         event.preventDefault();
         const value = event.target.value;
-        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9]$/;
+        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9],[0-9][0-9]$/;
         if (!pattern.test(value)) {
             setDateFormat(false);
         } else {
@@ -254,7 +254,7 @@ export default function ArabicTranslation() {
                                     <input className="font-bold text-xl" placeholder="Enter Speaker Name" value={speakerName} onChange={(e: any) => setSpeakerName(e.target.value)}></input>
                                     <input className="m-2" placeholder="Start Time" value={startTime} onChange={(e: any) => TimeUpdate(e, 's')}></input>
                                     <input className="m-2" placeholder="End Time" value={endTime} onChange={(e: any) => TimeUpdate(e, 'e')}></input>
-                                    {!dateFormat && <div className="text-red-500">Please enter a valid time string in the format HH:MM:SS</div>}
+                                    {!dateFormat && <div className="text-red-500">Please enter a valid time string in the format HH:MM:SS,MS</div>}
                                 </div>
                                 <div className="flex">
                                     <input placeholder="Trnascription" value={translation} onChange={(e: any) => setTranslation(e.target.value)}></input>
@@ -285,7 +285,7 @@ export default function ArabicTranslation() {
                                                 value={endTime}
                                                 onChange={(e: any) => TimeUpdate(e, 'e')}>
                                             </input>
-                                            {!dateFormat && <div className="text-red-500">Please enter a valid time string in the format HH:MM:SS</div>}
+                                            {!dateFormat && <div className="text-red-500">Please enter a valid time string in the format HH:MM:SS,MS</div>}
                                         </div>
                                         <div className="flex">
                                             <input value={translation} onChange={(e: any) => setTranslation(e.target.value)}></input>

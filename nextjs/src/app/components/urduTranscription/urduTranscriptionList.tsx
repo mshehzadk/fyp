@@ -48,9 +48,9 @@ export default function urduTranscriptionList() {
             return;
         }
         // Check if the value is a valid time string
-        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9]$/;
+        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9],[0-9][0-9]$/;
         if (!pattern.test(startTime) || !pattern.test(endTime)) {
-            alert("Please enter a valid time string in the format HH:MM:SS");
+            alert("Please enter a valid time string in the format HH:MM:SS,MS");
             return;
         }
         const response = await fetch('http://localhost:8080/update_transcription', {
@@ -129,9 +129,9 @@ export default function urduTranscriptionList() {
             return;
         }
         // Check if the value is a valid time string
-        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9]$/;
+        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9],[0-9][0-9]$/;
         if (!pattern.test(startTime) || !pattern.test(endTime)) {
-            alert("Please enter a valid time string in the format HH:MM:SS");
+            alert("Please enter a valid time string in the format HH:MM:SS,MS");
             return;
         }
         const response = await fetch('http://localhost:8080/add_transcription', {
@@ -171,7 +171,7 @@ export default function urduTranscriptionList() {
     const TimeUpdate = (event: any, type: string) => {
         event.preventDefault();
         const value = event.target.value;
-        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9]$/;
+        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9],[0-9][0-9]$/;
         if (!pattern.test(value)) {
             setDateFormat(false);
         }
@@ -210,7 +210,7 @@ export default function urduTranscriptionList() {
                             <input className="font-bold text-xl" placeholder="Enter Speaker Name" value={speakerName} onChange={(e: any) => setSpeakerName(e.target.value)}></input>
                             <input className="m-2" placeholder="Start Time" value={startTime} onChange={(e: any) => TimeUpdate(e, 's')}></input>
                             <input className="m-2" placeholder="End Time" value={endTime} onChange={(e: any) => TimeUpdate(e, 'e')}></input>
-                            {!dateFormat && <div className="text-red-500">Please enter a valid time string in the format HH:MM:SS</div>}
+                            {!dateFormat && <div className="text-red-500">Please enter a valid time string in the format HH:MM:SS,MS</div>}
                         </div>
                         <div className="flex">
                             <input placeholder="Trnascription" value={transcription} onChange={(e: any) => setTranscription(e.target.value)}></input>
@@ -244,7 +244,8 @@ export default function urduTranscriptionList() {
                                     onChange={(e: any) => TimeUpdate(e, 'e')}>
 
                                 </input>
-                                {!dateFormat && <div className="text-red-500">Please enter a valid time string in the format HH:MM:SS</div>}
+                                
+                                {!dateFormat && <div className="text-red-500">Please enter a valid time string in the format HH:MM:SS,MS</div>}
                             </div>
                             <div className="flex">
                                 <input value={transcription} onChange={(e: any) => setTranscription(e.target.value)}></input>
