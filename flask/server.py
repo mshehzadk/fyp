@@ -3,8 +3,21 @@ from flask import Flask, jsonify, request, send_file
 import json
 import os
 from time import sleep
+import DubLingoUtils as dl
 
-UPLOAD_FOLDER = './data'
+
+spleeter_url='https://18b6-34-30-19-188.ngrok-free.app/'    # replace with your URL
+whisperX_url='https://4cd1-34-135-217-204.ngrok-free.app/'  # replace with your URL
+voice_clone_url=spleeter_url  # replace with your URL
+output_dir='./data/'
+# Replace this with the actual path to your video file
+video_path = output_dir+'video.mp4'
+target_json_filename='arabicTranslation.json'
+source_json_filename='urduTranscription.json'
+source_wav_vocals_filename='vocals.wav'
+source_wav_music_filename='music.wav'
+output_video_path=output_dir+'arabicVideo.mp4'
+target_language='ar'
 
 app = Flask(__name__) 
 CORS(app)
@@ -26,26 +39,27 @@ def upload_file():
     if file.filename == '':
         return 'No selected file', 400
     if file:
-        filename = 'video.mp4'
-        file.save(os.path.join(UPLOAD_FOLDER, filename))
+        file.save(video_path)
         return 'File uploaded successfully', 200
 
 # Send data from JSON file to the client
 @app.route('/api/urduTranscription', methods=['GET'])
 def get_urduTranscription():
-    filename='urduTranscription.json'
-    with open(os.path.join(UPLOAD_FOLDER, filename), 'r', encoding='utf8') as f:
+    # filename='urduTranscription.json'
+    filename=source_json_filename
+    with open(output_dir+filename, 'r', encoding='utf8') as f:
         data = json.load(f)
     return jsonify(data)
 
 # Add new transcription to JSON files
 @app.route('/add_transcription', methods=['POST'])
 def add_transcription():
-    filename='urduTranscription.json'
+    # filename='urduTranscription.json'
+    filename=source_json_filename
     data = request.get_json()
 
     # Load existing data
-    with open(os.path.join(UPLOAD_FOLDER, filename), 'r', encoding='utf8') as json_file:
+    with open(output_dir+filename, 'r', encoding='utf8') as json_file:
         transcriptions = json.load(json_file)
 
     # Add new transcription
@@ -55,7 +69,7 @@ def add_transcription():
     transcriptions.sort(key=lambda x: x['startTime'])
 
     # Write back to file
-    with open(os.path.join(UPLOAD_FOLDER, filename), 'w', encoding='utf8') as json_file:
+    with open(output_dir+filename, 'w', encoding='utf8') as json_file:
         json.dump(transcriptions, json_file, ensure_ascii=False)
 
     return 'Transcription added successfully', 200
@@ -63,11 +77,12 @@ def add_transcription():
 # Delete transcription from JSON files
 @app.route('/delete_transcription', methods=['POST'])
 def delete_transcription():
-    filename='urduTranscription.json'
+    # filename='urduTranscription.json'
+    filename=source_json_filename
     index = request.get_json().get('index')
 
     # Load existing data
-    with open(os.path.join(UPLOAD_FOLDER, filename), 'r', encoding='utf8') as json_file:
+    with open(output_dir+filename, 'r', encoding='utf8') as json_file:
         transcriptions = json.load(json_file)
 
     # Check if index is valid
@@ -78,7 +93,7 @@ def delete_transcription():
     del transcriptions[index]
 
     # Write back to file
-    with open(os.path.join(UPLOAD_FOLDER, filename), 'w', encoding='utf8') as json_file:
+    with open(output_dir+filename, 'w', encoding='utf8') as json_file:
         json.dump(transcriptions, json_file, ensure_ascii=False)
 
     return 'Transcription deleted successfully', 200
@@ -86,7 +101,8 @@ def delete_transcription():
 # Update transcription in JSON files
 @app.route('/update_transcription', methods=['POST'])
 def update_transcription():
-    filename='urduTranscription.json'
+    # filename='urduTranscription.json'
+    filename=source_json_filename
     data = request.get_json()
     index = data.get('index')
     new_transcription = data.get('transcription')
@@ -95,7 +111,7 @@ def update_transcription():
     endTime=data.get('endTime')
 
     # Load existing data
-    with open(os.path.join(UPLOAD_FOLDER, filename), 'r', encoding='utf8') as json_file:
+    with open(output_dir+filename, 'r', encoding='utf8') as json_file:
         transcriptions = json.load(json_file)
 
     # Check if index is valid
@@ -116,7 +132,7 @@ def update_transcription():
     # Sort transcriptions by start time
     transcriptions.sort(key=lambda x: x['startTime'])
     # Write back to file
-    with open(os.path.join(UPLOAD_FOLDER, filename), 'w', encoding='utf8') as json_file:
+    with open(output_dir+filename, 'w', encoding='utf8') as json_file:
         json.dump(transcriptions, json_file, ensure_ascii=False)
 
     return 'Transcription updated successfully', 200
@@ -125,16 +141,19 @@ def update_transcription():
 # Send data from JSON file to the client
 @app.route('/api/arabicTranslation', methods=['GET'])
 def get_arabicTranslation():
-    filename='arabicTranslation.json'
-    with open(os.path.join(UPLOAD_FOLDER, filename), 'r', encoding='utf8') as f:
+    # filename='arabicTranslation.json'
+    filename=target_json_filename
+    with open(output_dir+filename, 'r', encoding='utf8') as f:
         data = json.load(f)
     return jsonify(data)
 
 # Add new Translation to JSON files
 @app.route('/add_Translation', methods=['POST'])
 def add_Translation():
-    filename='arabicTranslation.json'
-    filenameUrdu='urduTranscription.json'
+    # filename='arabicTranslation.json'
+    filename=target_json_filename
+    # filenameUrdu='urduTranscription.json'
+    filenameUrdu=source_json_filename
     data = request.get_json()
     new_Translation = data.get('translation')
     speaker = data.get('speaker')
@@ -143,11 +162,11 @@ def add_Translation():
 
 
     # Load existing data
-    with open(os.path.join(UPLOAD_FOLDER, filename), 'r', encoding='utf8') as json_file:
+    with open(output_dir+filename, 'r', encoding='utf8') as json_file:
         Translations = json.load(json_file)
 
     # Load existing data
-    with open(os.path.join(UPLOAD_FOLDER, filenameUrdu), 'r', encoding='utf8') as json_file:
+    with open(output_dir+filenameUrdu, 'r', encoding='utf8') as json_file:
         Transcriptions = json.load(json_file)
 
     # Add new Translation
@@ -165,11 +184,11 @@ def add_Translation():
     Transcriptions.sort(key=lambda x: x['startTime'])
 
     # Write back to file
-    with open(os.path.join(UPLOAD_FOLDER, filename), 'w', encoding='utf8') as json_file:
+    with open(output_dir+filename, 'w', encoding='utf8') as json_file:
         json.dump(Translations, json_file, ensure_ascii=False)
 
     # Write back to file
-    with open(os.path.join(UPLOAD_FOLDER, filenameUrdu), 'w', encoding='utf8') as json_file:
+    with open(output_dir+filenameUrdu, 'w', encoding='utf8') as json_file:
         json.dump(Transcriptions, json_file, ensure_ascii=False)
 
     return 'Translation added successfully', 200
@@ -177,16 +196,18 @@ def add_Translation():
 # Delete Translation from JSON files
 @app.route('/delete_Translation', methods=['POST'])
 def delete_Translation():
-    filename='arabicTranslation.json'
-    filenameUrdu='urduTranscription.json'
+    # filename='arabicTranslation.json'
+    filename=target_json_filename
+    # filenameUrdu='urduTranscription.json'
+    filenameUrdu=source_json_filename
     index = request.get_json().get('index')
 
     # Load existing data
-    with open(os.path.join(UPLOAD_FOLDER, filename), 'r', encoding='utf8') as json_file:
+    with open(output_dir+filename, 'r', encoding='utf8') as json_file:
         Translations = json.load(json_file)
 
     # Load existing data
-    with open(os.path.join(UPLOAD_FOLDER, filenameUrdu), 'r', encoding='utf8') as json_file:
+    with open(output_dir+filenameUrdu, 'r', encoding='utf8') as json_file:
         Transcriptions = json.load(json_file)
 
     # Check if index is valid
@@ -200,11 +221,11 @@ def delete_Translation():
     del Transcriptions[index]
 
     # Write back to file
-    with open(os.path.join(UPLOAD_FOLDER, filename), 'w', encoding='utf8') as json_file:
+    with open(output_dir+filename, 'w', encoding='utf8') as json_file:
         json.dump(Translations, json_file, ensure_ascii=False)
 
     # Write back to file
-    with open(os.path.join(UPLOAD_FOLDER, filenameUrdu), 'w', encoding='utf8') as json_file:
+    with open(output_dir+filenameUrdu, 'w', encoding='utf8') as json_file:
         json.dump(Transcriptions, json_file, ensure_ascii=False)
 
     return 'Translation deleted successfully', 200
@@ -212,8 +233,10 @@ def delete_Translation():
 # Update Translation in JSON files
 @app.route('/update_Translation', methods=['POST'])
 def update_Translation():
-    filename='arabicTranslation.json'
-    filenameUrdu='urduTranscription.json'
+    # filename='arabicTranslation.json'
+    filename=target_json_filename
+    # filenameUrdu='urduTranscription.json'
+    filenameUrdu=source_json_filename
     data = request.get_json()
     index = data.get('index')
     new_Translation = data.get('translation')
@@ -222,11 +245,11 @@ def update_Translation():
     endTime=data.get('endTime')
 
     # Load existing data
-    with open(os.path.join(UPLOAD_FOLDER, filename), 'r', encoding='utf8') as json_file:
+    with open(output_dir+filename, 'r', encoding='utf8') as json_file:
         Translations = json.load(json_file)
 
     # Load existing data
-    with open(os.path.join(UPLOAD_FOLDER, filenameUrdu), 'r', encoding='utf8') as json_file:
+    with open(output_dir+filenameUrdu, 'r', encoding='utf8') as json_file:
         Transcriptions = json.load(json_file)
 
     # Check if index is valid
@@ -254,11 +277,11 @@ def update_Translation():
     Transcriptions.sort(key=lambda x: x['startTime'])
 
     # Write back to file
-    with open(os.path.join(UPLOAD_FOLDER, filename), 'w', encoding='utf8') as json_file:
+    with open(output_dir+filename, 'w', encoding='utf8') as json_file:
         json.dump(Translations, json_file, ensure_ascii=False)
 
     # Write back to file
-    with open(os.path.join(UPLOAD_FOLDER, filenameUrdu), 'w', encoding='utf8') as json_file:
+    with open(output_dir+filenameUrdu, 'w', encoding='utf8') as json_file:
         json.dump(Transcriptions, json_file, ensure_ascii=False)
 
     return 'Translation updated successfully', 200
@@ -266,13 +289,13 @@ def update_Translation():
 # Send Arabic video to the client
 @app.route('/get_arabicVideo')
 def get_video():
-    filename='arabicVideo.mp4'
-    sleep(10)
-    return send_file(os.path.join(UPLOAD_FOLDER, filename), mimetype='video/mp4')
+    # filename='arabicVideo.mp4'
+    filename=output_video_path
+    return send_file(filename, mimetype='video/mp4')
 
 if __name__ == '__main__':
-    if not os.path.exists(UPLOAD_FOLDER):
-        os.makedirs(UPLOAD_FOLDER)
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
     app.run(debug=True,port=8080)
 
 
