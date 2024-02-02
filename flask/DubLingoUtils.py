@@ -103,7 +103,13 @@ def Transcription(url,source_wav_vocals_filename,source_json_filename,output_dir
          json.dump(formatted_results, output_json_file, ensure_ascii=False, indent=2)
 
 # Function to translate the transcribed text
-def translation(output_dir,source_wav_vocals_filename,source_json_filename,target_json_filename,target_language):
+def translate_text(text, target_language):
+        translator = Translator()
+        translation = translator.translate(text, dest=target_language)
+        return translation.text
+
+# Function to translate the transcribed text
+def translation(output_dir,source_json_filename,target_json_filename,target_language):
     def translate_text(text, target_language):
         translator = Translator()
         translation = translator.translate(text, dest=target_language)
@@ -344,6 +350,24 @@ def create_folder(folder_path):
         print(f"Folder {folder_path} already exists.")
     except Exception as e:
         print(f"Error creating folder {folder_path}: {e}")
+
+# Function to replace audio with generated audio
+def replace_audio(input_video_path, audio_wav_path, output_video_path):
+    # Load video clip
+    video_clip = VideoFileClip(input_video_path)
+
+    # Load audio clip
+    audio_clip = AudioFileClip(audio_wav_path)
+
+    # Replace video audio with the provided audio clip
+    video_clip = video_clip.set_audio(audio_clip)
+
+    # Write the result to the output file
+    video_clip.write_videofile(output_video_path, codec="libx264", audio_codec="aac")
+
+    # Close the clips
+    video_clip.close()
+    audio_clip.close()
 
 # Function to max sentence id
 def max_sentence_id(json_file):

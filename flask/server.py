@@ -52,6 +52,10 @@ def upload_file():
 def get_urduTranscription():
     # filename='urduTranscription.json'
     filename=source_json_filename
+    # Check if the file exists
+    if not dl.check_path_exist(output_dir+filename):
+        dl.music_vocals_separation(spleeter_url,video_path,output_dir,source_wav_vocals_filename,source_wav_music_filename)
+        dl.Transcription(whisperX_url,source_wav_vocals_filename,filename,output_dir)
     with open(output_dir+filename, 'r', encoding='utf8') as f:
         data = json.load(f)
     return jsonify(data)
@@ -61,11 +65,18 @@ def get_urduTranscription():
 def add_transcription():
     # filename='urduTranscription.json'
     filename=source_json_filename
+    filenameArabic=target_json_filename
     data = request.get_json()
 
     # Load existing data
     with open(output_dir+filename, 'r', encoding='utf8') as json_file:
         transcriptions = json.load(json_file)
+
+    # get Max sentence_id
+    max_id = dl.max_sentence_id(transcriptions)
+
+    # Add to new data the max sentence_id
+    data['sentence_id'] = max_id+1
 
     # Add new transcription
     transcriptions.append(data)
@@ -73,9 +84,31 @@ def add_transcription():
     # Sort transcriptions by start time
     transcriptions.sort(key=lambda x: x['startTime'])
 
+
     # Write back to file
     with open(output_dir+filename, 'w', encoding='utf8') as json_file:
         json.dump(transcriptions, json_file, ensure_ascii=False)
+
+    # Check if transaltion exists
+    if dl.check_path_exist(output_dir+filenameArabic):
+        # Load existing data
+        with open(output_dir+filenameArabic, 'r', encoding='utf8') as json_file:
+            Translations = json.load(json_file)
+        # Translate the new transcription
+        translation = dl.translate(data['transcription'],target_language)
+        # Make transaltion data
+        dataA = {'speaker': data['speaker'],
+                'startTime': data['startTime'],
+                'endTime': data['endTime'],
+                'translation': translation,
+                'sentence_id': max_id+1}
+        # Add new Translation
+        Translations.append(dataA)
+        # Sort Translations by start time
+        Translations.sort(key=lambda x: x['startTime'])
+        # Write back to file
+        with open(output_dir+filenameArabic, 'w', encoding='utf8') as json_file:
+            json.dump(Translations, json_file, ensure_ascii=False)
 
     return 'Transcription added successfully', 200
 
@@ -100,6 +133,18 @@ def delete_transcription():
     # Write back to file
     with open(output_dir+filename, 'w', encoding='utf8') as json_file:
         json.dump(transcriptions, json_file, ensure_ascii=False)
+
+    # Delete translation at index if translation exists
+    if dl.check_path_exist(output_dir+target_json_filename):
+        # filename='arabicTranslation.json'
+        filename=target_json_filename
+        with open(output_dir+filename, 'r', encoding='utf8') as json_file:
+            Translations = json.load(json_file)
+        # Remove Translation at index
+        del Translations[index]
+        # Write back to file
+        with open(output_dir+filename, 'w', encoding='utf8') as json_file:
+            json.dump(Translations, json_file, ensure_ascii=False)
 
     return 'Transcription deleted successfully', 200
 
@@ -134,11 +179,33 @@ def update_transcription():
         transcriptions[index]['transcription'] = new_transcription
 
 
+
     # Sort transcriptions by start time
     transcriptions.sort(key=lambda x: x['startTime'])
     # Write back to file
     with open(output_dir+filename, 'w', encoding='utf8') as json_file:
         json.dump(transcriptions, json_file, ensure_ascii=False)
+
+    # Update translation at index if translation exists
+    if dl.check_path_exist(output_dir+target_json_filename):
+        # filename='arabicTranslation.json'
+        filename=target_json_filename
+        with open(output_dir+filename, 'r', encoding='utf8') as json_file:
+            Translations = json.load(json_file)
+        # Update Translation at index
+        if speaker:
+            Translations[index]['speaker'] = speaker
+        if startTime:
+            Translations[index]['startTime'] = startTime
+        if endTime:
+            Translations[index]['endTime'] = endTime
+        if new_transcription:
+            Translations[index]['translation'] = dl.translate(new_transcription,target_language)
+        # Sort Translations by start time
+        Translations.sort(key=lambda x: x['startTime'])
+        # Write back to file
+        with open(output_dir+filename, 'w', encoding='utf8') as json_file:
+            json.dump(Translations, json_file, ensure_ascii=False)
 
     return 'Transcription updated successfully', 200
 
@@ -148,6 +215,9 @@ def update_transcription():
 def get_arabicTranslation():
     # filename='arabicTranslation.json'
     filename=target_json_filename
+    # Check if the file exists
+    if not dl.check_path_exist(output_dir+filename):
+        dl.translation(output_dir,source_json_filename,target_language,target_language)
     with open(output_dir+filename, 'r', encoding='utf8') as f:
         data = json.load(f)
     return jsonify(data)
@@ -174,11 +244,18 @@ def add_Translation():
     with open(output_dir+filenameUrdu, 'r', encoding='utf8') as json_file:
         Transcriptions = json.load(json_file)
 
+    # get Max sentence_id
+    max_id = dl.max_sentence_id(Translations)
+    # Add to new data the max sentence_id
+    data['sentence_id'] = max_id+1
+
     # Add new Translation
     Translations.append(data)
 
+    # Translate the new translation
+    new_Translation=dl.translate_text(new_Translation,target_language='en')
     # Add new Transcription
-    new_transcription = {'speaker': speaker, 'startTime': startTime, 'endTime': endTime, 'transcription': new_Translation}
+    new_transcription = {'speaker': speaker, 'startTime': startTime, 'endTime': endTime, 'transcription': new_Translation, 'sentence_id': max_id+1}
 
     Transcriptions.append(new_transcription)
 
@@ -272,7 +349,9 @@ def update_Translation():
         Translations[index]['endTime'] = endTime
         Transcriptions[index]['endTime'] = endTime
     if new_Translation:
-        Translations[index]['translation'] = new_Translation
+        if Translations[index]['translation'] != new_Translation:
+            Translations[index]['translation'] = new_Translation
+            Transcriptions[index]['transcription'] = dl.translate_text(new_Translation,target_language='en')
 
 
     # Sort Translations by start time
@@ -296,6 +375,12 @@ def update_Translation():
 def get_video():
     # filename='arabicVideo.mp4'
     filename=output_video_path
+    # Check if the file exists
+    if not dl.check_path_exist(filename):
+        dl.get_speaker_wise_audio(output_dir+source_wav_vocals_filename,output_dir+target_json_filename,output_dir)
+        dl.generate_and_save_audio(output_dir+target_json_filename,output_dir,voice_clone_url)
+        dl.combined_audio_music(output_dir+target_json_filename,output_dir+source_wav_music_filename,output_dir)
+        dl.replace_audio(input_video_path, output_dir+source_wav_music_filename, output_video_path)
     return send_file(filename, mimetype='video/mp4')
 
 if __name__ == '__main__':
