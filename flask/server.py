@@ -3,11 +3,12 @@ from flask import Flask, jsonify, request, send_file
 import json
 import os
 from time import sleep
+import multiprocessing
 import DubLingoUtils as dl
 
 
-spleeter_url='https://2f99-34-125-35-222.ngrok-free.app/'    # replace with your URL
-whisperX_url='https://4fe8-34-90-24-148.ngrok-free.app/'  # replace with your URL
+spleeter_url='https://f352-35-202-3-245.ngrok-free.app/'    # replace with your URL
+whisperX_url='https://28ec-34-75-1-247.ngrok-free.app/'  # replace with your URL
 voice_clone_url=spleeter_url  # replace with your URL
 output_dir='./data/'
 # Replace this with the actual path to your video file
@@ -31,6 +32,13 @@ def index():
 def home():
     return jsonify({'message': 'You are at home'})
 
+def generateTranscription():
+    args=[spleeter_url,whisperX_url,video_path,output_dir,source_json_filename,source_wav_music_filename,source_wav_vocals_filename]
+    # separate music and vocals and transcribe vocals
+    my_process = multiprocessing.Process(target=dl.process_urdu_video, args=args)
+    # Start the process
+    my_process.start()
+
 @app.route('/uploadUrduVideo', methods=['POST'])
 def upload_file():
     #check if path exist
@@ -47,26 +55,20 @@ def upload_file():
         return 'No selected file', 400
     if file:
         file.save(video_path)
-        filename=source_json_filename
-        dl.music_vocals_separation(spleeter_url,video_path,output_dir,source_wav_vocals_filename,source_wav_music_filename)
-        dl.Transcription(whisperX_url,source_wav_vocals_filename,filename,output_dir)
-        dl.translation(output_dir,source_json_filename,target_json_filename,target_language)
-        dl.get_speaker_wise_audio(output_dir+source_wav_vocals_filename,output_dir+target_json_filename,output_dir)
-        dl.generate_and_save_audio(output_dir+target_json_filename,output_dir,voice_clone_url)
-        dl.combined_audio_music(output_dir+target_json_filename,output_dir+source_wav_music_filename,output_dir)
-        dl.replace_audio(video_path, output_dir+source_wav_music_filename, output_video_path)
+        generateTranscription()
         return 'File uploaded successfully', 200
-
 
 # Send data from JSON file to the client
 @app.route('/api/urduTranscription', methods=['GET'])
 def get_urduTranscription():
     # filename='urduTranscription.json'
     filename=source_json_filename
-    # Check if the file exists
-    if not dl.check_path_exist(output_dir+filename):
-        dl.music_vocals_separation(spleeter_url,video_path,output_dir,source_wav_vocals_filename,source_wav_music_filename)
-        dl.Transcription(whisperX_url,source_wav_vocals_filename,filename,output_dir)
+    # # Check if the file exists
+    # if not dl.check_path_exist(output_dir+filename):
+    #     dl.music_vocals_separation(spleeter_url,video_path,output_dir,source_wav_vocals_filename,source_wav_music_filename)
+    #     dl.Transcription(whisperX_url,source_wav_vocals_filename,filename,output_dir)
+    #
+    while(not dl.check_path_exist(output_dir+filename)):{}
     with open(output_dir+filename, 'r', encoding='utf8') as f:
         data = json.load(f)
     return jsonify(data)
@@ -220,6 +222,15 @@ def update_transcription():
 
     return 'Transcription updated successfully', 200
 
+# Generate Transaltion
+@app.route('/api/generateTranslation', methods=['GET'])
+def generate_arabicTranslation():
+    args=[output_dir,source_json_filename,target_json_filename,target_language]
+    # separate music and vocals and transcribe vocals
+    my_process = multiprocessing.Process(target=dl.Translator, args=args)
+    # Start the process
+    my_process.start()
+
 
 # Send data from JSON file to the client
 @app.route('/api/arabicTranslation', methods=['GET'])
@@ -227,8 +238,9 @@ def get_arabicTranslation():
     # filename='arabicTranslation.json'
     filename=target_json_filename
     # Check if the file exists
-    if not dl.check_path_exist(output_dir+filename):
-        dl.translation(output_dir,source_json_filename,target_json_filename,target_language)
+    # if not dl.check_path_exist(output_dir+filename):
+    #     dl.translation(output_dir,source_json_filename,target_json_filename,target_language)
+    while(not dl.check_path_exist(output_dir+filename)):{}
     with open(output_dir+filename, 'r', encoding='utf8') as f:
         data = json.load(f)
     return jsonify(data)
@@ -381,17 +393,28 @@ def update_Translation():
 
     return 'Translation updated successfully', 200
 
+
+# Generate Arabic Video
+@app.route('/api/generateTargetVideo', methods=['GET'])
+def generate_targetVideo():
+    args=[voice_clone_url,target_json_filename,video_path,output_dir,output_video_path,source_wav_music_filename]
+    # separate music and vocals and transcribe vocals
+    my_process = multiprocessing.Process(target=dl.process_arabic_video, args=args)
+    # Start the process
+    my_process.start()
+
 # Send Arabic video to the client
 @app.route('/get_arabicVideo')
 def get_video():
     # filename='arabicVideo.mp4'
     filename=output_video_path
-    # Check if the file exists
-    if not dl.check_path_exist(filename):
-        dl.get_speaker_wise_audio(output_dir+source_wav_vocals_filename,output_dir+target_json_filename,output_dir)
-        dl.generate_and_save_audio(output_dir+target_json_filename,output_dir,voice_clone_url)
-        dl.combined_audio_music(output_dir+target_json_filename,output_dir+source_wav_music_filename,output_dir)
-        dl.replace_audio(video_path, output_dir+source_wav_music_filename, output_video_path)
+    # # Check if the file exists
+    # if not dl.check_path_exist(filename):
+    #     dl.get_speaker_wise_audio(output_dir+source_wav_vocals_filename,output_dir+target_json_filename,output_dir)
+    #     dl.generate_and_save_audio(output_dir+target_json_filename,output_dir,voice_clone_url)
+    #     dl.combined_audio_music(output_dir+target_json_filename,output_dir+source_wav_music_filename,output_dir)
+    #     dl.replace_audio(video_path, output_dir+source_wav_music_filename, output_video_path)
+    while(not dl.check_path_exist(output_dir+filename)):{}
     return send_file(filename, mimetype='video/mp4')
 
 if __name__ == '__main__':

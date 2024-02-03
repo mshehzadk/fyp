@@ -1,7 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { HtmlHTMLAttributes, useEffect, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
-import { set } from "mongoose";
+import { useEffect, useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 
 
@@ -24,7 +22,7 @@ export default function urduTranscriptionList() {
                 })
             })
 
-        }, []);
+        },[]);
     }
     catch (error: any) {
         console.log(error);
