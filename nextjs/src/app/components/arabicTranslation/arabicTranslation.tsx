@@ -211,6 +211,9 @@ export default function ArabicTranslation() {
         }
     };
 
+    const generateTragetVideo = async () => {
+        const response = await fetch('http://localhost:8080/generateTargetVideo');
+    }
     return (
         <div className="container mx-auto p-4 overflow-hidden" ref={containerRef} onScroll={handleScroll}>
             <div className="flex">
@@ -337,7 +340,7 @@ export default function ArabicTranslation() {
                 </div>
                 {data &&
                     <div className="w-1/2">
-                        <Link href='/arabicVideo' className="flex-1 text-left">
+                        <Link href='/arabicVideo' onClick={() => generateTragetVideo()} className="flex-1 text-left">
                             <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center">
                                 Arabic Video
                                 <FaArrowRight className="ml-2" />

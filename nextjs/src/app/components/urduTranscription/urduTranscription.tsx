@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Urdutranscriptionlist from "./urduTranscriptionList";
 import Link from "next/link";
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import { error } from "console";
 
 export default function UrduTranscription() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -17,6 +18,10 @@ export default function UrduTranscription() {
       console.log(error);
     }
   }, []);
+
+  const generateTranslation = async () => {
+    const response = await fetch('http://localhost:8080/generateTranslation');
+}
 
   return (
     <div>
@@ -48,7 +53,7 @@ export default function UrduTranscription() {
             </div>
         </Link>
         {data && (
-            <Link href="/arabicTranslation" className="flex-1">
+            <Link href="/arabicTranslation" onClick={() => generateTranslation()} className="flex-1">
             <div className= " bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center">
                 Arabic Translation
                 <FaArrowRight className="ml-2" />

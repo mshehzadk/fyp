@@ -223,7 +223,7 @@ def update_transcription():
     return 'Transcription updated successfully', 200
 
 # Generate Transaltion
-@app.route('/api/generateTranslation', methods=['GET'])
+@app.route('/generateTranslation')
 def generate_arabicTranslation():
     args=[output_dir,source_json_filename,target_json_filename,target_language]
     # separate music and vocals and transcribe vocals
@@ -395,7 +395,7 @@ def update_Translation():
 
 
 # Generate Arabic Video
-@app.route('/api/generateTargetVideo', methods=['GET'])
+@app.route('/generateTargetVideo', methods=['GET'])
 def generate_targetVideo():
     args=[voice_clone_url,target_json_filename,video_path,output_dir,output_video_path,source_wav_music_filename]
     # separate music and vocals and transcribe vocals
