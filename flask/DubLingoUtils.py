@@ -382,10 +382,11 @@ def max_sentence_id(json_file):
 
 
 def process_urdu_video(spleeter_url,whisperX_url,video_path,output_dir,filename,source_wav_music_filename,source_wav_vocals_filename):
-    dl.music_vocals_separation(spleeter_url,video_path,output_dir,source_wav_vocals_filename,source_wav_music_filename)
-    dl.Transcription(whisperX_url,source_wav_vocals_filename,filename,output_dir)
+    music_vocals_separation(spleeter_url,video_path,output_dir,source_wav_vocals_filename,source_wav_music_filename)
+    Transcription(whisperX_url,source_wav_vocals_filename,filename,output_dir)
 
-def process_arabic_video(voice_clone_url,target_json_filename,video_path,output_dir,output_video_path,source_wav_music_filename):
-    dl.generate_and_save_audio(output_dir+target_json_filename,output_dir,voice_clone_url)
-    dl.combined_audio_music(output_dir+target_json_filename,output_dir+source_wav_music_filename,output_dir)
-    dl.replace_audio(video_path, output_dir+source_wav_music_filename, output_video_path)
+def process_arabic_video(voice_clone_url,target_json_filename,video_path,output_dir,output_video_path,source_wav_music_filename,source_wav_vocals_filename):
+    get_speaker_wise_audio(output_dir+source_wav_vocals_filename,output_dir+target_json_filename,output_dir)
+    generate_and_save_audio(output_dir+target_json_filename,output_dir,voice_clone_url)
+    combined_audio_music(output_dir+target_json_filename,output_dir+source_wav_music_filename,output_dir)
+    replace_audio(video_path, output_dir+source_wav_music_filename, output_video_path)

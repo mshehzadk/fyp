@@ -7,8 +7,8 @@ import multiprocessing
 import DubLingoUtils as dl
 
 
-spleeter_url='https://f352-35-202-3-245.ngrok-free.app/'    # replace with your URL
-whisperX_url='https://28ec-34-75-1-247.ngrok-free.app/'  # replace with your URL
+spleeter_url='https://0b92-35-202-3-245.ngrok-free.app/'    # replace with your URL
+whisperX_url='https://b05a-34-75-1-247.ngrok-free.app/'  # replace with your URL
 voice_clone_url=spleeter_url  # replace with your URL
 output_dir='./data/'
 # Replace this with the actual path to your video file
@@ -33,11 +33,12 @@ def home():
     return jsonify({'message': 'You are at home'})
 
 def generateTranscription():
-    args=[spleeter_url,whisperX_url,video_path,output_dir,source_json_filename,source_wav_music_filename,source_wav_vocals_filename]
-    # separate music and vocals and transcribe vocals
-    my_process = multiprocessing.Process(target=dl.process_urdu_video, args=args)
-    # Start the process
-    my_process.start()
+    if not dl.check_path_exist(output_dir+source_json_filename):
+        args=[spleeter_url,whisperX_url,video_path,output_dir,source_json_filename,source_wav_music_filename,source_wav_vocals_filename]
+        # separate music and vocals and transcribe vocals
+        my_process = multiprocessing.Process(target=dl.process_urdu_video, args=args)
+        # Start the process
+        my_process.start()
 
 @app.route('/uploadUrduVideo', methods=['POST'])
 def upload_file():
@@ -223,14 +224,16 @@ def update_transcription():
     return 'Transcription updated successfully', 200
 
 # Generate Transaltion
-@app.route('/generateTranslation')
+@app.route('/generateTranslation',methods=['GET'])
 def generate_arabicTranslation():
-    args=[output_dir,source_json_filename,target_json_filename,target_language]
-    # separate music and vocals and transcribe vocals
-    my_process = multiprocessing.Process(target=dl.Translator, args=args)
-    # Start the process
-    my_process.start()
-
+    if not dl.check_path_exist(output_dir+target_json_filename):
+        args=[output_dir,source_json_filename,target_json_filename,target_language]
+        print('Zahid')
+        # separate music and vocals and transcribe vocals
+        my_process = multiprocessing.Process(target=dl.translation, args=args)
+        # Start the process
+        my_process.start()
+    return 'Success', 200
 
 # Send data from JSON file to the client
 @app.route('/api/arabicTranslation', methods=['GET'])
@@ -395,14 +398,15 @@ def update_Translation():
 
 
 # Generate Arabic Video
-@app.route('/generateTargetVideo', methods=['GET'])
+@app.route('/generateTargetVideo',methods=['GET'])
 def generate_targetVideo():
-    args=[voice_clone_url,target_json_filename,video_path,output_dir,output_video_path,source_wav_music_filename]
-    # separate music and vocals and transcribe vocals
-    my_process = multiprocessing.Process(target=dl.process_arabic_video, args=args)
-    # Start the process
-    my_process.start()
-
+    if not dl.check_path_exist(output_video_path):
+        args=[voice_clone_url,target_json_filename,video_path,output_dir,output_video_path,source_wav_music_filename,source_wav_vocals_filename]
+        # separate music and vocals and transcribe vocals
+        my_process = multiprocessing.Process(target=dl.process_arabic_video, args=args)
+        # Start the process
+        my_process.start()
+        return 'Success', 200
 # Send Arabic video to the client
 @app.route('/get_arabicVideo')
 def get_video():
