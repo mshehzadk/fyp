@@ -406,7 +406,7 @@ def generate_targetVideo():
         my_process = multiprocessing.Process(target=dl.process_arabic_video, args=args)
         # Start the process
         my_process.start()
-        return 'Success', 200
+    return 'Success', 200
 # Send Arabic video to the client
 @app.route('/get_arabicVideo')
 def get_video():
