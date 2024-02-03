@@ -418,7 +418,7 @@ def get_video():
     #     dl.generate_and_save_audio(output_dir+target_json_filename,output_dir,voice_clone_url)
     #     dl.combined_audio_music(output_dir+target_json_filename,output_dir+source_wav_music_filename,output_dir)
     #     dl.replace_audio(video_path, output_dir+source_wav_music_filename, output_video_path)
-    while(not dl.check_path_exist(output_dir+filename)):{}
+    while(not dl.check_path_exist(filename)):{}
     return send_file(filename, mimetype='video/mp4')
 
 if __name__ == '__main__':
