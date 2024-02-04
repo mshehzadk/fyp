@@ -216,7 +216,7 @@ export default function urduTranscriptionList() {
                             <div className="flex-grow">
                                 <input
                                     className="w-full px-4 py-2 border-b-2 border-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-500"
-                                    placeholder="Start Time 00:00:00"
+                                    placeholder="Start Time 00:00:00,000"
                                     value={startTime}
                                     onChange={(e: any) => TimeUpdate(e, 's')}
                                 />
@@ -224,7 +224,7 @@ export default function urduTranscriptionList() {
                             <div className="flex-grow ml-2">
                                 <input
                                     className="w-full px-4 py-2 border-b-2 border-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-500"
-                                    placeholder="End Time 00:00:00"
+                                    placeholder="End Time 00:00:00,000"
                                     value={endTime}
                                     onChange={(e: any) => TimeUpdate(e, 'e')}
                                 />
