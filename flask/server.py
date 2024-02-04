@@ -7,8 +7,8 @@ import multiprocessing
 import DubLingoUtils as dl
 
 
-spleeter_url='https://0b92-35-202-3-245.ngrok-free.app/'    # replace with your URL
-whisperX_url='https://b05a-34-75-1-247.ngrok-free.app/'  # replace with your URL
+spleeter_url='https://bf7b-35-230-119-222.ngrok-free.app/'    # replace with your URL
+whisperX_url='https://ebca-34-83-185-123.ngrok-free.app/'  # replace with your URL
 voice_clone_url=spleeter_url  # replace with your URL
 output_dir='./data/'
 # Replace this with the actual path to your video file
@@ -87,7 +87,7 @@ def add_transcription():
         transcriptions = json.load(json_file)
 
     # get Max sentence_id
-    max_id = dl.max_sentence_id(transcriptions)
+    max_id = dl.max_sentence_id(output_dir+filename)
 
     # Add to new data the max sentence_id
     data['sentence_id'] = max_id+1
@@ -109,7 +109,7 @@ def add_transcription():
         with open(output_dir+filenameArabic, 'r', encoding='utf8') as json_file:
             Translations = json.load(json_file)
         # Translate the new transcription
-        translation = dl.translate(data['transcription'],target_language)
+        translation = dl.translate_text(data['transcription'],target_language)
         # Make transaltion data
         dataA = {'speaker': data['speaker'],
                 'startTime': data['startTime'],
@@ -271,7 +271,7 @@ def add_Translation():
         Transcriptions = json.load(json_file)
 
     # get Max sentence_id
-    max_id = dl.max_sentence_id(Translations)
+    max_id = dl.max_sentence_id(output_dir+filename)
     # Add to new data the max sentence_id
     data['sentence_id'] = max_id+1
 
