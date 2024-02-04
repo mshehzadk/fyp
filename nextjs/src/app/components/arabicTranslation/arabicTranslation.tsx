@@ -27,6 +27,7 @@ export default function ArabicTranslation() {
             translationRef.current.scrollLeft = scrollLeft;
         }
     };
+    
 
     useEffect(() => {
         const fetchData = async () => {
@@ -217,14 +218,14 @@ export default function ArabicTranslation() {
     return (
         <div className="container mx-auto p-4 overflow-hidden" ref={containerRef} onScroll={handleScroll}>
             <div className="flex">
-                <div ref={transcriptionRef} className="urduTranscription w-1/2 pr-3 overflow-auto max-h-[60vh]">
+                <div ref={transcriptionRef} className="urduTranscription w-1/2 pr-3 overflow-auto max-h-[70vh] bg-black border-b-2 border-t-2">
                     <div className="bg-slate-800 px-3 py-3">
                         <p className="text-white font-bold">
                             Urdu Transcription
                         </p>
                     </div>
                     {urduTranscription && Array.isArray(urduTranscription) && urduTranscription.map((item: any, index: number) => (
-                        <div key={index} className="p-4 border border-slate-300 my-5 flex gap-2">
+                        <div key={index} className="p-4 border border-slate-300 my-5 flex gap-2 bg-cyan-400">
                             <div className="flex">
                                 <div className="font-bold text-xl">{item.speaker}</div>
                                 <div className="m-2" >{item.startTime}</div>
@@ -237,7 +238,7 @@ export default function ArabicTranslation() {
                     ))}
                     {!urduTranscription && <div>Loading......</div>}
                 </div>
-                <div ref={translationRef} className="arabicTranslation w-1/2 pl-3 overflow-auto max-h-[60vh]">
+                <div ref={translationRef} className="arabicTranslation w-1/2 pl-3 overflow-auto max-h-[70vh] bg-black border-b-2 border-t-2">
                     <>
                         <div className="bg-slate-800 flex justify-between items-center px-3 py-3">
                             <p className="text-white font-bold">
@@ -251,7 +252,7 @@ export default function ArabicTranslation() {
                             </button>
                         </div>
                         {addTranslationModal &&
-                            <div>
+                            <div className="bg-cyan-400">
                                 <div>
                                     <div className="flex"></div>
                                     <input className="font-bold text-xl" placeholder="Enter Speaker Name" value={speakerName} onChange={(e: any) => setSpeakerName(e.target.value)}></input>
@@ -273,8 +274,13 @@ export default function ArabicTranslation() {
                             </div>
                         }
 
+                        
+                        
+                        
+                        
+                        
                         {data && Array.isArray(data) && data.map((item: any, index: number) => (
-                            <div key={index} className="p-4 border border-slate-300 my-5 flex gap-2">
+                            <div key={index} className="p-4 border border-slate-300 my-5 flex gap-2 bg-cyan-400">
                                 {editTrigger && editIndex === index ?
                                     <div>
                                         <div>
@@ -306,18 +312,18 @@ export default function ArabicTranslation() {
                                         </div>
                                     </div>
                                 }
-                                <div className="flex">
+                                <div className="flex ml-auto">
                                     {editTrigger && editIndex === index ?
-                                        <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2"
+                                        <button className="bg-red-800 text-white px-4 py-2 rounded-md m-2 hover:bg-slate-700 focus:outline-none focus:ring focus:border-blue-300 transition-all duration-300"
                                             onClick={(e) => saveEdit(e)}
                                         >Save</button>
                                         :
-                                        <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2"
+                                        <button className="bg-slate-800 text-white px-4 py-2 rounded-md m-2 hover:bg-slate-700 focus:outline-none focus:ring focus:border-blue-300 transition-all duration-300"
                                             onClick={() => editTheRow(item.speaker, item.startTime, item.endTime, item.translation, index)}
                                         >Edit</button>
                                     }
                                     {!editTrigger &&
-                                        <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2" onClick={() => DeleteTranslation(index)}>
+                                        <button className="bg-slate-800 text-white px-4 py-2 rounded-md m-2 hover:bg-slate-700 focus:outline-none focus:ring focus:border-blue-300 transition-all duration-300" onClick={() => DeleteTranslation(index)}>
                                             Delete
                                         </button>}
                                 </div>
@@ -329,10 +335,10 @@ export default function ArabicTranslation() {
                 </div>
             </div>
 
-            <div className="flex mt-4 space-x-4">
+            <div className="flex mt-6 space-x-4">
                 <div className="w-1/2">
                     <Link href='/urduTranscription' className="flex-1 text-right">
-                        <div className=" bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center">
+                        <div className=" bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
                             <FaArrowLeft className="mr-2" />
                             Urdu Transcription
                         </div>
@@ -341,7 +347,7 @@ export default function ArabicTranslation() {
                 {data &&
                     <div className="w-1/2">
                         <Link href='/arabicVideo' onClick={() => generateTragetVideo()} className="flex-1 text-left">
-                            <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center">
+                            <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
                                 Arabic Video
                                 <FaArrowRight className="ml-2" />
                             </div>

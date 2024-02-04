@@ -43,20 +43,48 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between py-6 px-24">
-        <h1 className="text-black font-semibold text-2xl decoration-sky-700  mb-4 underline underline-offset-[8px]  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:decoration-orange-400 duration-300">Demo Video</h1>
-      <div className="relative w-[80%] max-w-6xl mx-auto my-8 rounded-xl overflow-hidden">
-        <div className="absolute top-4 right-4 z-10">
-          <VideoPlayerControls
-            progress={videoProgress}
-            isPaused={isPaused}
-            onPlayPause={togglePlayPause}
-          />
-        </div>
-        <video className="w-full" ref={videoRef} loop muted autoPlay>
-          <source src="/video.mp4" />
-        </video>
+    <>
+      <header className="bg-slate-400 text-white py-3 text-center relative  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover:bg-orange-400 duration-300">
+          <div className="container mx-auto">
+            <h1 className="text-4xl font-bold mb-0 ">DEMO VIDEO</h1>
+          </div>
+          {/* Left Margin */}
+          <div className="h-full w-full lg:w-60 absolute top-0 left-0">
+            <div className="h-full w-full bg-gradient-to-r from-slate-700 to-transparent"></div>
+          </div>
+          {/* Right Margin */}
+          <div className="h-full w-full lg:w-60 absolute top-0 right-0">
+            <div className="h-full w-full bg-gradient-to-l from-slate-700 to-transparent"></div>
+          </div>
+      </header>
+
+
+    <div className="flex flex-col items-center justify-center min-h-screen p-0 relative">
+      {/* Left Margin */}
+      <div className="h-full w-full lg:w-60 absolute top-0 left-0">
+        <div className="h-full w-full bg-gradient-to-r from-slate-700 to-transparent"></div>
       </div>
-    </main>
+      {/* Right Margin */}
+      <div className="h-full w-full lg:w-60 absolute top-0 right-0">
+        <div className="h-full w-full bg-gradient-to-l from-slate-700 to-transparent"></div>
+      </div>
+
+      <main className="flex min-h-screen flex-col items-center justify-between lg:px-24">
+        <div className="w-full lg:w-[90%] max-w-6xl mx-auto rounded-xl overflow-hidden relative border border-black-700">
+          <div className="lg:top-4 lg:right-4 z-10 absolute border border-gray-300 p-4 rounded-md">
+            <VideoPlayerControls
+              progress={videoProgress}
+              isPaused={isPaused}
+              onPlayPause={togglePlayPause}
+            />
+          </div>
+          <video className="w-full h-90 rounded-xl border-t border-b border-black-700" ref={videoRef} loop muted autoPlay controls>
+            <source src="/video.mp4" />
+          </video>
+        </div>
+      </main>
+
+    </div>
+    </>
   );
 }
