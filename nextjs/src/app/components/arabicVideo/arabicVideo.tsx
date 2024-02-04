@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { IoMdDownload } from "react-icons/io";
 import { HashLoader } from "react-spinners";
+import { FaArrowLeft } from "react-icons/fa";
 
 export default function arabicVideo() {
     const [isLoading, setIsLoading] = useState(true);
@@ -23,7 +24,7 @@ export default function arabicVideo() {
         const a = document.createElement('a');
         a.style.display = 'none';
         a.href = url;
-        a.setAttribute('download', 'test.video');
+        a.setAttribute('download', 'test.mp4');
         document.body.appendChild(a);
         a.click();
         window.URL.revokeObjectURL(url);
@@ -35,22 +36,32 @@ export default function arabicVideo() {
             <div className="w-[80%] h-[70%] bg-base-100 shadow-xl rounded-xl border border-gray-200 mb-12" >
                 {isLoading ?
                     <div className="flex justify-center items-center w-full h-full rounded-2xl shadow-2xl">
-                        <HashLoader color="#007cf4"/>
+                        <HashLoader color="#007cf4" />
                     </div> :
                     <video className="w-full h-full rounded-2xl shadow-2xl" src={videoSrc} controls />
                 }
             </div>
-            <div className="flex flex-row justify-between w-[80%] mt-5 ">
-                <Link className="btn sm:btn-sm md:btn-md lg:btn-md btn-info transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 shadow-md border border-gray-200" href='/arabicTranslation'>
-                    <div>Arabic Translation</div>
+            <div className="flex w-[80%] mt-5">
+                <Link href='/arabicTranslation' className="flex-1 pr-2">
+                    <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center w-50%">
+                        <FaArrowLeft className="mr-2" />
+                        Arabic Translation
+                    </div>
                 </Link>
                 {!isLoading &&
-                    <button type="button" className="btn sm:btn-sm md:btn-md lg:btn-md btn-info transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 shadow-md border border-gray-200" onClick={Download}>
+                    <button
+                        type="button"
+                        className="flex-1 pl-2 "
+                        onClick={Download}
+                    >
+                        <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center w-full">
                         <IoMdDownload className="inline-block mr-2" />
                         Download Video
+                        </div>
                     </button>
                 }
             </div>
+
         </div>
 
     )

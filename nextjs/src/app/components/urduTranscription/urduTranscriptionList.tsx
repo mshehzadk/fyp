@@ -1,7 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { HtmlHTMLAttributes, useEffect, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
-import { set } from "mongoose";
+import { useEffect, useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 
 
@@ -24,7 +22,7 @@ export default function urduTranscriptionList() {
                 })
             })
 
-        }, []);
+        },[]);
     }
     catch (error: any) {
         console.log(error);
@@ -48,9 +46,9 @@ export default function urduTranscriptionList() {
             return;
         }
         // Check if the value is a valid time string
-        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9]$/;
+        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9],[0-9][0-9][0-9]$/;
         if (!pattern.test(startTime) || !pattern.test(endTime)) {
-            alert("Please enter a valid time string in the format HH:MM:SS");
+            alert("Please enter a valid time string in the format HH:MM:SS,MSS");
             return;
         }
         const response = await fetch('http://localhost:8080/update_transcription', {
@@ -129,9 +127,9 @@ export default function urduTranscriptionList() {
             return;
         }
         // Check if the value is a valid time string
-        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9]$/;
+        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9],[0-9][0-9][0-9]$/;
         if (!pattern.test(startTime) || !pattern.test(endTime)) {
-            alert("Please enter a valid time string in the format HH:MM:SS");
+            alert("Please enter a valid time string in the format HH:MM:SS,MSS");
             return;
         }
         const response = await fetch('http://localhost:8080/add_transcription', {
@@ -171,7 +169,7 @@ export default function urduTranscriptionList() {
     const TimeUpdate = (event: any, type: string) => {
         event.preventDefault();
         const value = event.target.value;
-        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9]$/;
+        const pattern = /^[0-9][0-9]:[0-5][0-9]:[0-5][0-9],[0-9][0-9][0-9]$/;
         if (!pattern.test(value)) {
             setDateFormat(false);
         }
@@ -190,14 +188,18 @@ export default function urduTranscriptionList() {
     return (
         <div>
             <>
-                <div className="flex justify-between items-center bg-slate-800 px-3 py-3">
-                    <p className="text-white font-bold">
-                        Urdu Transcription
-                    </p>
-                    <button className="bg-white mx-5 flex" onClick={addTranscription}>
-                        Add Transcription <AiOutlinePlus className="ml-2" size={18} />
-                    </button>
+            <div className="flex justify-between items-center bg-slate-800 px-4 py-3">
+                <p className="text-white font-bold text-lg">Urdu Transcription</p>
+                <button
+                    className="bg-white px-4 py-2 flex items-center text-slate-800 hover:bg-slate-700 hover:text-white transition-all duration-300"
+                    onClick={addTranscription}>
+                    <span className="mr-2 text-blue-500 hover:underline cursor-pointer">
+                    Add Transcription
+                    </span>
+                    <AiOutlinePlus size={18} />
+                </button>
                 </div>
+
                 {
                     addTranscriptionModal &&
                     <div>
@@ -206,7 +208,7 @@ export default function urduTranscriptionList() {
                             <input className="font-bold text-xl" placeholder="Enter Speaker Name" value={speakerName} onChange={(e: any) => setSpeakerName(e.target.value)}></input>
                             <input className="m-2" placeholder="Start Time" value={startTime} onChange={(e: any) => TimeUpdate(e, 's')}></input>
                             <input className="m-2" placeholder="End Time" value={endTime} onChange={(e: any) => TimeUpdate(e, 'e')}></input>
-                            {!dateFormat && <div className="text-red-500">Please enter a valid time string in the format HH:MM:SS</div>}
+                            {!dateFormat && <div className="text-red-500">Please enter a valid time string in the format HH:MM:SS,MS</div>}
                         </div>
                         <div className="flex">
                             <input placeholder="Trnascription" value={transcription} onChange={(e: any) => setTranscription(e.target.value)}></input>
@@ -240,7 +242,8 @@ export default function urduTranscriptionList() {
                                     onChange={(e: any) => TimeUpdate(e, 'e')}>
 
                                 </input>
-                                {!dateFormat && <div className="text-red-500">Please enter a valid time string in the format HH:MM:SS</div>}
+                                
+                                {!dateFormat && <div className="text-red-500">Please enter a valid time string in the format HH:MM:SS,MS</div>}
                             </div>
                             <div className="flex">
                                 <input value={transcription} onChange={(e: any) => setTranscription(e.target.value)}></input>
@@ -258,23 +261,33 @@ export default function urduTranscriptionList() {
                             </div>
                         </div>
                     }
-                    <div className="flex">
-                        {editTrigger && editIndex === index ?
+                   <div className="flex">
+  {editTrigger && editIndex === index ?
+    <button
+      className="bg-slate-800 text-white px-4 py-2 rounded-md m-2 hover:bg-slate-700 focus:outline-none focus:ring focus:border-blue-300 transition-all duration-300"
+      onClick={(e) => saveEdit(e)}
+    >
+      Save
+    </button>
+    :
+    <>
+      <button
+        className="bg-slate-800 text-white px-4 py-2 rounded-md m-2 hover:bg-slate-700 focus:outline-none focus:ring focus:border-blue-300 transition-all duration-300"
+        onClick={() => editTheRow(item.speaker, item.startTime, item.endTime, item.transcription, index)}
+      >
+        Edit
+      </button>
+      {!editTrigger &&
+        <button
+          className="bg-slate-800 text-white px-4 py-2 rounded-md m-2 hover:bg-slate-700 focus:outline-none focus:ring focus:border-blue-300 transition-all duration-300"
+          onClick={() => DeleteTranscription(index)}
+        >
+          Delete
+        </button>}
+    </>
+  }
+</div>
 
-                            <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2"
-                                onClick={(e) => saveEdit(e)}
-                            >Save</button>
-                            :
-                            <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2"
-                                onClick={() => editTheRow(item.speaker, item.startTime, item.endTime, item.transcription, index)}
-                            >Edit</button>
-                        }
-                        {!(editTrigger) &&
-                            <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2" onClick={() => DeleteTranscription(index)}>
-                                Delete
-                            </button>}
-
-                    </div>
                 </div>
             ))}
 
