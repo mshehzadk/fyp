@@ -34,17 +34,17 @@ export default function arabicVideo() {
 
     return (
         <div className="w-[80%] h-screen flex flex-col items-center pt-10">
-            <div className="w-[80%] h-[70%] bg-base-100 shadow-xl rounded-xl border border-gray-200 mb-6 animate-bounce animate-once animate-duration-1000" >
+            <div className="w-full h-[70%] bg-base-100 shadow-xl rounded-xl border border-gray-200 mb-6 animate-fade-up animate-once animate-duration-2000" >
                 {isLoading ?
                     <div className="flex justify-center items-center w-full h-full rounded-2xl shadow-2xl">
                         <HashLoader color="#007cf4" />
                     </div> :
-                    <video className="w-full h-full rounded-2xl shadow-2xl" src={videoSrc} controls />
+                    <video className="w-full h-full rounded-2xl shadow-2xl" src={videoSrc} controls/>
                 }
             </div>
-            <div className="flex w-[80%]">
-                <Link href='/arabicTranslation' className="flex-1 lg:flex-1 pr-2">
-                    <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center w-50%">
+            <div className="flex w-full">
+                <Link href='/arabicTranslation' className="flex-1 lg:flex-1 pr-2 animate-fade-right animate-once animate-duration-2000">
+                    <div className="bg-blue-500 shadow-lg shadow-blue-500/50 text-white py-2 px-4 rounded-md text-center hover:bg-black hover:shadow-black/50 transition-all duration-300 flex items-center justify-center w-50%">
                         <FaArrowLeft className="mr-2" />
                         Arabic Translation
                     </div>
@@ -52,10 +52,10 @@ export default function arabicVideo() {
                 {!isLoading &&
                     <button
                         type="button"
-                        className="flex-1 lg:flex-1 pl-2 "
+                        className="flex-1 lg:flex-1 pl-2 animate-fade-left animate-once animate-duration-2000"
                         onClick={Download}
                     >
-                        <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center w-full">
+                        <div className="bg-blue-500 shadow-lg shadow-blue-500/50 text-white py-2 px-4 rounded-md text-center hover:bg-black hover:shadow-black/50 transition-all duration-300 flex items-center justify-center w-full">
                         <IoMdDownload className="inline-block mr-2" />
                         Download Video
                         </div>
