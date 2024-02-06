@@ -55,7 +55,7 @@ export default function VideoUpload() {
         <header className="bg-slate-400 text-white py-5 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover:bg-orange-400 duration-300">
           <div className="container mx-auto text-center">
             <h1 className="text-2xl font-bold mb-4">URDU VIDEO TO ARABIC VIDEOS</h1>
-            <p className="text-lg">DUB VIDEOS FROM URDU TO ARABIC TO YOUR HEART'S CONTENT</p>
+            <p className="text-lg">DUB VIDEOS FROM URDU TO ARABIC TO YOUR HEARTS CONTENT</p>
           </div> 
         </header>
 
@@ -96,13 +96,6 @@ export default function VideoUpload() {
         <div className={`mt-4 flex items-center justify-center ${isVideoUploaded ? '' : 'hidden'}`}>
           <div className="flex flex-col lg:flex-row">
 
-            {/* Left Image */}
-            <img
-              src="https://cdn4.vectorstock.com/i/1000x1000/03/33/login-form-design-vector-19450333.jpg"
-              alt="Left Image"
-              className="w-1/4 h-auto object-contain mr-4 hidden lg:block"
-            />
-
             {/* Video Container */}
             <div className="w-full lg:w-1/2">
               {isUploading ? (
@@ -117,12 +110,7 @@ export default function VideoUpload() {
               ) : null}
             </div>
 
-            {/* Right Image */}
-            <img
-              src="https://cdn4.vectorstock.com/i/1000x1000/03/33/login-form-design-vector-19450333.jpg"
-              alt="Right Image"
-              className="w-1/4 h-auto object-contain ml-4 hidden lg:block"
-            />
+
           </div>
         </div>
       </div>
