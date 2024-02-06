@@ -5,6 +5,7 @@ import { IoMdDownload } from "react-icons/io";
 import { HashLoader } from "react-spinners";
 import { FaArrowLeft } from "react-icons/fa";
 
+
 export default function arabicVideo() {
     const [isLoading, setIsLoading] = useState(true);
     const [videoSrc, setVideoSrc] = useState<string>("");
@@ -33,7 +34,7 @@ export default function arabicVideo() {
 
     return (
         <div className="w-[80%] h-screen flex flex-col items-center pt-10">
-            <div className="w-[80%] h-[70%] bg-base-100 shadow-xl rounded-xl border border-gray-200 mb-6" >
+            <div className="w-[80%] h-[70%] bg-base-100 shadow-xl rounded-xl border border-gray-200 mb-6 animate-bounce animate-once animate-duration-1000" >
                 {isLoading ?
                     <div className="flex justify-center items-center w-full h-full rounded-2xl shadow-2xl">
                         <HashLoader color="#007cf4" />
