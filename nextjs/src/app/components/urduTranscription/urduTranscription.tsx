@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import Urdutranscriptionlist from "./urduTranscriptionList";
 import Link from "next/link";
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
-import { error } from "console";
 
 export default function UrduTranscription() {
   const videoRef = useRef<HTMLVideoElement>(null);
