@@ -50,9 +50,9 @@ export default function Home() {
           <h1 className="text-4xl font-bold mb-0 animate-flip-up animate-once animate-duration-[2000ms]">DEMO VIDEO</h1>
         </div>
       </header>
-      <div className="flex w-[80%] bg-base-100 shadow-xl shadow-black rounded-xl border-4 border-gray-200 mb-6 animate-fade-up animate-once animate-duration-2000">
+      <div className="flex w-[80%] h-full bg-base-100 shadow-xl shadow-black rounded-xl border-4 border-gray-200 mb-6 animate-fade-up animate-once animate-duration-2000">
 
-        <main className="flex flex-auto items-center">
+        <main className="flex flex-auto h-full items-center">
           <div className="w-full h-full max-w-6xl mx-auto rounded-xl overflow-hidden relative">
             {videoRef ? (
               <div className="w-full h-full">
@@ -63,8 +63,8 @@ export default function Home() {
                     onPlayPause={togglePlayPause}
                   />
                 </div>
-                <div className="flex flex-col items-center">
-                  <video className="w-auto h-auto" ref={videoRef} loop autoPlay muted>
+                <div className="flex flex-col items-center h-full">
+                  <video style={{objectFit:"initial",height:300}} ref={videoRef} loop autoPlay muted>
                     <source src="/video.mp4" />
                   </video>
                 </div>
