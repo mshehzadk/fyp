@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Urdutranscriptionlist from "./urduTranscriptionList";
 import Link from "next/link";
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import { HashLoader } from "react-spinners";
 
 export default function UrduTranscription() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -40,7 +41,9 @@ export default function UrduTranscription() {
               Your browser does not support the video tag.
             </video>
           ) : (
-            <div>Loading.......</div>
+            <div className="flex justify-between items-center bg-slate-800 px-3 py-4">
+              <HashLoader color="#007cf4" />
+            </div>
           )}
         </div>
       </div>

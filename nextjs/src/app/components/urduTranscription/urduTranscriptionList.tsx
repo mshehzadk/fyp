@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
+import { HashLoader } from "react-spinners";
 
 
 export default function urduTranscriptionList() {
@@ -22,7 +23,7 @@ export default function urduTranscriptionList() {
                 })
             })
 
-        },[]);
+        }, []);
     }
     catch (error: any) {
         console.log(error);
@@ -187,17 +188,17 @@ export default function urduTranscriptionList() {
 
     return (
         <div>
-            <>
-            <div className="flex justify-between items-center bg-slate-800 px-4 py-2">
-                <p className="text-white font-bold text-lg">Urdu Transcription</p>
-                <button
-                    className="bg-white px-4 py-2 flex items-center text-slate-800 hover:bg-slate-700 hover:text-white transition-all duration-300"
-                    onClick={addTranscription}>
-                    <span className="mr-2 text-blue-500 hover:underline cursor-pointer">
-                    Add Transcription
-                    </span>
-                    <AiOutlinePlus size={18} />
-                </button>
+            <div>
+                <div className="flex justify-between items-center bg-slate-800 px-4 py-2">
+                    <p className="text-white font-bold text-lg">Urdu Transcription</p>
+                    <button
+                        className="bg-white px-4 py-2 flex items-center text-slate-800 hover:bg-slate-700 hover:text-white transition-all duration-300"
+                        onClick={addTranscription}>
+                        <span className="mr-2 text-blue-500 hover:underline cursor-pointer">
+                            Add Transcription
+                        </span>
+                        <AiOutlinePlus size={18} />
+                    </button>
                 </div>
 
                 {
@@ -250,7 +251,7 @@ export default function urduTranscriptionList() {
                         </div>
                     </div>
                 }
-            </>
+            </div>
 
 
 
@@ -318,7 +319,7 @@ export default function urduTranscriptionList() {
                                 Save
                             </button>
                             :
-                            <>
+                            <div>
                                 <button
                                     className="bg-slate-800 text-white px-4 py-2 rounded-md m-2 hover:bg-slate-700 focus:outline-none focus:ring focus:border-blue-300 transition-all duration-300"
                                     onClick={() => editTheRow(item.speaker, item.startTime, item.endTime, item.transcription, index)}
@@ -332,17 +333,20 @@ export default function urduTranscriptionList() {
                                     >
                                         Delete
                                     </button>}
-                            </>
+                            </div>
                         }
                     </div>
                 </div>
-                ))
+            ))
             }
 
 
 
 
-            {!data && <div>Loading......</div>}
+            {!data && 
+            <div>
+                <HashLoader color="#007cf4" />
+            </div>}
         </div>
 
 
