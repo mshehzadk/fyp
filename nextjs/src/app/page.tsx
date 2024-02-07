@@ -64,13 +64,13 @@ export default function Home() {
                   />
                 </div>
                 <div className="flex flex-col items-center h-full">
-                  <video style={{objectFit:"initial",height:300}} ref={videoRef} loop autoPlay muted>
+                  <video ref={videoRef} loop autoPlay muted>
                     <source src="/video.mp4" />
                   </video>
                 </div>
               </div>
             ) : (<div className="w-full h-full">
-               <HashLoader color="#007cf4" />
+              <HashLoader color="#007cf4" />
             </div>)}
           </div>
         </main>
