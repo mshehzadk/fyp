@@ -44,7 +44,7 @@ export default function arabicVideo() {
             </div>
             <div className="flex w-full">
                 <Link href='/arabicTranslation' className="flex-1 lg:flex-1 pr-2 animate-fade-right animate-once animate-duration-2000">
-                    <div className="bg-black shadow-lg shadow-black/50 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 hover:shadow-blue-400/50 transition-all duration-300 flex items-center justify-center w-full">
+                    <div className="bg-black shadow-lg shadow-black/50 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 hover:shadow-blue-400/50 transition-all duration-300 flex items-center justify-center w-fullc">
                         <FaArrowLeft className="mr-2" />
                         Arabic Translation
                     </div>
