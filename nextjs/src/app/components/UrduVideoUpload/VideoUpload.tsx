@@ -53,7 +53,7 @@ export default function VideoUpload() {
   return (
     <>
       <div className="flex flex-col items-center p-2 w-full">
-        <header className="w-[80%] rounded-lg bg-blue-400 text-white my-3 py-3 text-center relative shadow-md shadow-black  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover:bg-black duration-300">
+        <header className="w-[80%] rounded-lg bg-black text-white my-3 py-3 text-center relative shadow-lg shadow-black  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover:bg-black duration-300">
           <div className="container mx-auto text-center">
             <h1 className="text-2xl font-bold mb-4 animate-flip-up animate-once animate-duration-[2000ms]">URDU VIDEO TO ARABIC VIDEOS</h1>
             <p className="text-lg animate-flip-down animate-once animate-duration-[2000ms]">DUB VIDEOS FROM URDU TO ARABIC TO YOUR HEARTS CONTENT</p>
@@ -73,11 +73,11 @@ export default function VideoUpload() {
           {file && (
             <div>
               {isVideoUploaded ? (
-                <button type="button" className="py-2 px-2 mx-4 bg-green-600 rounded cursor-not-allowed animate-fade-right animate-once animate-duration-[1000ms]" disabled>
+                <button type="button" className="py-2 px-2 mx-4 bg-green-600 rounded cursor-not-allowed animate-flip-up animate-once animate-duration-[3000ms]" disabled>
                   Uploaded
                 </button>
               ) : (
-                <button type="submit" className="py-2 px-2 mx-4 bg-blue-400 text-white rounded hover:bg-black animate-fade animate-once animate-duration-[3000ms]">
+                <button type="submit" className="py-2 px-2 mx-4 bg-blue-400 text-white rounded transition ease-in-out duration-1000 hover:bg-black animate-fade animate-once animate-duration-[3000ms]">
                   Upload
                 </button>
               )}
@@ -87,7 +87,7 @@ export default function VideoUpload() {
         <div className="mt-1 w-[80%]">
           {isVideoUploaded ? (
             <Link href="/urduTranscription">
-              <p className={`bg-black text-white py-2 px-4 my-2 rounded-md text-center flex items-center justify-center p-3 hover:bg-blue-400 transition-all duration-300 transform hover:scale-103s shadow-md shadow-blue-400 animate-pulse animate-once animate-duration-[3000ms] animate-ease-out`}>
+              <p className={`bg-black text-white py-2 px-4 my-2 rounded-md text-center flex items-center justify-center p-3 hover:bg-blue-400 transition ease-in-out duration-1000 shadow-md shadow-black hover:shadow-lg hover:shadow-blue-400 animate-pulse animate-once animate-duration-[3000ms] animate-ease-out`}>
                 Urdu Transcription
                 <FaArrowRight className="ml-2" />
               </p>

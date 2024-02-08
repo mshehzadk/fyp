@@ -44,7 +44,7 @@ export default function arabicVideo() {
             </div>
             <div className="flex w-full">
                 <Link href='/arabicTranslation' className="flex-1 lg:flex-1 pr-2 animate-fade-right animate-once animate-duration-2000">
-                    <div className="bg-blue-500 shadow-lg shadow-blue-500/50 text-white py-2 px-4 rounded-md text-center hover:bg-black hover:shadow-black/50 transition-all duration-300 flex items-center justify-center w-50%">
+                    <div className="bg-black shadow-lg shadow-black/50 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 hover:shadow-blue-400/50 transition-all duration-300 flex items-center justify-center w-full">
                         <FaArrowLeft className="mr-2" />
                         Arabic Translation
                     </div>
@@ -55,7 +55,7 @@ export default function arabicVideo() {
                         className="flex-1 lg:flex-1 pl-2 animate-fade-left animate-once animate-duration-2000"
                         onClick={Download}
                     >
-                        <div className="bg-blue-500 shadow-lg shadow-blue-500/50 text-white py-2 px-4 rounded-md text-center hover:bg-black hover:shadow-black/50 transition-all duration-300 flex items-center justify-center w-full">
+                        <div className="bg-black shadow-lg shadow-black/50 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 hover:shadow-blue-400/50 transition-all duration-300 flex items-center justify-center w-full">
                         <IoMdDownload className="inline-block mr-2" />
                         Download Video
                         </div>
