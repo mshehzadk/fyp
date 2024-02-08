@@ -45,7 +45,7 @@ export default function Home() {
 
   return (
     <div className="w-full h-full flex flex-col items-center">
-      <header className="w-[80%] rounded-lg bg-black text-white my-3 py-3 text-center relative shadow-md shadow-black  transition ease-in-out delay-150 hover:-translate-y-1 hover:bg-black duration-300">
+      <header className="w-[80%] rounded-lg bg-black text-white my-3 py-3 text-center relative shadow-lg shadow-black  transition ease-in-out delay-150 hover:-translate-y-1 hover:bg-black duration-300">
         <div className="container mx-auto">
           <h1 className="text-4xl font-bold mb-0 animate-flip-up animate-once animate-duration-[2000ms]">DEMO VIDEO</h1>
         </div>
@@ -63,7 +63,7 @@ export default function Home() {
                     onPlayPause={togglePlayPause}
                   />
                 </div>
-                <div className="flex flex-col items-center h-full">
+                <div className="flex flex-col items-center">
                   <video ref={videoRef} loop autoPlay muted>
                     <source src="/video.mp4" />
                   </video>
