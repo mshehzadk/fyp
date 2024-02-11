@@ -190,16 +190,16 @@ export default function urduTranscriptionList() {
     return (
         <div>
             <>
-            <div className="flex justify-between items-center bg-slate-800 px-4 py-2">
-                <p className="text-white font-bold text-lg">Urdu Transcription</p>
-                <button
-                    className="bg-white px-4 py-2 flex items-center text-slate-800 hover:bg-slate-700 hover:text-white transition-all duration-300"
-                    onClick={addTranscription}>
-                    <span className="mr-2 text-blue-500 hover:underline cursor-pointer">
-                    Add Transcription
-                    </span>
-                    <AiOutlinePlus size={18} />
-                </button>
+                <div className="flex justify-between items-center bg-slate-800 px-4 py-2">
+                    <p className="text-white font-bold text-lg">Urdu Transcription</p>
+                    <button
+                        className="bg-white px-4 py-2 flex items-center text-slate-800 hover:bg-slate-700 hover:text-white transition-all duration-300"
+                        onClick={addTranscription}>
+                        <span className="mr-2 text-blue-500 hover:underline cursor-pointer">
+                        Add Transcription
+                        </span>
+                        <AiOutlinePlus size={18} />
+                    </button>
                 </div>
 
                 {
@@ -252,10 +252,6 @@ export default function urduTranscriptionList() {
                     </div>
                 }
             </>
-
-
-
-
 
             {data && Array.isArray(data) && data.map((item: any, index: number) => (
                 <div key={index} className="p-2 border border-slate-300 my-5 flex gap-2 bg-cyan-400">

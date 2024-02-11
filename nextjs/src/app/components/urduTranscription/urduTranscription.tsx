@@ -21,7 +21,7 @@ export default function UrduTranscription() {
   return (
     <div>
       <div className="flex">
-        <div className="w-1/2 text-right overflow-y-auto max-h-[67vh] bg-black border-b-2 border-t-2">
+        <div className="w-1/2 text-right overflow-y-auto max-h-[67vh] bg-black border-b-2 border-t-2 mr-4">
         <Urdutranscriptionlist />
         </div>
         <div className="w-1/2 text-right">
