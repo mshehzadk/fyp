@@ -44,47 +44,53 @@ export default function Home() {
 
   return (
     <>
-      <header className="bg-slate-400 text-white py-3 text-center relative  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover:bg-orange-400 duration-300">
-          <div className="container mx-auto">
-            <h1 className="text-4xl font-bold mb-0 ">DEMO VIDEO</h1>
-          </div>
-          {/* Left Margin */}
-          <div className="h-full w-full lg:w-60 absolute top-0 left-0">
-            <div className="h-full w-full bg-gradient-to-r from-slate-700 to-transparent"></div>
-          </div>
-          {/* Right Margin */}
-          <div className="h-full w-full lg:w-60 absolute top-0 right-0">
-            <div className="h-full w-full bg-gradient-to-l from-slate-700 to-transparent"></div>
-          </div>
-      </header>
+      <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen p-0 relative bg-black mt-1">
 
 
-    <div className="flex flex-col items-center justify-center min-h-screen p-0 relative">
-      {/* Left Margin */}
-      <div className="h-full w-full lg:w-60 absolute top-0 left-0">
-        <div className="h-full w-full bg-gradient-to-r from-slate-700 to-transparent"></div>
-      </div>
-      {/* Right Margin */}
-      <div className="h-full w-full lg:w-60 absolute top-0 right-0">
-        <div className="h-full w-full bg-gradient-to-l from-slate-700 to-transparent"></div>
-      </div>
+        <main className="flex flex-col lg:flex-row items-center justify-between lg:px-20 ">
+          <div className="order-2 lg:order-1 w-full lg:w-[50%] lg:max-w-[50%] relative border-4 border-purple-500 bg-gradient-to-r from-pink-900 to-purple-900 p-8 rounded-lg shadow-lg mb-10 lg:mb-0 lg:mt-0" style={{ marginTop: "-6rem" }}>
+            <header className="text-white py-1 text-center mb-8">
+              <h1 className="text-5xl font-bold mb-0 tracking-wide">DEMO VIDEO</h1>
+            </header>
+            <video className="w-full h-auto lg:h-full rounded-tl-xl rounded-bl-xl lg:rounded-tr-xl lg:rounded-br-xl border-t border-r border-b border-black-700" ref={videoRef} loop muted autoPlay controls style={{ border: '4px solid white' }}>
+              <source src="/video.mp4" />
+            </video>
+            <div className="lg:hidden z-10 absolute top-4 right-4 border border-gray-300 p-4 rounded-md">
+              <VideoPlayerControls
+                progress={videoProgress}
+                isPaused={isPaused}
+                onPlayPause={togglePlayPause}
+              />
+            </div>
+          </div>
 
-      <main className="flex min-h-screen flex-col items-center justify-between lg:px-24">
-        <div className="w-full lg:w-[90%] max-w-6xl mx-auto rounded-xl overflow-hidden relative border border-black-700">
-          <div className="lg:top-4 lg:right-4 z-10 absolute border border-gray-300 p-4 rounded-md">
+          <div className="order-1 lg:order-2 w-full lg:w-[50%] lg:max-w-[50%] lg:pl-8 lg:mt-15 mb-40 mt-10 p-5">
+            <h1 className="text-6xl font-bold mb-4 text-purple-700">DUBLINGO</h1>
+            <h2 className="text-4xl font-semibold mb-6 text-purple-600">Transform Urdu videos into Arabic dubbed videos</h2>
+            <p className="leading-relaxed mb-6 text-gray-100 text-xl">
+              Dublingo is a revolutionary system that automatically transforms Urdu videos into Arabic dubbed videos using advanced AI technology.
+            </p>
+            <ul className="list-disc pl-7 mb-8 text-gray-100 text-xl">
+              <li>Automatically translates Urdu speech into Arabic</li>
+              <li>Syncs translations with original video</li>
+              <li>Produces high-quality dubbed videos</li>
+              <li>Easy to use interface</li>
+            </ul>
+            <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 ml-40">
+              Try Now
+            </button>
+          </div>
+
+          <div className="hidden lg:block z-10 absolute top-4 right-4 border border-gray-300 p-4 rounded-md bg-black">
             <VideoPlayerControls
               progress={videoProgress}
               isPaused={isPaused}
               onPlayPause={togglePlayPause}
             />
           </div>
-          <video className="w-full h-90 rounded-xl border-t border-b border-black-700" ref={videoRef} loop muted autoPlay controls>
-            <source src="/video.mp4" />
-          </video>
-        </div>
-      </main>
+        </main>
 
-    </div>
+      </div>
     </>
   );
 }

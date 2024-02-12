@@ -51,15 +51,14 @@ export default function VideoUpload() {
 
   return (
     <>
-      <div className="videoupload mx-auto p-2 bg-gray-400  shadow-md w-full">
-        <header className="bg-slate-400 text-white py-5 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover:bg-orange-400 duration-300">
+      <div className="videoupload mx-auto p-2 bg-black  shadow-md w-full">
+        <header className="bg-gradient-to-r from-pink-900 to-purple-900 text-white py-5 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover:bg-orange-400 duration-300">
           <div className="container mx-auto text-center">
-            <h1 className="text-2xl font-bold mb-4">URDU VIDEO TO ARABIC VIDEOS</h1>
-            <p className="text-lg">DUB VIDEOS FROM URDU TO ARABIC TO YOUR HEART'S CONTENT</p>
+            <h1 className="text-2xl font-bold mb-3">URDU VIDEO TO ARABIC VIDEOS</h1>
           </div> 
         </header>
 
-        <form onSubmit={onSubmit} className="flex items-center justify-between border-black border hover:bg-orange-200 duration-300">
+        <form onSubmit={onSubmit} className="flex items-center justify-between text-white border-black border hover:bg-gradient-to-r from-pink-900 to-purple-900 duration-300">
           <div className="flex-1 pr-4">
             <input
               type="file"
@@ -97,19 +96,21 @@ export default function VideoUpload() {
           <div className="flex flex-col lg:flex-row">
 
             {/* Left Image */}
-            <img
-              src="https://cdn4.vectorstock.com/i/1000x1000/03/33/login-form-design-vector-19450333.jpg"
-              alt="Left Image"
-              className="w-1/4 h-auto object-contain mr-4 hidden lg:block"
-            />
+            <div className="w-2/4 lg:w-1/2 border-2 border-white hidden lg:block mr-1" style={{ width: "400px", height: "400px" }}>
+              <img
+                src="https://wallpapercave.com/wp/wp5886498.jpg"
+                alt="Left Image"
+                className="w-full h-full object-cover"
+              />
+            </div>
 
             {/* Video Container */}
-            <div className="w-full lg:w-1/2">
+            <div className="w-full lg:w-1/2 border-2 border-white" style={{ width: "100%", height: "auto", maxHeight: "400px" }}>
               {isUploading ? (
                 <div>Loading...</div>
               ) : videoUrl ? (
-                <div className="video-container">
-                  <video controls className="w-full h-auto lg:w-full">
+                <div className="video-container" style={{ width: "100%", height: "100%" }}>
+                  <video controls className="w-full h-full">
                     <source src={videoUrl} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
@@ -118,13 +119,16 @@ export default function VideoUpload() {
             </div>
 
             {/* Right Image */}
-            <img
-              src="https://cdn4.vectorstock.com/i/1000x1000/03/33/login-form-design-vector-19450333.jpg"
-              alt="Right Image"
-              className="w-1/4 h-auto object-contain ml-4 hidden lg:block"
-            />
+            <div className="w-2/4 lg:w-1/2 border-2 border-white hidden lg:block ml-1" style={{ width: "400px", height: "400px" }}>
+              <img
+                src="https://wallpapercave.com/wp/wp5886498.jpg"
+                alt="Right Image"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
+
       </div>
     </>
   );
