@@ -7,55 +7,60 @@ import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 export default function UrduTranscription() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [data, setData] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     try {
       fetch('http://localhost:8080/api/urduTranscription')
         .then((response) => response.json())
-        .then((data) => setData(data));
+        .then((data) => setData(data))
+        .finally(() => setIsLoading(false));
     } catch (error: any) {
       console.log(error);
+      setIsLoading(false);
     }
   }, []);
 
   return (
-    <div>
-      <div className="flex">
-        <div className="w-1/2 text-right overflow-y-auto max-h-[67vh] bg-black border-b-2 border-t-2 mr-4">
-        <Urdutranscriptionlist />
+    <div className="container mx-auto px-4">
+      {isLoading ? (
+        <div className="flex items-center justify-center h-screen">
+          <div className="spinner-border w-16 h-16 border-4 border-blue-500 rounded-full"></div>
         </div>
-        <div className="w-1/2 text-right">
-            <div className="flex justify-between items-center bg-slate-800 px-3 py-4">
-                        <p className="text-white  font-bold ">
-                            Urdu Video
-                        </p>
+      ) : (
+        <div className="flex flex-col lg:flex-row lg:max-h-[67vh]">
+          <div className="lg:w-1/2 lg:mr-4 bg-black border-t-2 border-b-2 border-white lg:overflow-y-auto md:overflow-y-auto">
+            <Urdutranscriptionlist />
+          </div>
+          <div className="lg:w-1/2 lg:ml-4 bg-slate-800 p-3 lg:p-4">
+            <p className="text-white font-bold mb-2">Urdu Video</p>
+            <div className="relative" style={{ paddingTop: "56.25%" }}>
+              {videoRef && (
+                <video ref={videoRef} controls muted className="absolute top-0 left-0 w-full h-full">
+                  <source src="/video.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              )}
             </div>
-          {videoRef ? (
-            <video ref={videoRef} controls muted className="w-full ">
-              <source src="/video.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          ) : (
-            <div>Loading.......</div>
-          )}
+          </div>
         </div>
-      </div>
-        <div className="flex mt-6 space-x-4">
-          <Link href="/urduvideo" className="flex-1">
-              <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
-              <FaArrowLeft className="mr-2" />
-              Urdu Video
-              </div>
+      )}
+      <div className="flex mt-6 space-x-4">
+        <Link href="/urduvideo" className="flex-1">
+          <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
+            <FaArrowLeft className="mr-2" />
+            Urdu Video
+          </div>
+        </Link>
+        {data && (
+          <Link href="/arabicTranslation" className="flex-1">
+            <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
+              Arabic Translation
+              <FaArrowRight className="ml-2" />
+            </div>
           </Link>
-          {data && (
-              <Link href="/arabicTranslation" className="flex-1">
-              <div className= " bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
-                  Arabic Translation
-                  <FaArrowRight className="ml-2" />
-              </div>
-              </Link>
-          )}
-        </div>
+        )}
+      </div>
     </div>
   );
 }

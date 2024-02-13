@@ -92,11 +92,11 @@ export default function VideoUpload() {
             </Link>
           ) : null}
         </div>
-        <div className={`mt-4 flex items-center justify-center ${isVideoUploaded ? '' : 'hidden'}`}>
+        <div className={`mt-4 flex items-center justify-center mb-10 ${isVideoUploaded ? '' : 'hidden'}`}>
           <div className="flex flex-col lg:flex-row">
 
             {/* Left Image */}
-            <div className="w-2/4 lg:w-1/2 border-2 border-white hidden lg:block mr-1" style={{ width: "400px", height: "400px" }}>
+            <div className="w-2/4 lg:w-1/2 border-2 border-black hidden lg:block mr-1" style={{ width: "400px", height: "400px" }}>
               <img
                 src="https://wallpapercave.com/wp/wp5886498.jpg"
                 alt="Left Image"
@@ -119,7 +119,7 @@ export default function VideoUpload() {
             </div>
 
             {/* Right Image */}
-            <div className="w-2/4 lg:w-1/2 border-2 border-white hidden lg:block ml-1" style={{ width: "400px", height: "400px" }}>
+            <div className="w-2/4 lg:w-1/2 border-2 border-black hidden lg:block ml-1" style={{ width: "400px", height: "400px" }}>
               <img
                 src="https://wallpapercave.com/wp/wp5886498.jpg"
                 alt="Right Image"
