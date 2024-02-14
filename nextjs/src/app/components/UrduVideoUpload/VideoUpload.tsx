@@ -51,9 +51,9 @@ export default function VideoUpload() {
 
   return (
     <>
-      <div className="videoupload mx-auto p-2 bg-black shadow-md w-full">
-        <div className="flex justify-center items-center h-full border-4">
-          <header className="bg-gradient-to-r px-5 lg:w-[90%] from-pink-900 to-purple-900 text-white py-5 transition ease-in-out delay-150  text-center">
+      <div className="videoupload mx-auto p-2 bg-black  shadow-md w-full">
+        <header className="bg-gradient-to-r from-pink-900 to-purple-900 text-white py-5 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover:bg-orange-400 duration-300">
+          <div className="container mx-auto text-center">
             <h1 className="text-2xl font-bold mb-3">URDU VIDEO TO ARABIC VIDEOS</h1>
           </header>
         </div>
