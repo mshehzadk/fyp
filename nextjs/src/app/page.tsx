@@ -44,13 +44,13 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen p-0 relative bg-black mt-1">
+      <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen p-0 relative bg-gray-900 mt-1">
 
 
         <main className="flex flex-col lg:flex-row items-center justify-between lg:px-20 ">
-          <div className="order-2 lg:order-1 w-full lg:w-[50%] lg:max-w-[50%] relative border-4 border-blue-900 bg-gradient-to-r from-purple-900 via-blue-900 to-blue-400  p-8 rounded-lg shadow-lg mb-10 lg:mb-0 lg:mt-0" style={{ marginTop: "-6rem" }}>
+          <div className="order-2 lg:order-1 w-full lg:w-[50%] lg:max-w-[50%] relative border-4 border-black bg-gray-800  p-6 rounded-lg shadow-lg mb-10 lg:mb-0 lg:mt-0" style={{ marginTop: "-6rem" }}>
             <header className="text-white py-1 text-center mb-8">
-              <h1 className="text-5xl font-bold mb-0 tracking-wide">DEMO VIDEO</h1>
+              <h1 className="text-3xl font-bold mb-0 tracking-wide">DEMO VIDEO</h1>
             </header>
             <video className="w-full h-auto lg:h-[400px] rounded-tl-xl rounded-bl-xl lg:rounded-tr-xl lg:rounded-br-xl border-t border-r border-b border-black-700" ref={videoRef} loop muted autoPlay controls style={{ width: '800px', height: '400px', border: '4px solid white' }}>
               <source src="/video.mp4" />
@@ -65,8 +65,8 @@ export default function Home() {
           </div>
 
           <div className="order-1 lg:order-2 w-full lg:w-[50%] lg:max-w-[50%] lg:pl-8 lg:mt-15 mb-40 mt-10 p-5">
-            <h1 className="text-6xl font-bold mb-4 text-purple-700">DUBLINGO</h1>
-            <h2 className="text-4xl font-semibold mb-6 text-purple-600">Transform Urdu videos into Arabic dubbed videos</h2>
+            <h1 className="text-6xl font-bold mb-4 text-blue-800">DUBLINGO</h1>
+            <h2 className="text-4xl font-semibold mb-6 text-blue-700">Transform Urdu videos into Arabic dubbed videos</h2>
             <p className="leading-relaxed mb-6 text-gray-100 text-xl">
               Dublingo is a revolutionary system that automatically transforms Urdu videos into Arabic dubbed videos using advanced AI technology.
             </p>
@@ -76,7 +76,7 @@ export default function Home() {
               <li>Produces high-quality dubbed videos</li>
               <li>Easy to use interface</li>
             </ul>
-            <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 ml-40">
+            <button className="bg-blue-800 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 ml-40">
               Try Now
             </button>
           </div>

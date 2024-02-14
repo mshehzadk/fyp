@@ -22,17 +22,19 @@ export default function UrduTranscription() {
   }, []);
 
   return (
-    <div className="container mx-auto px-4">
+  
+    <div className="container mx-auto px-4 mt-5">
       {isLoading ? (
         <div className="flex items-center justify-center h-screen">
           <div className="spinner-border w-16 h-16 border-4 border-blue-500 rounded-full"></div>
         </div>
       ) : (
-        <div className="flex flex-col lg:flex-row lg:max-h-[67vh]">
-          <div className="lg:w-1/2 lg:mr-4 bg-black border-t-2 border-b-2 border-white lg:overflow-y-auto md:overflow-y-auto">
+        <div className="flex flex-col lg:flex-row lg:max-h-[67vh] ">
+          <div className="lg:w-1/2 lg:mr-4 bg-gray-700 border-2 rounded-md border-black lg:overflow-y-auto md:overflow-y-auto overflow-y-hidden">
             <Urdutranscriptionlist />
           </div>
-          <div className="lg:w-1/2 lg:ml-4 bg-slate-800 p-3 lg:p-4">
+
+          <div className="lg:w-1/2 lg:ml-4 bg-gray-700 p-3 lg:p-4 border-2 rounded-md border-black">
             <p className="text-white font-bold mb-2">Urdu Video</p>
             <div className="relative" style={{ paddingTop: "56.25%" }}>
               {videoRef && (

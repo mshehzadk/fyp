@@ -51,41 +51,45 @@ export default function VideoUpload() {
 
   return (
     <>
-      <div className="videoupload mx-auto p-2 bg-black  shadow-md w-full">
-        <header className="bg-gradient-to-r from-pink-900 to-purple-900 text-white py-5 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover:bg-orange-400 duration-300">
-          <div className="container mx-auto text-center">
+      <div className="videoupload mx-auto p-2 bg-black shadow-md w-full">
+        <div className="flex justify-center items-center h-full border-4">
+          <header className="bg-gradient-to-r px-5 lg:w-[90%] from-pink-900 to-purple-900 text-white py-5 transition ease-in-out delay-150  text-center">
             <h1 className="text-2xl font-bold mb-3">URDU VIDEO TO ARABIC VIDEOS</h1>
-          </div> 
-        </header>
-
-        <form onSubmit={onSubmit} className="flex items-center justify-between text-white border-black border hover:bg-gradient-to-r from-pink-900 to-purple-900 duration-300">
-          <div className="flex-1 pr-4">
-            <input
-              type="file"
-              name="file"
-              accept="video/mp4"
-              onChange={onFileChange}
-              className="w-full py-2 px-4 border rounded focus:outline-none focus:border-blue-500"
-            />
-          </div>
-          {file && (
-            <div>
-              {isVideoUploaded ? (
-                <button type="button" className="py-2 px-4 bg-gray-400 rounded cursor-not-allowed" disabled>
-                  Uploaded
-                </button>
-              ) : (
-                <button type="submit" className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 border-black border hover:border-2 transition ease-in-out delay-150 hover:scale-100 hover:px-10 duration-300">
-                  Upload
-                </button>
-              )}
+          </header>
+        </div>
+          <div className="videoupload  mx-auto p-2 bg-black shadow-md w-full px-5 lg:w-[90%]">
+            <div className="flex justify-center items-center h-full">
+              <form onSubmit={onSubmit} className="flex items-center justify-between text-white border-black border ">
+                <div className="flex-1 pr-4">
+                  <input
+                    type="file"
+                    name="file"
+                    accept="video/mp4"
+                    onChange={onFileChange}
+                    className="w-full py-2 px-4 border rounded focus:outline-none focus:border-blue-500"
+                  />
+                </div>
+                {file && (
+                  <div>
+                    {isVideoUploaded ? (
+                      <button type="button" className="py-2 px-4 bg-gray-400 rounded cursor-not-allowed" disabled>
+                        Uploaded
+                      </button>
+                    ) : (
+                      <button type="submit" className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 border-black border hover:border-2 transition ease-in-out delay-150 hover:scale-100 hover:px-10 duration-300">
+                        Upload
+                      </button>
+                    )}
+                  </div>
+                )}
+              </form>
             </div>
-          )}
-        </form>
-        <div className="mt-1">
+          </div>
+
+        <div className="mt-1 px-5 lg:w-[90%] justify-center mx-auto">
           {isVideoUploaded ? (
             <Link href="/urduTranscription">
-              <p className={`bg-slate-500 text-white py-2 px-4 rounded-md text-center flex items-center justify-center p-3 hover:bg-blue-400 transition-all duration-300 transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s`}>
+              <p className={`bg-slate-500 text-white py-2 rounded-md text-center flex items-center justify-center  hover:bg-blue-400 transition-all duration-300 transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s`}>
                 Urdu Transcription
                 <FaArrowRight className="ml-2" />
               </p>

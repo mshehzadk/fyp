@@ -218,7 +218,7 @@ return (
 
                 
             <div className="flex flex-col lg:flex-row lg:max-h-[100vh]">
-                <div ref={transcriptionRef} className="lg:w-1/2 lg:mr-4 bg-black border-t-2 border-b-2 border-white lg:overflow-y-auto md:overflow-y-auto lg:max-h-[70vh]">
+                <div ref={transcriptionRef} className="lg:w-1/2 lg:mr-4 bg-gray-700 border-2 rounded-md border-black lg:overflow-y-auto md:overflow-y-auto lg:max-h-[70vh]">
                     <div className="bg-slate-800 px-3 py-4">
                         <p className="text-white font-bold">
                             Urdu Transcription
@@ -238,7 +238,7 @@ return (
                     ))}
                     {!urduTranscription && <div>Loading......</div>}
                 </div>
-                <div ref={translationRef} className="lg:w-1/2 lg:mr-4 bg-black border-t-2 border-b-2 border-white lg:overflow-y-auto md:overflow-y-auto lg:max-h-[70vh]">
+                <div ref={translationRef} className="lg:w-1/2 lg:mr-4 bg-gray-700 border-2 rounded-md border-black lg:overflow-y-auto md:overflow-y-auto lg:max-h-[70vh]">
                     <>
                         <div className="flex justify-between items-center bg-slate-800 px-3 py-2">
                             <p className="text-white font-bold text-lg">
