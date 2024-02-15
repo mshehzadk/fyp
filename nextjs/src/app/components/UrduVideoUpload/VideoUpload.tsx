@@ -59,7 +59,7 @@ export default function VideoUpload() {
   return (
     <>
       <div className="videoupload mx-auto p-2 bg-black  shadow-md w-full ">
-          <header className="bg-gradient-to-r from-pink-900 to-purple-900 rounded-lg text-white py-3 mt-6 mb-6 mx-auto" style={{ width: "80%" }}>
+          <header className="bg-gradient-to-r from-pink-900 to-purple-800 rounded-lg text-white py-3 mt-6 mb-6 mx-auto" style={{ width: "80%" }}>
             <div className="container mx-auto text-center">
               <h1 className="text-2xl font-bold mb-3">URDU VIDEO TO ARABIC VIDEOS</h1>
             </div>
