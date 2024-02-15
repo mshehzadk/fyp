@@ -35,7 +35,7 @@ export default function arabicVideo() {
     <div className=" bg-black pb-10">
           <header className="bg-gradient-to-r from-pink-900 to-purple-800 rounded-lg text-white py-3 mt-6 mb-6 mx-auto" style={{ width: "80%" }}>
             <div className="container mx-auto text-center">
-              <h1 className="text-2xl font-bold mb-3">URDU VIDEO TO ARABIC VIDEOS</h1>
+              <h1 className="text-2xl font-bold mb-3">ARABIC DUBBED VIDEO</h1>
             </div>
           </header>
 
@@ -44,7 +44,7 @@ export default function arabicVideo() {
 
 
         <div className="w-screen flex flex-col justify-center items-center py-0 bg-black">
-            <div className={`mt-4 flex items-center justify-center pb-5"`} style={{ width: "80%", margin: "0 auto" }}>
+            <div className={`mt-4 mb-10 flex items-center justify-center pb-5"`} style={{ width: "80%", margin: "0 auto" }}>
                 <div className="flex flex-col lg:flex-row">
 
                     {/* Left Image */}
@@ -80,7 +80,7 @@ export default function arabicVideo() {
                 </div>
             </div>
 
-            <div className="flex w-full mt-2 justify-center" style={{ maxWidth: "80%", margin: "0 auto" }}>
+            <div className="flex w-full justify-center mt-5" style={{ maxWidth: "80%", margin: "0 auto" }}>
                 <Link href="/arabicTranslation" className="flex-1 pr-2">
                     <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center w-50%">
                     <FaArrowLeft className="mr-2" />
