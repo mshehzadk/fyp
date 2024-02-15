@@ -48,14 +48,14 @@ export default function Home() {
 
 
         <main className="flex flex-col lg:flex-row items-center justify-between lg:px-20 ">
-          <div className="order-2 lg:order-1 w-full lg:w-[50%] lg:max-w-[50%] relative border-4 border-black bg-gray-800  p-6 rounded-lg shadow-lg mb-10 lg:mb-0 lg:mt-0" style={{ marginTop: "-6rem" }}>
-            <header className="text-white py-1 text-center mb-8">
-              <h1 className="text-3xl font-bold mb-0 tracking-wide">DEMO VIDEO</h1>
+          <div className="order-2 lg:order-1 w-full lg:w-[50%] lg:max-w-[50%] relative border-2 border-black bg-gray-800  p-6 rounded-lg shadow-lg mb-10 lg:mb-0 lg:mt-0" style={{ marginTop: "-6rem" }}>
+            <header className="text-blue-700 py-1 text-center mb-8">
+              <h1 className="text-4xl font-bold mb-0 tracking-wide">DEMO VIDEO</h1>
             </header>
-            <video className="w-full h-auto lg:h-[400px] rounded-tl-xl rounded-bl-xl lg:rounded-tr-xl lg:rounded-br-xl border-t border-r border-b border-black-700" ref={videoRef} loop muted autoPlay controls style={{ width: '800px', height: '400px', border: '4px solid white' }}>
+            <video className="w-full h-auto lg:h-[400px] rounded-tl-xl rounded-bl-xl lg:rounded-tr-xl lg:rounded-br-xl border-t border-r border-b border-black-700" ref={videoRef} loop muted autoPlay controls style={{ width: '800px', height: '400px', border: '2px solid black', background:'black' }}>
               <source src="/video.mp4" />
             </video>
-            <div className="lg:hidden z-10 absolute top-4 right-4 border border-gray-300 p-4 rounded-md">
+            <div className="lg:hidden z-10 absolute top-4 right-4 border border-gray-900 p-4 rounded-md">
               <VideoPlayerControls
                 progress={videoProgress}
                 isPaused={isPaused}
