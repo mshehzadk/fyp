@@ -45,12 +45,12 @@ export default function Home() {
 
   return (
     <div className="w-full h-full flex flex-col items-center">
-      <header className="w-[80%] rounded-lg bg-black text-white my-3 py-3 text-center relative shadow-lg shadow-black  transition ease-in-out delay-150 hover:-translate-y-1 hover:bg-black duration-300">
+      <header className="w-[80%] rounded-lg bg-black text-white my-3 py-3 text-center relative shadow-sm shadow-black  transition ease-in-out delay-150 hover:-translate-y-1 hover:bg-black duration-300">
         <div className="container mx-auto">
           <h1 className="text-4xl font-bold mb-0 animate-flip-up animate-once animate-duration-[2000ms]">DEMO VIDEO</h1>
         </div>
       </header>
-      <div className="flex w-[80%] h-full shadow-xl shadow-black rounded-xl mb-6 animate-fade-up animate-once animate-duration-2000">
+      <div className="flex w-[80%] h-full shadow-sm shadow-black rounded-xl mb-6 animate-fade-up animate-once animate-duration-2000">
 
         <main className="flex flex-auto h-full items-center">
           <div className="w-full h-full max-w-6xl mx-auto rounded-xl overflow-hidden relative">

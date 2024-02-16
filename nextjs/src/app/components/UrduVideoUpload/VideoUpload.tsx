@@ -53,7 +53,7 @@ export default function VideoUpload() {
   return (
     <>
       <div className="flex flex-col items-center p-2 w-full">
-        <header className="w-[80%] rounded-lg bg-black text-white my-3 py-3 text-center relative shadow-lg shadow-black  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover:bg-black duration-300">
+        <header className="w-[80%] rounded-lg bg-black text-white my-3 py-3 text-center relative shadow-md shadow-black  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover:bg-black duration-300">
           <div className="container mx-auto text-center">
             <h1 className="text-2xl font-bold mb-4 animate-flip-up animate-once animate-duration-[2000ms]">URDU VIDEO TO ARABIC VIDEOS</h1>
             <p className="text-lg animate-flip-down animate-once animate-duration-[2000ms]">DUB VIDEOS FROM URDU TO ARABIC TO YOUR HEARTS CONTENT</p>
@@ -98,7 +98,7 @@ export default function VideoUpload() {
           <div className="flex flex-col items-center w-full">
 
             {/* Video Container */}
-            <div className="flex flex-col items-center w-[80%] h-[40%] bg-base-100 shadow-xl shadow-black rounded-xl border-4 border-gray-200 mb-6 animate-fade-up animate-once animate-duration-2000">
+            <div className="flex flex-col items-center w-[80%] h-[40%] bg-base-100 shadow-md shadow-black rounded-xl border-4 border-gray-200 mb-6 animate-fade-up animate-once animate-duration-2000">
               {isUploading ? (
                 <div><HashLoader color="#007cf4" /></div>
               ) : videoUrl ? (
