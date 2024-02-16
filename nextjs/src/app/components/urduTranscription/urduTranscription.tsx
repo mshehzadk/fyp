@@ -8,14 +8,17 @@ import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 export default function UrduTranscription() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [data, setData] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     try {
       fetch('http://localhost:8080/api/urduTranscription')
         .then((response) => response.json())
-        .then((data) => setData(data));
+        .then((data) => setData(data))
+        .finally(() => setIsLoading(false));
     } catch (error: any) {
       console.log(error);
+      setIsLoading(false);
     }
   }, []);
 
