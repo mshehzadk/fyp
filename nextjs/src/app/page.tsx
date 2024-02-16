@@ -1,8 +1,7 @@
 'use client';
-
+import Link from "next/link";
 import VideoPlayerControls from "./components/VideoPlayerControls";
 import { useEffect, useRef, useState } from "react";
-import { HashLoader } from "react-spinners";
 
 export default function Home() {
   const [videoProgress, setVideoProgress] = useState<number>(0);
@@ -44,38 +43,56 @@ export default function Home() {
   };
 
   return (
-    <div className="w-full h-full flex flex-col items-center">
-      <header className="w-[80%] rounded-lg bg-black text-white my-3 py-3 text-center relative shadow-sm shadow-black  transition ease-in-out delay-150 hover:-translate-y-1 hover:bg-black duration-300">
-        <div className="container mx-auto">
-          <h1 className="text-4xl font-bold mb-0 animate-flip-up animate-once animate-duration-[2000ms]">DEMO VIDEO</h1>
-        </div>
-      </header>
-      <div className="flex w-[80%] h-full shadow-sm shadow-black rounded-xl mb-6 animate-fade-up animate-once animate-duration-2000">
+    <>
+      <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen p-0 relative bg-gray-900 mt-1">
 
-        <main className="flex flex-auto h-full items-center">
-          <div className="w-full h-full max-w-6xl mx-auto rounded-xl overflow-hidden relative">
-            {videoRef ? (
-              <div className="w-full h-full">
-                <div className="lg:top-4 lg:right-4 z-20 absolute border-4 border-gray-300 p-4 rounded-lg">
-                  <VideoPlayerControls
-                    progress={videoProgress}
-                    isPaused={isPaused}
-                    onPlayPause={togglePlayPause}
-                  />
-                </div>
-                <div className="flex flex-col items-center">
-                  <video ref={videoRef} loop autoPlay muted>
-                    <source src="/video.mp4" />
-                  </video>
-                </div>
-              </div>
-            ) : (<div className="w-full h-full">
-              <HashLoader color="#007cf4" />
-            </div>)}
+
+        <main className="flex flex-col lg:flex-row items-center justify-between lg:px-20 ">
+          <div className="order-2 lg:order-1 w-full lg:w-[50%] lg:max-w-[50%] relative border-2 border-black bg-gray-800  p-6 rounded-tl-xl lg:rounded-bl-xl lg:rounded-tr-xl lg:rounded-br-xl shadow-lg mb-10 lg:mb-0 lg:mt-0" style={{ marginTop: "-6rem" }}>
+            {/* <header className="text-blue-700 py-1 text-center mb-8">
+              <h1 className="text-4xl font-bold mb-0 tracking-wide">DEMO VIDEO</h1>
+            </header> */}
+            <video className="w-full h-auto lg:h-[400px] rounded-tl-xl rounded-bl-xl lg:rounded-tr-xl lg:rounded-br-xl border-t border-r border-b border-black-700" ref={videoRef} loop muted autoPlay controls style={{ width: '800px', height: '400px', border: '2px solid black', background:'black' }}>
+              <source src="/video.mp4" />
+            </video>
+            <div className="lg:hidden z-10 absolute top-4 right-4 border border-gray-900 p-4 rounded-md">
+              <VideoPlayerControls
+                progress={videoProgress}
+                isPaused={isPaused}
+                onPlayPause={togglePlayPause}
+              />
+            </div>
+          </div>
+
+          <div className="order-1 lg:order-2 w-full lg:w-[50%] lg:max-w-[50%] lg:pl-8 lg:mt-15 mb-40 mt-10 p-5">
+            <h1 className="text-6xl font-bold mb-4 text-blue-800">DUBLINGO</h1>
+            <h2 className="text-4xl font-semibold mb-6 text-blue-700">Transform Urdu videos into Arabic dubbed videos</h2>
+            <p className="leading-relaxed mb-6 text-gray-100 text-xl">
+              Dublingo is a revolutionary system that automatically transforms Urdu videos into Arabic dubbed videos using advanced AI technology.
+            </p>
+            <ul className="list-disc pl-7 mb-8 text-gray-100 text-xl">
+              <li>Automatically translates Urdu speech into Arabic</li>
+              <li>Syncs translations with original video</li>
+              <li>Produces high-quality dubbed videos</li>
+              <li>Easy to use interface</li>
+            </ul>
+            <Link href="/urduvideo">
+              <button className="bg-blue-800 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 ml-40">
+                Try Now
+              </button>
+            </Link>
+          </div>
+
+          <div className="hidden lg:block z-10 absolute top-4 right-4 border border-gray-300 p-4 rounded-md bg-black">
+            <VideoPlayerControls
+              progress={videoProgress}
+              isPaused={isPaused}
+              onPlayPause={togglePlayPause}
+            />
           </div>
         </main>
 
       </div>
-    </div>
+    </>
   );
 }
