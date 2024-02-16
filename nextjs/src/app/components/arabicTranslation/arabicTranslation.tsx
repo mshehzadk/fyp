@@ -215,11 +215,16 @@ export default function ArabicTranslation() {
     const generateTragetVideo = async () => {
         const response = await fetch('http://localhost:8080/generateTargetVideo');
     }
+
+
     return (
-        <div className="container mx-auto p-4 overflow-hidden" ref={containerRef} onScroll={handleScroll}>
-            <div className="flex">
-                <div ref={transcriptionRef} className="urduTranscription w-1/2 pr-3 overflow-auto max-h-[70vh] bg-black border-b-2 border-t-2">
-                    <div className="bg-slate-800 px-3 py-3">
+    
+    <div className="container mx-auto px-4 p-4 " onScroll={handleScroll}>
+
+                
+            <div className="flex flex-col lg:flex-row lg:max-h-[100vh]">
+                <div ref={transcriptionRef} className="lg:w-1/2 lg:mr-4 bg-gray-700 border-2 rounded-md border-black lg:overflow-y-auto md:overflow-y-auto lg:max-h-[70vh]">
+                    <div className="bg-slate-800 px-3 py-4">
                         <p className="text-white font-bold">
                             Urdu Transcription
                         </p>
@@ -238,80 +243,126 @@ export default function ArabicTranslation() {
                     ))}
                     {!urduTranscription && <div>Loading......</div>}
                 </div>
-                <div ref={translationRef} className="arabicTranslation w-1/2 pl-3 overflow-auto max-h-[70vh] bg-black border-b-2 border-t-2">
+                <div ref={translationRef} className="lg:w-1/2 lg:mr-4 bg-gray-700 border-2 rounded-md border-black lg:overflow-y-auto md:overflow-y-auto lg:max-h-[70vh]">
                     <>
-                        <div className="bg-slate-800 flex justify-between items-center px-3 py-3">
-                            <p className="text-white font-bold">
+                        <div className="flex justify-between items-center bg-slate-800 px-3 py-2">
+                            <p className="text-white font-bold text-lg">
                                 Arabic Translation
                             </p>
                             <button
-                                className="bg-white mx-5 flex"
+                                className="bg-white px-4 py-2 flex items-center text-slate-800 hover:bg-slate-700 hover:text-white transition-all duration-300"
                                 onClick={addTranslation}
                             >
-                                Add Translation <AiOutlinePlus className="ml-2" size={18} />
+                                <span className="mr-2 text-blue-500 hover:underline cursor-pointer">
+                                Add Translation 
+                                </span>
+                                <AiOutlinePlus className="ml-2" size={18} />
+                                
                             </button>
                         </div>
+
                         {addTranslationModal &&
-                            <div className="bg-cyan-400">
-                                <div>
-                                    <div className="flex"></div>
-                                    <input className="font-bold text-xl" placeholder="Enter Speaker Name" value={speakerName} onChange={(e: any) => setSpeakerName(e.target.value)}></input>
-                                    <input className="m-2" placeholder="Start Time" value={startTime} onChange={(e: any) => TimeUpdate(e, 's')}></input>
-                                    <input className="m-2" placeholder="End Time" value={endTime} onChange={(e: any) => TimeUpdate(e, 'e')}></input>
-                                    {!dateFormat && <div className="text-red-500">Please enter a valid time string in the format HH:MM:SS,MSS</div>}
+                            <div className="max-w-md mx-auto p-4 border rounded-md shadow-md bg-cyan-400">
+                                <div className="mb-4">
+                                    <input
+                                        className="w-full px-4 py-2 border-b-2 border-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-500 font-bold text-xl"
+                                        placeholder="Enter Speaker Name"
+                                        value={speakerName}
+                                        onChange={(e: any) => setSpeakerName(e.target.value)}
+                                    />
                                 </div>
-                                <div className="flex">
-                                    <input placeholder="Trnascription" value={translation} onChange={(e: any) => setTranslation(e.target.value)}></input>
+                                <div className="flex items-center mb-4">
+                                    <div className="flex-grow">
+                                        <input
+                                            className="w-full px-4 py-2 border-b-2 border-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                                            placeholder="Start Time 00:00:00"
+                                            value={startTime}
+                                            onChange={(e: any) => TimeUpdate(e, 's')}
+                                        />
+                                    </div>
+                                    <div className="flex-grow ml-2">
+                                        <input
+                                            className="w-full px-4 py-2 border-b-2 border-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                                            placeholder="End Time 00:00:00"
+                                            value={endTime}
+                                            onChange={(e: any) => TimeUpdate(e, 'e')}
+                                        />
+                                    </div>
                                 </div>
-                                <div>
-                                    <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2" onClick={(e) => SaveNew(e)}>
+                                {!dateFormat && <div className="text-red-500 mb-4">Please enter a valid time string in the format HH:MM:SS</div>}
+                                <div className="mb-4">
+                                    <textarea
+                                        className="w-full px-4 py-2 border-b-2 border-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                                        placeholder="Translation"
+                                        value={translation}
+                                        onChange={(e: any) => setTranslation(e.target.value)}
+                                        rows={3}  // Set the number of visible rows
+                                    />
+                                </div>
+                                <div className="flex justify-end">
+                                    <button className="bg-blue-500 text-white px-4 py-2 rounded-md m-2 focus:outline-none hover:bg-blue-600" onClick={(e) => SaveNew(e)}>
                                         Save
                                     </button>
-                                    <button className="bg-slate-800 text-white px-3 py-2 rounded-md m-2" onClick={IgnoreChanges}>
+                                    <button className="bg-gray-500 text-white px-4 py-2 rounded-md m-2 focus:outline-none hover:bg-gray-600" onClick={IgnoreChanges}>
                                         Ignore
                                     </button>
                                 </div>
                             </div>
                         }
 
-                        
-                        
-                        
-                        
-                        
                         {data && Array.isArray(data) && data.map((item: any, index: number) => (
-                            <div key={index} className="p-4 border border-slate-300 my-5 flex gap-2 bg-cyan-400">
+                            <div key={index} className="p-1 border border-slate-300 my-5 flex gap-2 bg-cyan-400">
                                 {editTrigger && editIndex === index ?
-                                    <div>
-                                        <div>
-                                            <div className="flex"></div>
-                                            <input className="font-bold text-xl" value={speakerName} onChange={(e: any) => setSpeakerName(e.target.value)}></input>
-                                            <input className="m-2"
+                                <div className="w-full">
+                                    <div className="mb-4">
+                                        <input
+                                            className="w-full px-4 py-2 border-b-2 border-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-500 font-bold text-xl"
+                                            value={speakerName}
+                                            onChange={(e: any) => setSpeakerName(e.target.value)}
+                                            placeholder="Enter Speaker Name"
+                                        />
+                                    </div>
+                                    <div className="flex items-center mb-4">
+                                        <div className="flex-grow">
+                                            <input
+                                                className="w-full px-4 py-2 border-b-2 border-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-500"
                                                 value={startTime}
-                                                onChange={(e: any) => TimeUpdate(e, 's')}>
-                                            </input>
-                                            <input className="m-2"
+                                                onChange={(e: any) => TimeUpdate(e, 's')}
+                                                placeholder="Start Time 00:00:00"
+                                            />
+                                        </div>
+                                        <div className="flex-grow ml-2">
+                                            <input
+                                                className="w-full px-4 py-2 border-b-2 border-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-500"
                                                 value={endTime}
-                                                onChange={(e: any) => TimeUpdate(e, 'e')}>
-                                            </input>
-                                            {!dateFormat && <div className="text-red-500">Please enter a valid time string in the format HH:MM:SS,MSS</div>}
-                                        </div>
-                                        <div className="flex">
-                                            <input value={translation} onChange={(e: any) => setTranslation(e.target.value)}></input>
+                                                onChange={(e: any) => TimeUpdate(e, 'e')}
+                                                placeholder="End Time 00:00:00"
+                                            />
                                         </div>
                                     </div>
-                                    :
-                                    <div onDoubleClick={() => editTheRow(item.speaker, item.startTime, item.endTime, item.translation, index)}>
-                                        <div className="flex">
-                                            <div className="font-bold text-xl">{item.speaker}</div>
-                                            <div className="m-2" >{item.startTime}</div>
-                                            <div className="m-2" >{item.endTime}</div>
-                                        </div>
-                                        <div className="flex">
-                                            <div>{item.translation}</div>
-                                        </div>
+                                    {!dateFormat && <div className="text-red-500 mb-4">Please enter a valid time string in the format HH:MM:SS</div>}
+                                    <div className="mb-4">
+                                        <textarea
+                                            className="w-full px-4 py-2 border-b-2 border-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                                            placeholder="Translation"
+                                            value={translation}
+                                            onChange={(e: any) => setTranslation(e.target.value)}
+                                            rows={3}
+                                        />
                                     </div>
-                                }
+                                </div>
+                                :
+                                <div onDoubleClick={() => editTheRow(item.speaker, item.startTime, item.endTime, item.translation, index)}>
+                                    <div className="flex">
+                                        <div className="font-bold text-xl">{item.speaker}</div>
+                                        <div className="m-2">{item.startTime}</div>
+                                        <div className="m-2">{item.endTime}</div>
+                                    </div>
+                                    <div className="flex">
+                                        <div>{item.translation}</div>
+                                    </div>
+                                </div>
+                            }
                                 <div className="flex ml-auto">
                                     {editTrigger && editIndex === index ?
                                         <button className="bg-red-800 text-white px-4 py-2 rounded-md m-2 hover:bg-slate-700 focus:outline-none focus:ring focus:border-blue-300 transition-all duration-300"
@@ -334,11 +385,12 @@ export default function ArabicTranslation() {
                     </>
                 </div>
             </div>
+            
 
             <div className="flex mt-6 space-x-4">
                 <div className="w-1/2">
                     <Link href='/urduTranscription' className="flex-1 text-right">
-                        <div className=" bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
+                        <div className=" bg-slate-500 text-white py-2 px-4 mr-2  rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
                             <FaArrowLeft className="mr-2" />
                             Urdu Transcription
                         </div>
@@ -347,7 +399,7 @@ export default function ArabicTranslation() {
                 {data &&
                     <div className="w-1/2">
                         <Link href='/arabicVideo' onClick={() => generateTragetVideo()} className="flex-1 text-left">
-                            <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
+                            <div className="bg-slate-500 text-white py-2 px-4 mr-3 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
                                 Arabic Video
                                 <FaArrowRight className="ml-2" />
                             </div>
@@ -355,6 +407,7 @@ export default function ArabicTranslation() {
                     </div>
                 }
             </div>
-        </div>
+
+    </div>
     );
 }
