@@ -188,14 +188,14 @@ export default function urduTranscriptionList() {
 
     return (
         <div>
-            <div>
+            <>
                 <div className="flex justify-between items-center bg-slate-800 px-4 py-2">
                     <p className="text-white font-bold text-lg">Urdu Transcription</p>
                     <button
                         className="bg-white px-4 py-2 flex items-center text-slate-800 hover:bg-slate-700 hover:text-white transition-all duration-300"
                         onClick={addTranscription}>
                         <span className="mr-2 text-blue-500 hover:underline cursor-pointer">
-                            Add Transcription
+                        Add Transcription
                         </span>
                         <AiOutlinePlus size={18} />
                     </button>
@@ -203,7 +203,6 @@ export default function urduTranscriptionList() {
 
                 {
                     addTranscriptionModal &&
-
                     <div className="max-w-md mx-auto p-4 border rounded-md shadow-md bg-cyan-400">
                         <div className="mb-4">
                             <input
@@ -217,7 +216,7 @@ export default function urduTranscriptionList() {
                             <div className="flex-grow">
                                 <input
                                     className="w-full px-4 py-2 border-b-2 border-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-500"
-                                    placeholder="Start Time 00:00:00,000"
+                                    placeholder="Start Time 00:00:00"
                                     value={startTime}
                                     onChange={(e: any) => TimeUpdate(e, 's')}
                                 />
@@ -225,7 +224,7 @@ export default function urduTranscriptionList() {
                             <div className="flex-grow ml-2">
                                 <input
                                     className="w-full px-4 py-2 border-b-2 border-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-500"
-                                    placeholder="End Time 00:00:00,000"
+                                    placeholder="End Time 00:00:00"
                                     value={endTime}
                                     onChange={(e: any) => TimeUpdate(e, 'e')}
                                 />
@@ -251,11 +250,7 @@ export default function urduTranscriptionList() {
                         </div>
                     </div>
                 }
-            </div>
-
-
-
-
+            </>
 
             {data && Array.isArray(data) && data.map((item: any, index: number) => (
                 <div key={index} className="p-2 border border-slate-300 my-5 flex gap-2 bg-cyan-400">
@@ -287,7 +282,7 @@ export default function urduTranscriptionList() {
                                     />
                                 </div>
                             </div>
-                            {!dateFormat && <div className="text-red-500 mb-4">Please enter a valid time string in the format HH:MM:SS</div>}
+                            {!dateFormat && <div className="text-red-500 mb-4">Please enter a valid time string in the format HH:MM:SS,MMS</div>}
                             <div className="mb-4">
                                 <textarea
                                     className="w-full px-4 py-2 border-b-2 border-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-500"
@@ -319,7 +314,7 @@ export default function urduTranscriptionList() {
                                 Save
                             </button>
                             :
-                            <div>
+                            <>
                                 <button
                                     className="bg-slate-800 text-white px-4 py-2 rounded-md m-2 hover:bg-slate-700 focus:outline-none focus:ring focus:border-blue-300 transition-all duration-300"
                                     onClick={() => editTheRow(item.speaker, item.startTime, item.endTime, item.transcription, index)}
@@ -333,20 +328,17 @@ export default function urduTranscriptionList() {
                                     >
                                         Delete
                                     </button>}
-                            </div>
+                            </>
                         }
                     </div>
                 </div>
-            ))
+                ))
             }
 
 
 
 
-            {!data && 
-            <div>
-                <HashLoader color="#007cf4" />
-            </div>}
+            {!data && <div>Loading......</div>}
         </div>
 
 
