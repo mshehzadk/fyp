@@ -44,14 +44,10 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen p-0 relative bg-gray-900 mt-1">
-
+ <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen p-0 relative mt-1" style={{ backgroundImage: "url('https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg')" }}>
 
         <main className="flex flex-col lg:flex-row items-center justify-between lg:px-20 ">
-          <div className="order-2 lg:order-1 w-full lg:w-[50%] lg:max-w-[50%] relative border-2 border-black bg-gray-800  p-6 rounded-tl-xl lg:rounded-bl-xl lg:rounded-tr-xl lg:rounded-br-xl shadow-lg mb-10 lg:mb-0 lg:mt-0" style={{ marginTop: "-6rem" }}>
-            {/* <header className="text-blue-700 py-1 text-center mb-8">
-              <h1 className="text-4xl font-bold mb-0 tracking-wide">DEMO VIDEO</h1>
-            </header> */}
+          <div className="order-2 lg:order-1 w-full lg:w-[50%] lg:max-w-[50%] relative border-2 border-black bg-white  p-6 rounded-tl-xl lg:rounded-bl-xl lg:rounded-tr-xl lg:rounded-br-xl shadow-lg mb-10 lg:mb-0 lg:mt-0" style={{ marginTop: "-6rem" }}>
             <video className="w-full h-auto lg:h-[400px] rounded-tl-xl rounded-bl-xl lg:rounded-tr-xl lg:rounded-br-xl border-t border-r border-b border-black-700" ref={videoRef} loop muted autoPlay controls style={{ width: '800px', height: '400px', border: '2px solid black', background:'black' }}>
               <source src="/video.mp4" />
             </video>
@@ -93,6 +89,7 @@ export default function Home() {
         </main>
 
       </div>
+
     </>
   );
 }
