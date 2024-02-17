@@ -64,7 +64,7 @@ def upload_file():
 def checkFileExistence():
     data = request.json
     # Check if the file exists
-    if 'filename' not in data:
+    if 'fileName' not in data:
         if dl.check_path_exist(output_video_path):
             return jsonify({'exists': '3'})
         elif dl.check_path_exist(output_dir+target_json_filename):
@@ -73,12 +73,10 @@ def checkFileExistence():
             return jsonify({'exists': '1'})
     
     filename = data['fileName']
-    file_path =  output_d+filename
-    
-    if os.path.exists(file_path):
+    file_path =  output_dir+filename
+    while not dl.check_path_exist(file_path):{}
+    if dl.check_path_exist(file_path):
         return jsonify({'exists': True})
-    else:
-        return jsonify({'exists': False})
     
 
 # Send data from JSON file to the client

@@ -7,25 +7,22 @@ import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
 export default function UrduTranscription() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [data, setData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     try {
       fetch('http://localhost:8080/api/fileExistence', {method: 'POST',
                                                         headers: { 'Content-Type': 'application/json' },
-                                                        body: JSON.stringify({'fileName':'urduTranscription'})})
+                                                        body: JSON.stringify({'fileName':'urduTranscription.json'})})
         .then((response) => {
           if (response.ok) {
-            setData(response.json());
-            return data;
+            return response.json();
           }
           throw new Error('Failed to fetch data');
         })
-        .finally(() => setIsLoading(false));
+        .then((data) => {setIsLoading(!data.exists);})
     } catch (error: any) {
       console.log(error);
-      setIsLoading(false);
     }
   }, []);
 
@@ -66,7 +63,7 @@ export default function UrduTranscription() {
             Urdu Video
           </div>
         </Link>
-        {isLoading && (
+        {!isLoading && (
           <Link href="/arabicTranslation" onClick={() => generateTranslation()} className="flex-1">
             <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
               Arabic Translation
