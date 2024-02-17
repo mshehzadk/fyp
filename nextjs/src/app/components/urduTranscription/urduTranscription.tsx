@@ -12,9 +12,16 @@ export default function UrduTranscription() {
 
   useEffect(() => {
     try {
-      fetch('http://localhost:8080/api/urduTranscription')
-        .then((response) => response.json())
-        .then((data) => setData(data))
+      fetch('http://localhost:8080/api/fileExistence', {method: 'POST',
+                                                        headers: { 'Content-Type': 'application/json' },
+                                                        body: JSON.stringify({'fileName':'urduTranscription'})})
+        .then((response) => {
+          if (response.ok) {
+            setData(response.json());
+            return data;
+          }
+          throw new Error('Failed to fetch data');
+        })
         .finally(() => setIsLoading(false));
     } catch (error: any) {
       console.log(error);
@@ -59,7 +66,7 @@ export default function UrduTranscription() {
             Urdu Video
           </div>
         </Link>
-        {data && (
+        {isLoading && (
           <Link href="/arabicTranslation" onClick={() => generateTranslation()} className="flex-1">
             <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
               Arabic Translation

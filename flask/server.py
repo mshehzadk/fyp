@@ -59,6 +59,28 @@ def upload_file():
         generateTranscription()
         return 'File uploaded successfully', 200
 
+# Check file existence and return response
+@app.route('/api/fileExistence', methods=['POST'])
+def checkFileExistence():
+    data = request.json
+    # Check if the file exists
+    if 'filename' not in data:
+        if dl.check_path_exist(output_video_path):
+            return jsonify({'exists': '3'})
+        elif dl.check_path_exist(output_dir+target_json_filename):
+            return jsonify({'exists': '2'})
+        elif dl.check_path_exist(output_dir+source_json_filename):
+            return jsonify({'exists': '1'})
+    
+    filename = data['fileName']
+    file_path =  output_d+filename
+    
+    if os.path.exists(file_path):
+        return jsonify({'exists': True})
+    else:
+        return jsonify({'exists': False})
+    
+
 # Send data from JSON file to the client
 @app.route('/api/urduTranscription', methods=['GET'])
 def get_urduTranscription():
