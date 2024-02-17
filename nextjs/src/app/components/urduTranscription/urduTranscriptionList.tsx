@@ -14,7 +14,6 @@ export default function urduTranscriptionList() {
     const [transcription, setTranscription] = useState("");
     const [editIndex, setEditIndex] = useState(-1);
     const [dateFormat, setDateFormat] = useState(true);
-    const [fileExistence, setFileExistence] = useState(false);
 
     try {
         useEffect(() => {
