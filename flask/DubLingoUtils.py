@@ -290,8 +290,8 @@ def combined_audio_music(json_file,audio_file,output_dir):
         clip = wave.open(audio_name, "rb")
 
         # Convert timestamps to ms
-        start = time_in_milliSecond(sentence["startTime"])
-        end = time_in_milliSecond(sentence["endTime"])
+        start = time_in_milliSecond(sentence["startTime"])-50
+        end = time_in_milliSecond(sentence["endTime"])-50
 
         overwrite_frames(audio_file, audio_name, start, end, audio_file)
 
