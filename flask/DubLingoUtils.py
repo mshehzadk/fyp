@@ -17,37 +17,36 @@ def music_vocals_separation(url,video_path,output_dir,source_wav_vocals_filename
     files = {'video': open(video_path, 'rb')}
     # Run the loop unitl the response is not correct or without errors
     succeed=False
-    response=None
-    while succeed:
+    while not succeed:
         try:
             response = requests.post(url+'vocals_music_separation', files=files, timeout=1000)
             succeed=True
+            data = response.json()
+            music_b64 = data['music']
+            vocals_b64 = data['vocals']
+
+            music_bytes = base64.b64decode(music_b64)
+            vocals_bytes = base64.b64decode(vocals_b64)
+
+            music_file = io.BytesIO(music_bytes)
+            vocals_file = io.BytesIO(vocals_bytes)
+
+
+            # Convert bytes to AudioSegment
+            music_audio = AudioSegment.from_file(io.BytesIO(music_bytes))
+            vocals_audio = AudioSegment.from_file(io.BytesIO(vocals_bytes))
+
+            # Save AudioSegments as WAV files
+            music_audio.export(output_dir+source_wav_music_filename, format='wav')
+            vocals_audio.export(output_dir+source_wav_vocals_filename, format='wav')
+
+            print('Audio tracks saved!')
         except requests.Timeout:
             print('The request timed out.')
         except requests.RequestException as e:
             print(f'An error occurred: {e}')
 
-    data = response.json()
 
-    music_b64 = data['music']
-    vocals_b64 = data['vocals']
-
-    music_bytes = base64.b64decode(music_b64)
-    vocals_bytes = base64.b64decode(vocals_b64)
-
-    music_file = io.BytesIO(music_bytes)
-    vocals_file = io.BytesIO(vocals_bytes)
-
-
-    # Convert bytes to AudioSegment
-    music_audio = AudioSegment.from_file(io.BytesIO(music_bytes))
-    vocals_audio = AudioSegment.from_file(io.BytesIO(vocals_bytes))
-
-    # Save AudioSegments as WAV files
-    music_audio.export(output_dir+source_wav_music_filename, format='wav')
-    vocals_audio.export(output_dir+source_wav_vocals_filename, format='wav')
-
-    print('Audio tracks saved!')
 
 # Function to transcribe the vocals from a WAV file
 def Transcription(url,source_wav_vocals_filename,source_json_filename,output_dir):
@@ -102,18 +101,17 @@ def Transcription(url,source_wav_vocals_filename,source_json_filename,output_dir
 
         # run the loop until response is not postive and correct
         succeed=False
-        response=None
-        while succeed:
+        while not succeed:
             try:
                 response = requests.post(url, files=files, timeout=1000)
                 succeed=True
+                # Return the response
+                return response
             except requests.Timeout:
                 print('The request timed out.')
             except requests.RequestException as e:
                 print(f'An error occurred: {e}')
 
-        # Print the response
-        return response
 
     audio_file_path=output_dir+source_wav_vocals_filename
     response = transcribe_audio(audio_file_path,url)
@@ -252,20 +250,19 @@ def generate_and_save_audio(json_file,output_dir,url):
             files = {'audio': f}
             # Run Loop until response is not correct
             succeed=False
-            response=None
-            while succeed:
+            while not succeed:
                 try:
                     response = requests.post(url+'CloneVoice', files=files, data=data, timeout=1000)
+                    print(response)
+                    audio_path = f"{output_dir}{speaker_name}_{sentence_id}.wav"
+                    # Save the received video file
+                    with open(audio_path, 'wb') as file:
+                        file.write(response.content)
                     succeed=True
                 except requests.Timeout:
                     print('The request timed out.')
                 except requests.RequestException as e:
                     print(f'An error occurred: {e}')
-            print(response)
-        audio_path = f"{output_dir}{speaker_name}_{sentence_id}.wav"
-        # Save the received video file
-        with open(audio_path, 'wb') as file:
-            file.write(response.content)
 
 
     with open(json_file, 'r', encoding='utf8') as json_file:
