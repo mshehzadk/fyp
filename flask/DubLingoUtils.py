@@ -274,10 +274,10 @@ def generate_and_save_audio(json_file,output_dir,url):
         text = entry["translation"]
 
         # Generate audio for the current sentence
-        args = (text, speaker_name, sentence_id,url,output_dir)
-        my_process = multiprocessing.Process(target=generate_audio, args=args)
-        my_process.start()
-        # generate_audio(text, speaker_name, sentence_id,url,output_dir)
+        # args = (text, speaker_name, sentence_id,url,output_dir)
+        # my_process = multiprocessing.Process(target=generate_audio, args=args)
+        # my_process.start()
+        generate_audio(text, speaker_name, sentence_id,url,output_dir)
 
 # Function to merge audio files
 def combined_audio_music(json_file,audio_file,output_dir):
