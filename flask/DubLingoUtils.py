@@ -10,6 +10,7 @@ import re
 from pydub import AudioSegment
 from googletrans import Translator
 from moviepy.editor import VideoFileClip, AudioFileClip
+import multiprocessing
 
 # Function to separate the vocals and music from a video
 def music_vocals_separation(url,video_path,output_dir,source_wav_vocals_filename,source_wav_music_filename):
@@ -273,7 +274,10 @@ def generate_and_save_audio(json_file,output_dir,url):
         text = entry["translation"]
 
         # Generate audio for the current sentence
-        generate_audio(text, speaker_name, sentence_id,url,output_dir)
+        args = (text, speaker_name, sentence_id,url,output_dir)
+        my_process = multiprocessing.Process(target=generate_audio, args=args)
+        my_process.start()
+        # generate_audio(text, speaker_name, sentence_id,url,output_dir)
 
 # Function to merge audio files
 def combined_audio_music(json_file,audio_file,output_dir):
