@@ -255,7 +255,7 @@ def generate_and_save_audio(json_file,output_dir,url):
             response=None
             while succeed:
                 try:
-                    response = requests.post(url+'CloneVoice', files=files, data=data)
+                    response = requests.post(url+'CloneVoice', files=files, data=data, timeout=1000)
                     succeed=True
                 except requests.Timeout:
                     print('The request timed out.')
