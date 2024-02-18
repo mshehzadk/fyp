@@ -19,7 +19,7 @@ def music_vocals_separation(url,video_path,output_dir,source_wav_vocals_filename
     succeed=False
     while not succeed:
         try:
-            response = requests.post(url+'vocals_music_separation', files=files, timeout=1000)
+            response = requests.post(url+'vocals_music_separation', files=files, timeout=100000)
             succeed=True
             data = response.json()
             music_b64 = data['music']
@@ -103,7 +103,7 @@ def Transcription(url,source_wav_vocals_filename,source_json_filename,output_dir
         succeed=False
         while not succeed:
             try:
-                response = requests.post(url, files=files, timeout=1000)
+                response = requests.post(url, files=files, timeout=100000)
                 succeed=True
                 # Return the response
                 return response
@@ -252,7 +252,7 @@ def generate_and_save_audio(json_file,output_dir,url):
             succeed=False
             while not succeed:
                 try:
-                    response = requests.post(url+'CloneVoice', files=files, data=data, timeout=1000)
+                    response = requests.post(url+'CloneVoice', files=files, data=data, timeout=100000)
                     print(response)
                     audio_path = f"{output_dir}{speaker_name}_{sentence_id}.wav"
                     # Save the received video file
