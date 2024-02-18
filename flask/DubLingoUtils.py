@@ -15,7 +15,17 @@ from moviepy.editor import VideoFileClip, AudioFileClip
 def music_vocals_separation(url,video_path,output_dir,source_wav_vocals_filename,source_wav_music_filename):
     # Create a POST request to send the video file
     files = {'video': open(video_path, 'rb')}
-    response = requests.post(url+'vocals_music_separation', files=files)
+    # Run the loop unitl the response is not correct or without errors
+    succeed=False
+    response=None
+    while succeed:
+        try:
+            response = requests.post(url+'vocals_music_separation', files=files, timeout=1000)
+            succeed=True
+        except requests.Timeout:
+            print('The request timed out.')
+        except requests.RequestException as e:
+            print(f'An error occurred: {e}')
 
     data = response.json()
 
@@ -90,8 +100,17 @@ def Transcription(url,source_wav_vocals_filename,source_json_filename,output_dir
         # Create a dictionary to hold the file parameter
         files = {'audio': ('audio.wav', open(audio_file_path, 'rb'), 'audio/wav')}
 
-        # Make the POST request
-        response = requests.post(url, files=files)
+        # run the loop until response is not postive and correct
+        succeed=False
+        response=None
+        while succeed:
+            try:
+                response = requests.post(url, files=files, timeout=1000)
+                succeed=True
+            except requests.Timeout:
+                print('The request timed out.')
+            except requests.RequestException as e:
+                print(f'An error occurred: {e}')
 
         # Print the response
         return response
@@ -100,7 +119,7 @@ def Transcription(url,source_wav_vocals_filename,source_json_filename,output_dir
     response = transcribe_audio(audio_file_path,url)
     formatted_results = convert_response_to_json(response.text)
     with open(output_dir+source_json_filename, 'w', encoding='utf-8') as output_json_file:
-         json.dump(formatted_results, output_json_file, ensure_ascii=False, indent=2)
+        json.dump(formatted_results, output_json_file, ensure_ascii=False, indent=2)
 
 # Function to translate the transcribed text
 def translate_text(text, target_language):
@@ -224,18 +243,27 @@ def get_speaker_wise_audio(audio_file,json_file,output_dir):
 def generate_and_save_audio(json_file,output_dir,url):
     def generate_audio(text, speaker_name, sentence_id,url,output_dir):
         with open(output_dir+speaker_name+'.wav', 'rb') as f:
-          # Send the file
-          # Data to be sent in the JSON format
-          data = {"arabic_text": text}
+            # Send the file
+            # Data to be sent in the JSON format
+            data = {"arabic_text": text}
 
-          # Specify the Content-Type header as application/json
-          headers = {"Content-Type": "application/json"}
-          files = {'audio': f}
-          # Make a POST request to the /CloneVoice endpoint
-          response = requests.post(url+'CloneVoice', files=files, data=data)
-          print(response)
+            # Specify the Content-Type header as application/json
+            headers = {"Content-Type": "application/json"}
+            files = {'audio': f}
+            # Run Loop until response is not correct
+            succeed=False
+            response=None
+            while succeed:
+                try:
+                    response = requests.post(url+'CloneVoice', files=files, data=data)
+                    succeed=True
+                except requests.Timeout:
+                    print('The request timed out.')
+                except requests.RequestException as e:
+                    print(f'An error occurred: {e}')
+            print(response)
         audio_path = f"{output_dir}{speaker_name}_{sentence_id}.wav"
-      # Save the received video file
+        # Save the received video file
         with open(audio_path, 'wb') as file:
             file.write(response.content)
 
