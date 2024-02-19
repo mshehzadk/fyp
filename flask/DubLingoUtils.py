@@ -60,6 +60,8 @@ def Transcription(url,source_wav_vocals_filename,source_json_filename,output_dir
         transcription_content = transcription_content.replace('\\n', '\n')
 
         # Split the content into individual lines
+        if '{"transcription": "' in transcription_content:
+            transcription_content = transcription_content.replace('{"transcription": "', '')
         lines = transcription_content.split('\n\n')
 
         # Initialize an empty list to store the formatted results
