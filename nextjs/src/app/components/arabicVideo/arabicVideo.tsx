@@ -88,7 +88,7 @@ export default function arabicVideo() {
                     </div>
                 </Link>
                 {!isLoading && (
-                    <button type="button" className="flex-1 pl-2">
+                    <button type="button" onClick={Download} className="flex-1 pl-2">
                     <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center w-full">
                         <IoMdDownload className="inline-block mr-2" />
                         Download Video
