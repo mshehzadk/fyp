@@ -291,7 +291,7 @@ def combined_audio_music(json_file,audio_file,output_dir):
 
         # Convert start and end times from minutes to milliseconds
         start_time_ms = int(start_time_mm)
-        end_time_ms = int(end_time_mm+50)
+        end_time_ms = int(end_time_mm)
 
         # Ensure the overlay audio duration is at least as long as the specified time range
         overlay_audio = overlay_audio[:end_time_ms - start_time_ms]
@@ -325,7 +325,6 @@ def combined_audio_music(json_file,audio_file,output_dir):
         end = time_in_milliSecond(sentence["endTime"])
         if sentence["sentence_id"] != 1:
             start=start-50
-            end=end-50
 
         overwrite_frames(audio_file, audio_name, start, end, audio_file)
 
