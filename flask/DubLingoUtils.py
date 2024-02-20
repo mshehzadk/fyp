@@ -323,7 +323,7 @@ def combined_audio_music(json_file,audio_file,output_dir):
         # Convert timestamps to ms
         start = time_in_milliSecond(sentence["startTime"])
         end = time_in_milliSecond(sentence["endTime"])
-        if sentence["sentence_id"] is not '1':
+        if sentence["sentence_id"] != 1:
             start=start-50
             end=end-50
 
