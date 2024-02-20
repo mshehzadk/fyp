@@ -40,7 +40,8 @@ export default function SignUp() {
         }
     };
     return (
-        <div className="flex items-center justify-center min-h-screen bg-green-100 rounded-md border-6 border-black bg-gradient-to-r from-blue-900 to-black">
+      
+        <div className="flex items-center justify-center min-h-screen bg-green-100  border-black bg-gradient-to-b from-gray-700 to-black" style={{ backgroundImage: "url('https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg')" }}>
             <div className="flex w-[65%] border-4 border-white rounded-md">
                 {/* Login Form */}
                 <div className="w-full md:w-1/2 bg-gradient-to-r from-cyan-600 to-cyan-200 shadow-md rounded-md p-14 ">
