@@ -4,15 +4,9 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import toast from 'react-hot-toast/headless';
-import loginimage from '@/images/login.png'
+import loginImage from '@/images/login.png'
 
-<Image
-  src={loginimage}
-  alt="User"
-  width={32}
-  height={32}
-  className="rounded-full border-2 bg-black border-gray-600"
-/>
+
 
 export default function SignUp() {
     const router = useRouter();
@@ -64,7 +58,7 @@ export default function SignUp() {
         <div className="flex items-center justify-center min-h-screen bg-green-100  border-black bg-gradient-to-b from-gray-700 to-black" style={{ backgroundImage: "url('https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg')" }}>
             <div className="flex w-[65%] border-2 border-gray-600 rounded-md">
                 {/* Sign Up Form */}
-                <div className="bg-gradient-to-r from-cyan-800 to-gray-700  w-full md:w-1/2 rounded-md p-6">
+                <div className="bg-transparent  w-full md:w-1/2 rounded-md p-6">
                     <div className="max-w-md space-y-4">
                         <div className="text-center">
                             <h1 className="text-3xl font-extrabold text-blue-500 mb-4">
@@ -72,18 +66,18 @@ export default function SignUp() {
                             </h1>
                         </div>
                         <div className="m-6 flex items-center justify-center">
-                        <div className="w-32 h-32 overflow-hidden rounded-full border-2 bg-black border-gray-600">
-                            <Image
-                            src={loginimage} // Use the imported image as src
-                            alt="User"
-                            className="object-cover w-full h-full"
-                            />
-                        </div>
+                            <div className="w-32 h-32 overflow-hidden rounded-full border-2 bg-black border-gray-600">
+                                <img
+                                    src="https://cdn-icons-png.freepik.com/512/295/295128.png"
+                                    alt="User"
+                                    className="object-cover w-full h-full"
+                                />
+                            </div>
                         </div>
                         <div className="mx-8 mt-2">
                             <label
                                 htmlFor="username"
-                                className="block text-sm font-medium text-black"
+                                className="block text-sm font-medium text-white"
                             >
                                 Username
                             </label>
@@ -105,7 +99,7 @@ export default function SignUp() {
                         <div className="mx-8 mt-2">
                             <label
                                 htmlFor="email"
-                                className="block text-sm font-medium text-black"
+                                className="block text-sm font-medium text-white"
                             >
                                 Email
                             </label>
@@ -127,7 +121,7 @@ export default function SignUp() {
                         <div className="mx-8 mt-2">
                             <label
                                 htmlFor="password"
-                                className="block text-sm font-medium text-black"
+                                className="block text-sm font-medium text-white"
                             >
                                 Password
                             </label>
