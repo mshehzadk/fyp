@@ -24,7 +24,7 @@ const config: Config = {
       }
     },
   },
-  plugins: [require('daisyui'),require('tailwindcss-animated')],
+  plugins: [require('tailwindcss-animated')],
   // plugins: [require('daisyui')],
   // daisyui: {
   //   themes: ["light", "dark", "cupcake"],
