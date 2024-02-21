@@ -3,6 +3,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import toast from 'react-hot-toast/headless';
+import image from '@/images/logo.png'
 
 export default function SignUp() {
     const router = useRouter();
@@ -42,19 +43,19 @@ export default function SignUp() {
     return (
       
         <div className="flex items-center justify-center min-h-screen bg-green-100  border-black bg-gradient-to-b from-gray-700 to-black" style={{ backgroundImage: "url('https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg')" }}>
-            <div className="flex w-[65%] border-4 border-white rounded-md">
+            <div className="flex w-[65%] border-2 border-gray-600 rounded-md">
                 {/* Login Form */}
-                <div className="w-full md:w-1/2 bg-gradient-to-r from-cyan-600 to-cyan-200 shadow-md rounded-md p-14 ">
+                <div className="w-full md:w-1/2 bg-transpaent shadow-md rounded-md p-14 ">
                     <div className="max-w-md space-y-4">
                         <div className="text-center">
-                            <h1 className="text-3xl font-extrabold text-indigo-900 mb-4">
+                            <h1 className="text-3xl font-extrabold text-blue-500 mb-4">
                                 Welcome back!
                             </h1>
                         </div>
                         <div className="m-6 flex items-center justify-center">
-                            <div className="w-32 h-32 overflow-hidden rounded-full border-4 border-indigo-500">
+                            <div className="w-32 h-32 overflow-hidden rounded-full border-2 bg-black border-gray-600">
                                 <img
-                                    src="https://png.pngitem.com/pimgs/s/235-2350720_security-png-transparent-png.png"
+                                    src="https://cdn-icons-png.freepik.com/512/295/295128.png"
                                     alt="User"
                                     className="object-cover w-full h-full"
                                 />
@@ -63,7 +64,7 @@ export default function SignUp() {
                         <div className="mx-1 mt-4 bg-cover bg-center rounded-md">
                             <label
                                 htmlFor="email"
-                                className="block font-medium  text-black"
+                                className="block font-medium  text-white"
                             >
                                 Email
                             </label>
@@ -78,14 +79,14 @@ export default function SignUp() {
                                         email: e.target.value,
                                     })
                                 }
-                                className="w-full px-3 py-3 mt-2 bg-gray-200 border border-gray-500 rounded-md focus:outline-none focus:ring focus:border-indigo-500"
+                                className="w-full px-3 py-3 mt-2 bg-gray-800 border border-gray-500 rounded-md focus:outline-none focus:ring focus:border-indigo-500"
                                 required
                             />
                         </div>
                         <div className="mx-1 mt-4 bg-cover bg-center rounded-md">
                             <label
                                 htmlFor="password"
-                                className="block  font-medium text-black"
+                                className="block  font-medium text-white"
                             >
                                 Password
                             </label>
@@ -100,14 +101,14 @@ export default function SignUp() {
                                         password: e.target.value,
                                     })
                                 }
-                                className="w-full px-3 py-3 mt-2 bg-gray-200 border border-gray-500 rounded-md focus:outline-none focus:ring focus:border-indigo-500"
+                                className="w-full px-3 py-3 mt-2 bg-gray-800 border border-gray-500 rounded-md focus:outline-none focus:ring focus:border-indigo-500"
                                 required
                             />
                         </div>
                         <div className="mx-1 mt-8">
                             <button
                                 onClick={onLogin}
-                                className="w-full px-5 py-3 mt-3 text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring focus:border-indigo-700 transform transition-transform duration-300 hover:scale-105 border border-white"
+                                className="w-full px-5 py-3 mt-3 text-white bg-indigo-900 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring focus:border-indigo-700 transform transition-transform duration-300 hover:scale-105 border border-gray-500"
                             >
                                 {loading ? 'Processing' : 'Login'}
                             </button>
@@ -115,7 +116,7 @@ export default function SignUp() {
                         <div className="mx-1 mt-12 mb-8">
                             <button
                                 onClick={onSignup}
-                                className="w-full px-5 py-3 mt-2 mb-5 text-white bg-gray-600 rounded-md hover:bg-gray-500 focus:outline-none focus:ring focus:border-gray-600 transform transition-transform duration-300 hover:scale-105 border border-white"
+                                className="w-full px-5 py-3 mt-2 mb-5 text-white bg-gray-800 rounded-md hover:bg-gray-700 focus:outline-none focus:ring focus:border-gray-600 transform transition-transform duration-300 hover:scale-105 border border-gray-500"
                             >
                                 Sign Up
                             </button>
