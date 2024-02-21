@@ -65,7 +65,9 @@ export default function Home() {
           </div>
 
           <div className="order-1 lg:order-2 w-full lg:w-[50%] lg:max-w-[50%] lg:pl-8 lg:mt-15 mb-40 mt-10 p-5">
-            <h1 className="text-6xl font-bold mb-4 text-blue-700">DUBLINGO</h1>
+          <h1 className="text-6xl  text-white font-bold mb-4">
+              <span className="text-blue-700">DUB</span>LINGO
+          </h1>
             <h2 className="text-4xl font-semibold mb-6 text-blue-600">Transform Urdu videos into Arabic dubbed videos</h2>
             <p className="leading-relaxed mb-6 text-gray-100 text-xl">
               Dublingo is a revolutionary system that automatically transforms Urdu videos into Arabic dubbed videos using advanced AI technology.

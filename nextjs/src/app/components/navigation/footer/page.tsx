@@ -44,8 +44,14 @@ const Footer = ({ toggle }: { toggle: () => void }) => {
             </div>
           </div>
           <div className="mt-4 text-center">
-            <p>&copy; 2024 DubLingo. All rights reserved.</p>
+              <p>
+                  &copy; 2024{' '}
+                  <span className="text-blue-700">Dub</span>
+                  <span className="text-white">Lingo</span>
+                  . All rights reserved.
+              </p>
           </div>
+
         </footer>
       );
 };
