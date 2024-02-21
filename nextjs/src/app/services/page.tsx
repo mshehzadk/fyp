@@ -77,8 +77,12 @@ const Services = () => {
   };
 
   return (
-    <>
-      <header className="bg-slate-400 text-white py-5 text-center relative transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover:bg-orange-400 duration-300">
+    <div className="page" style={{ backgroundImage: "url('https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg')" }}>
+        <Head>
+          <title>Our Services</title>
+          <meta name="description" content="Explore our range of services for your business." />
+        </Head>
+      <header className="bg-slate-400 text-white py-5 text-center relative transition ease-in-out delay-150 hover:scale-100 hover:bg-orange-400 duration-300" >
         <div className="container mx-auto">
           <h1 className="text-4xl font-bold mb-1">OUR SERVICES</h1>
           <p className="text-lg">Discover the range of services we offer to meet your business goals.</p>
@@ -93,20 +97,16 @@ const Services = () => {
         </div>
       </header>
 
-      <div className="min-h-screen bg-gray-100 mx-10 relative">
-        <Head>
-          <title>Our Services</title>
-          <meta name="description" content="Explore our range of services for your business." />
-        </Head>
+      <div className="form mx-20">
         <section className="container mx-auto py-5">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => (
               <div
                 key={index}
-                className="bg-white p-6 rounded-lg shadow-md relative border border-gray-400 transition duration-300 hover:shadow-lg hover:scale-105"
+                className="bg-transparent hover:bg-cyan-700 p-6 rounded-lg shadow-md relative border border-gray-500 transition duration-300 hover:shadow-lg hover:scale-105"
                 style={{ height: '480px' }}
               >
-                <div className="border-2 border-gray-300 rounded-md mb-4 p-4 mx-auto bg-cyan-600">
+                <div className="border-2 border-gray-500 rounded-md mb-4 p-4 mx-auto bg-black">
                   <img
                     src={service.icon}
                     alt={service.title}
@@ -114,9 +114,9 @@ const Services = () => {
                   />
                 </div>
                 <div className="flex-grow overflow-hidden">
-                  <h2 className="text-xl font-bold mb-2 text-center">{service.title}</h2>
+                  <h2 className="text-xl font-bold mb-2 text-center text-white">{service.title}</h2>
                   <div className="max-h-40 overflow-auto mb-4">
-                    <p className="text-gray-600">{service.description}</p>
+                    <p className="text-white">{service.description}</p>
                   </div>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-4">
@@ -136,7 +136,7 @@ const Services = () => {
           <ServicePopup service={selectedService} onClose={handleClosePopup} />
         )}
       </div>
-    </>
+    </div>
   );
 };
 

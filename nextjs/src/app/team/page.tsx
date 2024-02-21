@@ -64,7 +64,7 @@ export default function Team() {
   );
 
   return (
-    <div className="page  mb-1 " style={{ backgroundImage: "url('https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg')" }}>
+    <div className="page " style={{ backgroundImage: "url('https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg')" }}>
       <Head>
         <title>Our Team</title>
         <meta name="description" content="Learn more about the Dublingo team." />
@@ -83,6 +83,9 @@ export default function Team() {
         <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
         <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
       </section>
+      <br/>
+      <br/>
+
     </div>
   );
 }
