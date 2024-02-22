@@ -7,8 +7,8 @@ import multiprocessing
 import DubLingoUtils as dl
 
 
-spleeter_url='https://8239-34-105-95-220.ngrok-free.app/'    # replace with your URL
-whisperX_url='https://cef5-34-141-231-224.ngrok-free.app/'  # replace with your URL
+spleeter_url='https://41ee-34-125-223-5.ngrok-free.app/'    # replace with your URL
+whisperX_url='https://5107-34-125-138-14.ngrok-free.app/'  # replace with your URL
 voice_clone_url=spleeter_url  # replace with your URL
 output_dir='./data/'
 # Replace this with the actual path to your video file
