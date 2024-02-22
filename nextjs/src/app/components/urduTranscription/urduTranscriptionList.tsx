@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
-import { HashLoader } from "react-spinners";
 
 
 export default function urduTranscriptionList() {

@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { IoMdDownload } from "react-icons/io";
-import { HashLoader } from "react-spinners";
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
 export default function arabicVideo() {
@@ -62,7 +61,7 @@ export default function arabicVideo() {
                         
                             <div className="flex pt-10 justify-center items-center">
                                 {/* You can keep the loading indicator or remove it based on your preference */}
-                                <HashLoader color="#007cf4" />
+                                Loading..........
                             </div>
                         ) : (
                             <video className="w-full h-full lg:w-[100%] lg:h-[100%] bg-black" src={videoSrc} controls />
