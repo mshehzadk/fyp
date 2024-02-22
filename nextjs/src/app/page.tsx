@@ -55,7 +55,7 @@ export default function Home() {
             <video className="w-full h-auto lg:h-[400px] rounded-tl-xl rounded-bl-xl lg:rounded-tr-xl lg:rounded-br-xl border-t border-r border-b border-black-700" ref={videoRef} loop muted autoPlay controls style={{ width: '800px', height: '400px', border: ' solid black', background:'black' }}>
               <source src="/video.mp4" />
             </video>
-            <div className="lg:hidden z-10 absolute top-4 right-4 border border-gray-400 p-2 rounded-md">
+            <div className="lg:hidden z-10 absolute top-4 right-4 border border-gray-500 p-2 rounded-md">
               <VideoPlayerControls
                 progress={videoProgress}
                 isPaused={isPaused}
@@ -79,7 +79,7 @@ export default function Home() {
               <li>Easy to use interface</li>
             </ul>
             <Link href="/urduvideo">
-              <button className="bg-blue-800 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 ml-40 border border-gray-400">
+              <button className="bg-blue-900 hover:bg-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 ml-40 border border-gray-400">
                 Try Now
               </button>
             </Link>
