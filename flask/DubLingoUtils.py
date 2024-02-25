@@ -295,20 +295,23 @@ def generated_voices(url,output_dir,target_json_filename):
                 print(response)
                 data = response.json()
 
-                for entry in data:
-                    speaker_name = entry["speaker"]
-                    sentence_id = entry["sentence_id"]
-                    audio_path = f"{output_dir}{speaker_name}_{sentence_id}.wav"
-                    audio_name=f"{speaker_name}_{sentence_id}.wav"
-                    # Save the received video file
-                    audio_b64 = data[audio_name]
+                with open(output_dir+target_json_filename, 'r', encoding='utf-8') as output_json_file:
+                    dataEntries=json.load(output_json_file)
 
-                    audio_bytes = base64.b64decode(audio_b64)
+                    for entry in dataEntries:
+                        speaker_name = entry["speaker"]
+                        sentence_id = entry["sentence_id"]
+                        audio_path = f"{output_dir}{speaker_name}_{sentence_id}.wav"
+                        audio_name=f"{speaker_name}_{sentence_id}"
+                        # Save the received video file
+                        audio_b64 = data[audio_name]
 
-                    # Convert bytes to AudioSegment
-                    audio = AudioSegment.from_file(io.BytesIO(audio_bytes))
-                    # Save AudioSegments as WAV files
-                    audio_audio.export(audio_file_path, format='wav')
+                        audio_bytes = base64.b64decode(audio_b64)
+
+                        # Convert bytes to AudioSegment
+                        audio = AudioSegment.from_file(io.BytesIO(audio_bytes))
+                        # Save AudioSegments as WAV files
+                        audio.export(audio_path, format='wav')
                 succeed=response.ok
             except requests.Timeout:
                 print('The request timed out.')
