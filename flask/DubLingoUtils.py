@@ -285,13 +285,13 @@ def generate_and_save_audio(json_file,output_dir,url):
 def generated_voices(url,output_dir,target_json_filename):
     # make a request to the TTS service by sending the json file and get the audio files
     with open(output_dir+target_json_filename, 'r', encoding='utf8') as json_file:
-        data=json.load(json_file)
-        json_data={'data':data}
+        json_data=json.load(json_file)
         succeed=False
         while not succeed:
             try: 
-                print(data)
-                response = requests.post(url+'CloneVoices',data=json_data, timeout=100000)
+                # Set headers (content-type: application/json)
+                headers = {'Content-Type': 'application/json'}
+                response = requests.post(url+'CloneVoices',json=json_data ,headers=headers, timeout=100000)
                 print(response)
                 data = response.json()
 
@@ -453,8 +453,8 @@ def process_urdu_video(spleeter_url,whisperX_url,video_path,output_dir,filename,
     Transcription(whisperX_url,source_wav_vocals_filename,filename,output_dir)
 
 def process_arabic_video(voice_clone_url,target_json_filename,video_path,output_dir,output_video_path,source_wav_music_filename,source_wav_vocals_filename):
-    get_speaker_wise_audio(output_dir+source_wav_vocals_filename,output_dir+target_json_filename,output_dir)
-    generate_and_save_audio(output_dir+target_json_filename,output_dir,voice_clone_url)
-    # generated_voices(voice_clone_url,output_dir,target_json_filename)
+    # get_speaker_wise_audio(output_dir+source_wav_vocals_filename,output_dir+target_json_filename,output_dir)
+    # generate_and_save_audio(output_dir+target_json_filename,output_dir,voice_clone_url)
+    generated_voices(voice_clone_url,output_dir,target_json_filename)
     combined_audio_music(output_dir+target_json_filename,output_dir+source_wav_music_filename,output_dir)
     replace_audio(video_path, output_dir+source_wav_music_filename, output_video_path)
