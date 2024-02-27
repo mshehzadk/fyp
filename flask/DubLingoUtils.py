@@ -21,7 +21,7 @@ def music_vocals_separation(url,video_path,output_dir,source_wav_vocals_filename
     while not succeed:
         try:
             response = requests.post(url+'vocals_music_separation', files=files, timeout=100000)
-            succeed=True
+            succeed=response.ok
             data = response.json()
             music_b64 = data['music']
             vocals_b64 = data['vocals']
@@ -46,8 +46,6 @@ def music_vocals_separation(url,video_path,output_dir,source_wav_vocals_filename
             print('The request timed out.')
         except requests.RequestException as e:
             print(f'An error occurred: {e}')
-
-
 
 # Function to transcribe the vocals from a WAV file
 def Transcription(url,source_wav_vocals_filename,source_json_filename,output_dir):
@@ -281,6 +279,45 @@ def generate_and_save_audio(json_file,output_dir,url):
         # my_process.start()
         generate_audio(text, speaker_name, sentence_id,url,output_dir)
 
+
+###########################################################################
+# Otimizing the above function of clonig voices
+def generated_voices(url,output_dir,target_json_filename):
+    # make a request to the TTS service by sending the json file and get the audio files
+    with open(output_dir+target_json_filename, 'r', encoding='utf8') as json_file:
+        json_data=json.load(json_file)
+        succeed=False
+        while not succeed:
+            try: 
+                # Set headers (content-type: application/json)
+                headers = {'Content-Type': 'application/json'}
+                response = requests.post(url+'CloneVoices',json=json_data ,headers=headers, timeout=100000)
+                print(response)
+                data = response.json()
+
+                with open(output_dir+target_json_filename, 'r', encoding='utf-8') as output_json_file:
+                    dataEntries=json.load(output_json_file)
+
+                    for entry in dataEntries:
+                        speaker_name = entry["speaker"]
+                        sentence_id = entry["sentence_id"]
+                        audio_path = f"{output_dir}{speaker_name}_{sentence_id}.wav"
+                        audio_name=f"{speaker_name}_{sentence_id}"
+                        # Save the received video file
+                        audio_b64 = data[audio_name]
+
+                        audio_bytes = base64.b64decode(audio_b64)
+
+                        # Convert bytes to AudioSegment
+                        audio = AudioSegment.from_file(io.BytesIO(audio_bytes))
+                        # Save AudioSegments as WAV files
+                        audio.export(audio_path, format='wav')
+                succeed=response.ok
+            except requests.Timeout:
+                print('The request timed out.')
+            except requests.RequestException as e:
+                print(f'An error occurred: {e}')
+###########################################################################
 # Function to merge audio files
 def combined_audio_music(json_file,audio_file,output_dir):
 
@@ -419,7 +456,8 @@ def process_urdu_video(spleeter_url,whisperX_url,video_path,output_dir,filename,
     Transcription(whisperX_url,source_wav_vocals_filename,filename,output_dir)
 
 def process_arabic_video(voice_clone_url,target_json_filename,video_path,output_dir,output_video_path,source_wav_music_filename,source_wav_vocals_filename):
-    get_speaker_wise_audio(output_dir+source_wav_vocals_filename,output_dir+target_json_filename,output_dir)
-    generate_and_save_audio(output_dir+target_json_filename,output_dir,voice_clone_url)
+    # get_speaker_wise_audio(output_dir+source_wav_vocals_filename,output_dir+target_json_filename,output_dir)
+    # generate_and_save_audio(output_dir+target_json_filename,output_dir,voice_clone_url)
+    generated_voices(voice_clone_url,output_dir,target_json_filename)
     combined_audio_music(output_dir+target_json_filename,output_dir+source_wav_music_filename,output_dir)
     replace_audio(video_path, output_dir+source_wav_music_filename, output_video_path)
