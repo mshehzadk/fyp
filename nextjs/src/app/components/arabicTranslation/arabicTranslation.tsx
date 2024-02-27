@@ -230,7 +230,7 @@ export default function ArabicTranslation() {
                         </p>
                     </div>
                     {urduTranscription && Array.isArray(urduTranscription) && urduTranscription.map((item: any, index: number) => (
-                        <div key={index} className="p-4 border border-slate-300 my-5 flex gap-2 bg-cyan-400">
+                        <div key={index} className="p-4 border border-gray-400 my-5 flex gap-2 bg-cyan-700">
                             <div className="flex">
                                 <div className="font-bold text-xl">{item.speaker}</div>
                                 <div className="m-2" >{item.startTime}</div>
@@ -250,7 +250,7 @@ export default function ArabicTranslation() {
                                 Arabic Translation
                             </p>
                             <button
-                                className="bg-white px-4 py-2 flex items-center text-slate-800 hover:bg-slate-700 hover:text-white transition-all duration-300"
+                                className="bg-gray-200 px-4 py-2 flex items-center rounded-md text-slate-800 hover:bg-slate-700 hover:text-white transition-all duration-300"
                                 onClick={addTranslation}
                             >
                                 <span className="mr-2 text-blue-500 hover:underline cursor-pointer">
@@ -262,10 +262,10 @@ export default function ArabicTranslation() {
                         </div>
 
                         {addTranslationModal &&
-                            <div className="max-w-md mx-auto p-4 border rounded-md shadow-md bg-cyan-400">
+                            <div className="max-w-md mx-auto p-4 mt-5 border rounded-md shadow-md bg-cyan-900">
                                 <div className="mb-4">
                                     <input
-                                        className="w-full px-4 py-2 border-b-2 border-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-500 font-bold text-xl"
+                                        className="w-full px-4 py-2 border-b-2 rounded-md border-gray-300 placeholder-gray-500 bg-gray-900 focus:outline-none focus:border-blue-500 font-bold text-xl"
                                         placeholder="Enter Speaker Name"
                                         value={speakerName}
                                         onChange={(e: any) => setSpeakerName(e.target.value)}
@@ -274,7 +274,7 @@ export default function ArabicTranslation() {
                                 <div className="flex items-center mb-4">
                                     <div className="flex-grow">
                                         <input
-                                            className="w-full px-4 py-2 border-b-2 border-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                                            className="w-full px-4 py-2 border-b-2 rounded-md border-gray-300 placeholder-gray-500 bg-gray-900 focus:outline-none focus:border-blue-500"
                                             placeholder="Start Time 00:00:00"
                                             value={startTime}
                                             onChange={(e: any) => TimeUpdate(e, 's')}
@@ -282,7 +282,7 @@ export default function ArabicTranslation() {
                                     </div>
                                     <div className="flex-grow ml-2">
                                         <input
-                                            className="w-full px-4 py-2 border-b-2 border-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                                            className="w-full px-4 py-2 border-b-2 rounded-md border-gray-300 placeholder-gray-500 bg-gray-900 focus:outline-none focus:border-blue-500"
                                             placeholder="End Time 00:00:00"
                                             value={endTime}
                                             onChange={(e: any) => TimeUpdate(e, 'e')}
@@ -292,7 +292,7 @@ export default function ArabicTranslation() {
                                 {!dateFormat && <div className="text-red-500 mb-4">Please enter a valid time string in the format HH:MM:SS</div>}
                                 <div className="mb-4">
                                     <textarea
-                                        className="w-full px-4 py-2 border-b-2 border-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                                        className="w-full px-4 py-2 border-b-2 rounded-md border-gray-300 placeholder-gray-500 bg-gray-900 focus:outline-none focus:border-blue-500"
                                         placeholder="Translation"
                                         value={translation}
                                         onChange={(e: any) => setTranslation(e.target.value)}
@@ -311,12 +311,12 @@ export default function ArabicTranslation() {
                         }
 
                         {data && Array.isArray(data) && data.map((item: any, index: number) => (
-                            <div key={index} className="p-1 border border-slate-300 my-5 flex gap-2 bg-cyan-400">
+                            <div key={index} className="p-4 border border-gray-400 my-5 flex gap-2 bg-cyan-700">
                                 {editTrigger && editIndex === index ?
                                 <div className="w-full">
                                     <div className="mb-4">
                                         <input
-                                            className="w-full px-4 py-2 border-b-2 border-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-500 font-bold text-xl"
+                                            className="w-full px-4 py-2 border-b-2 rounded-md  border-gray-300 placeholder-gray-500 bg-cyan-900 focus:outline-none focus:border-blue-500 font-bold text-xl"
                                             value={speakerName}
                                             onChange={(e: any) => setSpeakerName(e.target.value)}
                                             placeholder="Enter Speaker Name"
@@ -325,7 +325,7 @@ export default function ArabicTranslation() {
                                     <div className="flex items-center mb-4">
                                         <div className="flex-grow">
                                             <input
-                                                className="w-full px-4 py-2 border-b-2 border-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                                                className="w-full px-4 py-2 border-b-2 rounded-md border-gray-300 placeholder-gray-500 bg-cyan-900 focus:outline-none focus:border-blue-500"
                                                 value={startTime}
                                                 onChange={(e: any) => TimeUpdate(e, 's')}
                                                 placeholder="Start Time 00:00:00"
@@ -333,7 +333,7 @@ export default function ArabicTranslation() {
                                         </div>
                                         <div className="flex-grow ml-2">
                                             <input
-                                                className="w-full px-4 py-2 border-b-2 border-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                                                className="w-full px-4 py-2 border-b-2 rounded-md border-gray-300 placeholder-gray-500 bg-cyan-900 focus:outline-none focus:border-blue-500"
                                                 value={endTime}
                                                 onChange={(e: any) => TimeUpdate(e, 'e')}
                                                 placeholder="End Time 00:00:00"
@@ -343,7 +343,7 @@ export default function ArabicTranslation() {
                                     {!dateFormat && <div className="text-red-500 mb-4">Please enter a valid time string in the format HH:MM:SS</div>}
                                     <div className="mb-4">
                                         <textarea
-                                            className="w-full px-4 py-2 border-b-2 border-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                                            className="w-full px-4 py-2 border-b-2 rounded-md border-gray-300 placeholder-gray-500 bg-cyan-900 focus:outline-none focus:border-blue-500"
                                             placeholder="Translation"
                                             value={translation}
                                             onChange={(e: any) => setTranslation(e.target.value)}
@@ -365,7 +365,7 @@ export default function ArabicTranslation() {
                             }
                                 <div className="flex ml-auto">
                                     {editTrigger && editIndex === index ?
-                                        <button className="bg-red-800 text-white px-4 py-2 rounded-md m-2 hover:bg-slate-700 focus:outline-none focus:ring focus:border-blue-300 transition-all duration-300"
+                                        <button className="bg-red-800 text-white px-4 py-2 mb-8 rounded-md m-2 hover:bg-slate-700"
                                             onClick={(e) => saveEdit(e)}
                                         >Save</button>
                                         :

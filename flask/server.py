@@ -7,7 +7,7 @@ import multiprocessing
 import DubLingoUtils as dl
 
 
-spleeter_url='https://41ee-34-125-223-5.ngrok-free.app/'    # replace with your URL
+spleeter_url='https://8469-34-125-231-142.ngrok-free.app/'    # replace with your URL
 whisperX_url='https://5107-34-125-138-14.ngrok-free.app/'  # replace with your URL
 voice_clone_url=spleeter_url  # replace with your URL
 output_dir='./data/'
@@ -43,10 +43,10 @@ def generateTranscription():
 @app.route('/uploadUrduVideo', methods=['POST'])
 def upload_file():
     # # #check if path exist
-    if dl.check_path_exist(output_dir):
-        # Remove existing files from data directory
-        dl.delete_all_files_in_folder(output_dir)
-    # Create a new directory for the current session
+    # if dl.check_path_exist(output_dir):
+    #     # Remove existing files from data directory
+    #     dl.delete_all_files_in_folder(output_dir)
+    # # Create a new directory for the current session
     dl.create_folder(output_dir)
     # Check if the post request has the file part
     if 'file' not in request.files:

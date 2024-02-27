@@ -32,22 +32,23 @@ export default function UrduTranscription() {
 
   return (
   
-    <div className="container mx-auto px-4 mt-5">
+    <div className="container mx-auto px-4 mt-5 ">
       {isLoading ? (
-        <div className="flex items-center justify-center h-screen">
-          <div className="spinner-border w-16 h-16 border-4 border-blue-500 rounded-full"></div>
+        <div className="flex flex-col items-center justify-center min-h-screen lg:max-h-screen-sm md:max-h-screen-md sm:max-h-screen-lg">
+          <div className="animate-spin rounded-full h-20 w-20 border-t-4 border-b-4 border-blue-500"></div>
+          <p className="text-white mt-4">Loading...URDU Transcription</p>
         </div>
       ) : (
         <div className="flex flex-col lg:flex-row lg:max-h-[67vh] ">
-          <div className="lg:w-1/2 lg:mr-4 bg-gray-700 border-2 rounded-md border-black lg:overflow-y-auto md:overflow-y-auto overflow-y-hidden">
+          <div className="lg:w-1/2 lg:mr-4 bg-gray-700 border rounded-md border-gray-900 lg:overflow-y-auto md:overflow-y-auto overflow-y-hidden">
             <Urdutranscriptionlist />
           </div>
 
-          <div className="lg:w-1/2 lg:ml-4 bg-gray-700 p-3 lg:p-4 border-2 rounded-md border-black">
+          <div className="lg:w-1/2 lg:ml-4 bg-gray-900 p-3 lg:p-4 border rounded-md border-gray-900">
             <p className="text-white font-bold mb-2">Urdu Video</p>
             <div className="relative" style={{ paddingTop: "56.25%" }}>
               {videoRef && (
-                <video ref={videoRef} controls muted className="absolute top-0 left-0 w-full h-full">
+                <video ref={videoRef} controls muted className="absolute top-0 left-0 w-full h-full bg-black">
                   <source src="/video.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
@@ -56,6 +57,7 @@ export default function UrduTranscription() {
           </div>
         </div>
       )}
+
       <div className="flex mt-6 space-x-4">
         <Link href="/urduvideo" className="flex-1">
           <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">

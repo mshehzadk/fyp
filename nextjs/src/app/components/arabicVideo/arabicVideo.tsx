@@ -31,7 +31,7 @@ export default function arabicVideo() {
     }
 
     return (
-    <div className=" bg-black pb-10">
+    <div className="pb-10">
           <header className="bg-gradient-to-r from-pink-900 to-purple-800 rounded-lg text-white py-3 mt-6 mb-6 mx-auto" style={{ width: "80%" }}>
             <div className="container mx-auto text-center">
               <h1 className="text-2xl font-bold mb-3">ARABIC DUBBED VIDEO</h1>
@@ -42,18 +42,18 @@ export default function arabicVideo() {
 
 
 
-        <div className="w-screen flex flex-col justify-center items-center py-0 bg-black">
+        <div className="w-screen flex flex-col justify-center items-center py-0 ">
             <div className={`mt-4 mb-10 flex items-center justify-center pb-5"`} style={{ width: "80%", margin: "0 auto" }}>
                 <div className="flex flex-col lg:flex-row">
 
-                    {/* Left Image */}
+                    {/* Left Image
                     <div className="w-2/4 lg:w-1/2 border-2 border-black hidden lg:block mr-1" style={{ width: "400px", height: "400px" }}>
                         <img
                         src="https://wallpapercave.com/wp/wp5886498.jpg"
                         alt="Left Image"
                         className="w-full h-full object-cover"
                         />
-                    </div>
+                    </div> */}
 
                     {/* Video Container */}
                     <div className="w-full lg:w-1/2 border-2 border-white" style={{ width: "100%", height: "auto", maxHeight: "400px" }}>
@@ -68,14 +68,14 @@ export default function arabicVideo() {
                         )}
                     </div>
 
-                    {/* Right Image */}
+                    {/* Right Image
                     <div className="w-2/4 lg:w-1/2 border-2 border-black hidden lg:block ml-1" style={{ width: "400px", height: "400px" }}>
                         <img
                         src="https://wallpapercave.com/wp/wp5886498.jpg"
                         alt="Right Image"
                         className="w-full h-full object-cover"
                         />
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
