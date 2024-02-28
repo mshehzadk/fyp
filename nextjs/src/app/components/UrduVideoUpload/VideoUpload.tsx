@@ -59,7 +59,7 @@ export default function VideoUpload() {
   return (
     <>
       {showUploadForm && (
-        <header className="bg-gradient-to-r from-pink-900 to-purple-800 rounded-lg text-white py-6 mt-20 mb-10 mx-auto" style={{ width: "80%" }}>
+        <header className="bg-gray-900 rounded-lg border border-gray-400 text-white py-6 mt-20 mb-10 mx-auto" style={{ width: "80%" }}>
           <div className="container mx-auto text-center">
             <h1 className="text-2xl font-bold mb-3">URDU VIDEO TO ARABIC VIDEOS</h1>
             <h4>Convert video from Urdu to Arabic to you hearts content</h4>
@@ -70,15 +70,15 @@ export default function VideoUpload() {
       <div className="videoupload mx-auto p-2  shadow-md w-full ">
         {showUploadForm && (
           <div className="flex justify-center items-center my-5">
-            <div className="bg-gradient-to-r from-pink-900 to-purple-900 text-white shadow-md rounded-lg p-10 x">
+            <div className="bg-gray-900 border border-gray-400 text-white shadow-md rounded-lg p-10 x">
               <h2 className="text-3xl font-bold mb-8 text-center">Upload Video</h2>
-              <form onSubmit={onSubmit} className="flex flex-col items-center justify-center text-white">
+              <form onSubmit={onSubmit} className="flex flex-col items-center justify-center  text-white">
                 <input
                   type="file"
                   name="file"
                   accept="video/mp4"
                   onChange={onFileChange}
-                  className="w-full py-4 px-6 mb-6 border rounded focus:outline-none focus:border-blue-500"
+                  className="w-full py-4 px-6 mb-6 border rounded focus:outline-none focus:border-blue-500 bg-black"
                 />
                 {file && (
                   <div>
@@ -98,31 +98,11 @@ export default function VideoUpload() {
           </div>
         )}
 
-        <div className="flex flex-col lg:flex-row justify-between mb-10 mt-10 mx-auto" style={{ width: "80%" }}>
-          {isVideoUploaded && (
-            <button onClick={uploadMore} className="flex-1 mb-4 lg:mb-0 lg:mr-4">
-              <div className="bg-slate-500 text-white py-2 px-10 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
-                Upload New
-              </div>
-            </button>
-          )}
-          {isVideoUploaded ? (
-            <Link href="/urduTranscription" className="flex-1">
-              <div className="bg-slate-500 text-white py-2 px-10 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
-                Urdu Transcription
-                <FaArrowRight className="ml-2" />
-              </div>
-            </Link>
-          ) : null}
-        </div>
 
-        <div className={`mt-4 flex items-center justify-center mb-0 ${isVideoUploaded ? '' : 'hidden'}`} style={{ width: "80%", margin: "0 auto" }}>
+        <div className={`mt-0 flex items-center justify-center ${isVideoUploaded ? '' : 'hidden'}`} style={{ width: "80%", margin: "0 auto" }}>
           <div className="flex flex-col lg:flex-row">
-
-
-
             {/* Video Container */}
-            <div className="w-full lg:w-1/2 border border-gray-400 bg-black" style={{ width: "100%", height: "auto", maxHeight: "400px" }}>
+            <div className="w-full lg:w-1/2 border border-gray-400 bg-black mt-5 mb-5" style={{ width: "100%", height: "auto", maxHeight: "500px" }}>
               {isUploading ? (
                 <div>Loading...</div>
               ) : videoUrl ? (
@@ -134,10 +114,26 @@ export default function VideoUpload() {
                 </div>
               ) : null}
             </div>
-
-
           </div>
         </div>
+
+            <div className="flex flex-col lg:flex-row justify-between mb-0 mx-auto" style={{ width: "80%" }}>
+                {isVideoUploaded && (
+                  <button onClick={uploadMore} className="flex-1 mb-4 lg:mb-0 lg:mr-4">
+                    <div className="bg-slate-500 text-white py-2 px-10 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
+                      Upload New
+                    </div>
+                  </button>
+                )}
+                {isVideoUploaded ? (
+                  <Link href="/urduTranscription" className="flex-1">
+                    <div className="bg-slate-500 text-white py-2 px-10 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
+                      Urdu Transcription
+                      <FaArrowRight className="ml-2" />
+                    </div>
+                  </Link>
+                ) : null}
+            </div>
       </div>
     </>
   );
