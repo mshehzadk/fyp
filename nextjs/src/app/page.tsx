@@ -44,7 +44,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen p-0 relative mt-1" style={{ backgroundImage: "url('https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg')" }}>
+      <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen p-0 relative" style={{ backgroundImage: "url('https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg')" }}>
 
 
         <main className="flex flex-col lg:flex-row items-center justify-between lg:px-20 ">

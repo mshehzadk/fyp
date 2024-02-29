@@ -252,7 +252,7 @@ export default function urduTranscriptionList() {
             </>
 
             {data && Array.isArray(data) && data.map((item: any, index: number) => (
-                <div key={index} className="p-4 border border-slate-300 my-5 flex gap-2 bg-cyan-700">
+                <div key={index} className="p-2 border border-slate-300 my-5 flex gap-2 bg-cyan-700">
                     {editTrigger && editIndex === index ?
                         <div className="w-full">
                             <div className="mb-4">
@@ -307,7 +307,7 @@ export default function urduTranscriptionList() {
                     <div className="flex ml-auto">
                         {editTrigger && editIndex === index ?
                             <button
-                                className="bg-red-800 text-white px-4 mb-8  rounded-md m-2 hover:bg-slate-700"
+                                className="bg-gray-800 border border-gray-400 text-white px-4 mb-8  rounded-md m-2 hover:bg-gray-900"
                                 onClick={(e) => saveEdit(e)}
                             >
                                 Save

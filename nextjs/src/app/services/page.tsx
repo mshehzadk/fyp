@@ -77,25 +77,16 @@ const Services = () => {
   };
 
   return (
-    <div className="page" style={{ backgroundImage: "url('https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg')" }}>
+    <div className="page py-6" style={{ backgroundImage: "url('https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg')" }}>
         <Head>
           <title>Our Services</title>
           <meta name="description" content="Explore our range of services for your business." />
         </Head>
-      <header className="bg-slate-400 text-white py-5 text-center relative transition ease-in-out delay-150 hover:scale-100 hover:bg-orange-400 duration-300" >
-        <div className="container mx-auto">
-          <h1 className="text-4xl font-bold mb-1">OUR SERVICES</h1>
-          <p className="text-lg">Discover the range of services we offer to meet your business goals.</p>
-        </div>
-        {/* Left Margin */}
-        <div className="h-full w-full lg:w-60 absolute top-0 left-0">
-          <div className="h-full w-full bg-gradient-to-r from-slate-700 to-transparent"></div>
-        </div>
-        {/* Right Margin */}
-        <div className="h-full w-full lg:w-60 absolute top-0 right-0">
-          <div className="h-full w-full bg-gradient-to-l from-slate-700 to-transparent"></div>
-        </div>
-      </header>
+        <header className="bg-gray-900 rounded-lg border border-gray-500 text-white py-3 mt-0 mb-2 mx-auto" style={{ width: "80%" }}>
+            <div className="container mx-auto text-center">
+              <h1 className="text-2xl font-bold mb-3">ARABIC DUBBED VIDEO</h1>
+            </div>
+        </header>
 
       <div className="form mx-20">
         <section className="container mx-auto py-5">
@@ -103,7 +94,7 @@ const Services = () => {
             {services.map((service, index) => (
               <div
                 key={index}
-                className="bg-transparent hover:bg-cyan-700 p-6 rounded-lg shadow-md relative border border-gray-500 transition duration-300 hover:shadow-lg hover:scale-105"
+                className="bg-transparent hover:bg-gray-900 p-6 rounded-lg shadow-md relative border border-gray-500 transition duration-300 hover:shadow-lg hover:scale-105"
                 style={{ height: '480px' }}
               >
                 <div className="border-2 border-gray-500 rounded-md mb-4 p-4 mx-auto bg-black">
@@ -122,7 +113,7 @@ const Services = () => {
                 <div className="absolute bottom-0 left-0 right-0 p-4">
                   <button
                     onClick={() => handleViewMore(service)}
-                    className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-green-700 block mx-auto border-2 border-green-700 hover:shadow-md transform hover:scale-105 transition duration-300"
+                    className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 block mx-auto border border-gray-400 hover:shadow-md transform hover:scale-105 transition duration-300"
                   >
                     View More
                   </button>

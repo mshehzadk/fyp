@@ -365,7 +365,7 @@ export default function ArabicTranslation() {
                             }
                                 <div className="flex ml-auto">
                                     {editTrigger && editIndex === index ?
-                                        <button className="bg-red-800 text-white px-4 py-2 mb-8 rounded-md m-2 hover:bg-slate-700"
+                                        <button className="bg-gray-800 border border-gray-400 text-white px-4 py-2 mb-8 rounded-md m-2 hover:bg-slate-700"
                                             onClick={(e) => saveEdit(e)}
                                         >Save</button>
                                         :

@@ -40,11 +40,11 @@ export default function UrduTranscription() {
         </div>
       ) : (
         <div className="flex flex-col lg:flex-row lg:max-h-[67vh] ">
-          <div className="lg:w-1/2 lg:mr-4 bg-gray-700 border rounded-md border-gray-900 lg:overflow-y-auto md:overflow-y-auto overflow-y-hidden">
+          <div className="lg:w-1/2 lg:mr-4 bg-gray-700 border rounded-md border-gray-400 lg:overflow-y-auto md:overflow-y-auto overflow-y-hidden">
             <Urdutranscriptionlist />
           </div>
 
-          <div className="lg:w-1/2 lg:ml-4 bg-gray-900 p-3 lg:p-4 border rounded-md border-gray-900">
+          <div className="lg:w-1/2 lg:ml-4 bg-gray-900 p-3 lg:p-4 border rounded-md border-gray-500">
             <p className="text-white font-bold mb-2">Urdu Video</p>
             <div className="relative" style={{ paddingTop: "56.25%" }}>
               {videoRef && (

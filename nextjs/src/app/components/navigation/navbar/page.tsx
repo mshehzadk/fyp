@@ -22,7 +22,7 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
 
     return (
         <div>
-            <div className="w-full h-20 bg-black sticky top-0 drop-shadow-md">
+            <div className="w-full h-20 bg-black sticky top-0 z-50 drop-shadow-md">
                 <div className=" px-4 h-full flex flex-row">
                     <div className="flex w-[100%] md:w-[20%] ">
                         <Logo />
@@ -97,6 +97,7 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                     </div>
                 </div>
             </div>
+            <div className="w-full border-b border-gray-500"></div>
         </div>
     );
 };
