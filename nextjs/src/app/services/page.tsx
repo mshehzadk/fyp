@@ -13,28 +13,28 @@ interface Service {
 
 const services: Service[] = [
   {
-    title: 'Arabic Transcription',
+    title: 'Arabic Translation',
     description: 'Accurately transcribe Arabic audio content into written text. This service is ideal for extracting valuable information, creating subtitles, or facilitating the translation process.',
     extraInfo: 'Our Arabic transcription service is powered by state-of-the-art algorithms to ensure accuracy and efficiency.',
-    icon: 'https://cdn4.vectorstock.com/i/1000x1000/03/33/login-form-design-vector-19450333.jpg',
+    icon: 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/263128236/original/87ed6035dc05dee63904f7e0239ae90b45962761/do-your-translation-work-professionally.jpg',
   },
   {
     title: 'Urdu Transcription',
     description: 'Convert the transcribed Arabic text into Urdu, providing a comprehensive transcription service that caters specifically to Urdu speakers. This step ensures linguistic accuracy and cultural relevance.',
     extraInfo: 'Our Urdu transcription service focuses on linguistic accuracy and cultural sensitivity, catering specifically to Urdu speakers.',
-    icon: 'https://cdn4.vectorstock.com/i/1000x1000/03/33/login-form-design-vector-19450333.jpg',
+    icon: 'https://www.hansemgb.com/wp-content/uploads/2022/05/img_220513_3.png',
   },
   {
     title: 'Speaker Diarization',
     description: 'Leveraging cuttinglization.',
     extraInfo: 'Speaker Diarization is a technology that identifies and categorizes speakers in audio content, Leveraging cutting-edge technology, our Speaker Diarization feature precisely identifies and categorizes speakers, ensuring seamless and natuLeveraging cutting-edge technology, our Speaker Diarization feature precisely identifies and categorizes speakers, ensuring seamless and natuLeveraging cutting-edge technology, our Speaker Diarization feature precisely identifies and categorizes speakers, ensuring seamless and natuLeveraging cutting-edge technology, our Speaker Diarization feature precisely identifies and categorizes speakers, ensuring seamless and natuLeveraging cutting-edge technology, our Speaker Diarization feature precisely identifies and categorizes speakers, ensuring seamless and natuLeveraging cutting-edge technology, our Speaker Diarization feature precisely identifies and categorizes speakers, ensuring seamless and natural transitions in dubbed content. This advanced analysis captures emotional tones and nuances, providing invaluable insights for content creators and marketers. Experience a seamless fusion of technology and creativity as we bring a new dimension to language  providing insights for content creators and marketers.',
-    icon: 'https://t4.ftcdn.net/jpg/04/80/13/09/360_F_480130925_9nOFeoGcEhwCzgdz5dxurBM15qV05bFj.jpg',
+    icon: 'https://picovoice.ai/static/138e9b91ba722a68d071fcc0634f5ea5/b5380/thumbnail_speaker-diarization-in-python.png',
   },
   {
     title: 'Voice Cloning',
     description: 'Utilize cutting-edge voice cloning technology to replicate the original Arabic voice in Urdu. This process ensures a seamless transition from the source language to the target language, delivering a natural and authentic Urdu voiceover.',
     extraInfo: 'Voice cloning technology replicates the original Arabic voice in Urdu, ensuring a seamless and authentic voiceover experience in the target language.',
-    icon: 'https://cdn4.vectorstock.com/i/1000x1000/03/33/login-form-design-vector-19450333.jpg',
+    icon: 'https://www.idrnd.ai/wp-content/uploads/2020/03/VoiceCloning-DataCollection-scaled.jpeg',
   },
 ];
 

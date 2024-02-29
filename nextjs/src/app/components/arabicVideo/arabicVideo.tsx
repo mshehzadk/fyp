@@ -32,7 +32,7 @@ export default function arabicVideo() {
 
     return (
     <div className="pb-10" style={{ backgroundImage: "url('https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg')" }}>
-          <header className="bg-gray-900 rounded-lg border border-gray-400 text-white py-3 mt-6 mb-6 mx-auto" style={{ width: "80%" }}>
+          <header className="bg-gray-900 rounded-lg border border-gray-500 text-white py-3 mt-6 mb-6 mx-auto" style={{ width: "80%" }}>
             <div className="container mx-auto text-center">
               <h1 className="text-2xl font-bold mb-3">ARABIC DUBBED VIDEO</h1>
             </div>
@@ -56,7 +56,7 @@ export default function arabicVideo() {
                     </div> */}
 
                     {/* Video Container */}
-                    <div className="w-full lg:w-1/2 border-2 border-white mb-6" style={{ width: "100%", height: "auto", maxHeight: "400px" }}>
+                    <div className="w-full lg:w-1/2 border border-gray-500 mb-6" style={{ width: "100%", height: "auto", maxHeight: "400px" }}>
                         {isLoading ? (
                         
                             <div className="flex pt-10 justify-center items-center">

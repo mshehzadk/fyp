@@ -1,5 +1,5 @@
-'use client'; // This file is a client-side file
-import { useState } from 'react';
+'use client';
+import React, { useState } from 'react';
 import Head from 'next/head';
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
@@ -23,20 +23,18 @@ interface TeamMember {
 export default function Team() {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
 
-  // Function to handle click on "Details" button or "Close" button
   const handleDetailsClick = (member: TeamMember) => {
     setSelectedMember((prevMember) => (prevMember === member ? null : member));
   };
 
-  // Function to generate the content for each column
   const generateColumnContent = (member: TeamMember) => (
-    <div key={member.name} className="w-full md:w-80 mx-auto overflow-hidden bg-transparent rounded-lg shadow-md border border-gray-500">
+    <div key={member.name} className="w-full md:w-80 mx-auto overflow-hidden bg-transparent rounded-lg shadow-md border border-gray-500 relative">
       <div className="h-60 overflow-hidden">
         <img className="object-cover w-full h-full" src={member.image} alt={member.name} />
       </div>
-      <div className="p-6">
-        <h1 className="text-2xl font-semibold text-white">{member.name}</h1>
-        <p className="mt-2 text-sm text-white">{member.role}</p>
+      <div className="p-6 text-white">
+        <h2 className="text-2xl font-semibold">{member.name}</h2>
+        <p className="text-sm">{member.role}</p>
         <div className="mt-4 flex justify-center">
           <a href={member.facebook} className="text-blue-500 hover:text-blue-700 px-2"><FaFacebook size={24} /></a>
           <a href={member.instagram} className="text-pink-500 hover:text-pink-700 px-2"><FaInstagram size={24} /></a>
@@ -45,9 +43,9 @@ export default function Team() {
         </div>
         <div className="mt-4">
           {selectedMember === member && (
-            <div className="mt-4">
-              <h2 className="text-lg font-semibold text-white">Details</h2>
-              <p className="text-white mt-2">{member.details}</p>
+            <div className='details'>
+              <h2 className="text-lg font-semibold">Details</h2>
+              <p>{member.details}</p>
               <button onClick={() => setSelectedMember(null)} className="text-white bg-indigo-500 hover:bg-indigo-700 px-4 py-2 rounded-full mt-4 focus:outline-none focus:shadow-outline">
                 Close
               </button>
@@ -83,73 +81,11 @@ export default function Team() {
         <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
         <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
       </section>
-      <section className="px-4 py-10 text-center bg-black shadow-md border-2 border-gray-500 rounded-lg mt-10 mx-auto" style={{ width: "90%" }}>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-      </section>
-      <section className="px-4 py-10 text-center bg-black shadow-md border-2 border-gray-500 rounded-lg mt-10 mx-auto" style={{ width: "90%" }}>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-      </section>
-      <section className="px-4 py-10 text-center bg-black shadow-md border-2 border-gray-500 rounded-lg mt-10 mx-auto" style={{ width: "90%" }}>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-      </section>
-      <section className="px-4 py-10 text-center bg-black shadow-md border-2 border-gray-500 rounded-lg mt-10 mx-auto" style={{ width: "90%" }}>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-      </section>
-      <section className="px-4 py-10 text-center bg-black shadow-md border-2 border-gray-500 rounded-lg mt-10 mx-auto" style={{ width: "90%" }}>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-      </section>
-      <section className="px-4 py-10 text-center bg-black shadow-md border-2 border-gray-500 rounded-lg mt-10 mx-auto" style={{ width: "90%" }}>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-      </section>
-      <section className="px-4 py-10 text-center bg-black shadow-md border-2 border-gray-500 rounded-lg mt-10 mx-auto" style={{ width: "90%" }}>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-      </section>
-      <section className="px-4 py-10 text-center bg-black shadow-md border-2 border-gray-500 rounded-lg mt-10 mx-auto" style={{ width: "90%" }}>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-      </section>
-      <section className="px-4 py-10 text-center bg-black shadow-md border-2 border-gray-500 rounded-lg mt-10 mx-auto" style={{ width: "90%" }}>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-      </section>
-      <section className="px-4 py-10 text-center bg-black shadow-md border-2 border-gray-500 rounded-lg mt-10 mx-auto" style={{ width: "90%" }}>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-      </section>
-      <section className="px-4 py-10 text-center bg-black shadow-md border-2 border-gray-500 rounded-lg mt-10 mx-auto" style={{ width: "90%" }}>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-      </section>
-      <section className="px-4 py-10 text-center bg-black shadow-md border-2 border-gray-500 rounded-lg mt-10 mx-auto" style={{ width: "90%" }}>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-      </section>
-      <section className="px-4 py-10 text-center bg-black shadow-md border-2 border-gray-500 rounded-lg mt-10 mx-auto" style={{ width: "90%" }}>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-      </section>
-      <section className="px-4 py-10 text-center bg-black shadow-md border-2 border-gray-500 rounded-lg mt-10 mx-auto" style={{ width: "90%" }}>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-      </section>
-      <section className="px-4 py-10 text-center bg-black shadow-md border-2 border-gray-500 rounded-lg mt-10 mx-auto" style={{ width: "90%" }}>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-      </section>
-      <section className="px-4 py-10 text-center bg-black shadow-md border-2 border-gray-500 rounded-lg mt-10 mx-auto" style={{ width: "90%" }}>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-        <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-      </section>
+
       <br/>
       <br/>
 
     </div>
   );
 }
+
