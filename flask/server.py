@@ -18,7 +18,7 @@ source_json_filename='urduTranscription.json'
 source_wav_vocals_filename='vocals.wav'
 source_wav_music_filename='music.wav'
 output_video_path=output_dir+'arabicVideo.mp4'
-target_language='hi-IN'
+target_language='hi'
 
 app = Flask(__name__) 
 CORS(app)
