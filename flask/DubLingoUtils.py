@@ -328,7 +328,7 @@ def combined_audio_music(json_file,audio_file,output_dir):
 
         # Convert start and end times from minutes to milliseconds
         start_time_ms = int(start_time_mm)
-        end_time_ms = int(end_time_mm)+50
+        end_time_ms = int(end_time_mm)
 
         # Ensure the overlay audio duration is at least as long as the specified time range
         overlay_audio = overlay_audio[:end_time_ms - start_time_ms]
@@ -342,7 +342,7 @@ def combined_audio_music(json_file,audio_file,output_dir):
     def time_in_milliSecond(time_str):
         hours, minutes, seconds_milliseconds = time_str.split(":")
         seconds, milliseconds = seconds_milliseconds.split(",")
-        milliseconds=milliseconds[0]+milliseconds[1]
+        milliseconds=milliseconds[0]+milliseconds[1]+milliseconds[2]
         total_milliseconds = int(hours) * 60 * 60 * 1000 + int(minutes) * 60 * 1000 + int(seconds) * 1000 + int(milliseconds)
         return total_milliseconds
 
