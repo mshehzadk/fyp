@@ -4,6 +4,14 @@ import Link from "next/link";
 import { AiOutlinePlus } from "react-icons/ai";
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
+function LoadingSpinner() {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-blue-500"></div>
+      </div>
+    );
+  }
+
 export default function ArabicTranslation() {
     const [urduTranscription, setUrduTranscription] = useState<JSON>();
     const [data, setData] = useState<JSON>();
@@ -19,6 +27,7 @@ export default function ArabicTranslation() {
     const containerRef = useRef<HTMLDivElement>(null);
     const transcriptionRef = useRef<HTMLDivElement>(null);
     const translationRef = useRef<HTMLDivElement>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const handleScroll = () => {
         if (containerRef.current && transcriptionRef.current && translationRef.current) {
@@ -28,6 +37,22 @@ export default function ArabicTranslation() {
         }
     };
     
+    useEffect(() => {
+        try {
+          fetch('http://localhost:8080/api/fileExistence', {method: 'POST',
+                                                            headers: { 'Content-Type': 'application/json' },
+                                                            body: JSON.stringify({'fileName':'arabicTranslation.json'})})
+            .then((response) => {
+              if (response.ok) {
+                return response.json();
+              }
+              throw new Error('Failed to fetch data');
+            })
+            .then((data) => {setIsLoading(!data.exists);})
+        } catch (error: any) {
+          console.log(error);
+        }
+      }, []);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -218,7 +243,11 @@ export default function ArabicTranslation() {
 
 
     return (
-    
+    <>
+        {isLoading ? (
+            <LoadingSpinner />
+         ) : (
+           <>
     <div className="container mx-auto px-4 p-4 " onScroll={handleScroll}>
 
                 
@@ -390,7 +419,7 @@ export default function ArabicTranslation() {
             <div className="flex mt-6 space-x-4">
                 <div className="w-1/2">
                     <Link href='/urduTranscription' className="flex-1 text-right">
-                        <div className=" bg-slate-500 text-white py-2 px-4 mr-2  rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
+                        <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
                             <FaArrowLeft className="mr-2" />
                             Urdu Transcription
                         </div>
@@ -409,5 +438,8 @@ export default function ArabicTranslation() {
             </div>
 
     </div>
+    </>
+    )}
+    </>
     );
 }

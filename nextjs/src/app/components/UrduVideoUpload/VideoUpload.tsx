@@ -2,6 +2,14 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
+function LoadingSpinner() {
+  return (
+    <div className="flex justify-center items-center h-screen">
+      <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-blue-500"></div>
+    </div>
+  );
+}
+
 export default function VideoUpload() {
   const [file, setFile] = useState<File | null>(null);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
@@ -58,16 +66,20 @@ export default function VideoUpload() {
 
   return (
     <>
-      {showUploadForm && (
-        <header className="bg-gray-900 rounded-lg border border-gray-400 text-white py-6 mt-20 mb-10 mx-auto" style={{ width: "80%" }}>
-          <div className="container mx-auto text-center">
-            <h1 className="text-2xl font-bold mb-3">URDU VIDEO TO ARABIC VIDEOS</h1>
-            <h4>Convert video from Urdu to Arabic to you hearts content</h4>
-          </div>
-        </header>
-      )}
+      {isUploading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          {showUploadForm && (
+            <header className="bg-gray-900 rounded-lg border border-gray-400 text-white py-6 mt-20 mb-10 mx-auto" style={{ width: "80%" }}>
+              <div className="container mx-auto text-center">
+                <h1 className="text-2xl font-bold mb-3">URDU VIDEO TO ARABIC VIDEOS</h1>
+                <h4>Convert video from Urdu to Arabic to your heart's content</h4>
+              </div>
+            </header>
+          )}
 
-      <div className="videoupload mx-auto p-2  shadow-md w-full ">
+<div className="videoupload mx-auto p-2  shadow-md w-full ">
         {showUploadForm && (
           <div className="flex justify-center items-center my-5">
             <div className="bg-gray-900 border border-gray-400 text-white shadow-md rounded-lg p-10 x">
@@ -135,6 +147,10 @@ export default function VideoUpload() {
                 ) : null}
             </div>
       </div>
+        </>
+      )}
     </>
   );
 }
+
+

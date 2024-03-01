@@ -32,9 +32,9 @@ export default function arabicVideo() {
 
     return (
     <div className="pb-10" style={{ backgroundImage: "url('https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg')" }}>
-          <header className="bg-gray-900 rounded-lg border border-gray-500 text-white py-3 mt-6 mb-6 mx-auto" style={{ width: "80%" }}>
+          <header className="bg-gray-900 rounded-tl-lg rounded-tr-lg border border-gray-500 text-white py-3 mt-3 mb-0 mx-auto" style={{ width: "80%" }}>
             <div className="container mx-auto text-center">
-              <h1 className="text-2xl font-bold mb-3">ARABIC DUBBED VIDEO</h1>
+              <h1 className="text-2xl font-bold mb-3">DUBBED VIDEO</h1>
             </div>
           </header>
 
@@ -42,44 +42,24 @@ export default function arabicVideo() {
 
 
 
-        <div className="w-screen flex flex-col justify-center items-center py-0 ">
-            <div className={`mt-4 flex items-center justify-center pb-5"`} style={{ width: "80%", margin: "0 auto" }}>
-                <div className="flex flex-col lg:flex-row">
-
-                    {/* Left Image
-                    <div className="w-2/4 lg:w-1/2 border-2 border-black hidden lg:block mr-1" style={{ width: "400px", height: "400px" }}>
-                        <img
-                        src="https://wallpapercave.com/wp/wp5886498.jpg"
-                        alt="Left Image"
-                        className="w-full h-full object-cover"
-                        />
-                    </div> */}
-
+          <div className="w-screen flex flex-col justify-center items-center py-0">
+            <div className="mt-4 flex items-center justify-center pb-5" style={{ width: "80%", margin: "0 auto" }}>
+                <div className="flex flex-col lg:flex-row w-full">
                     {/* Video Container */}
-                    <div className="w-full lg:w-1/2 border border-gray-500 mb-6" style={{ width: "100%", height: "auto", maxHeight: "400px" }}>
+                    <div className="w-full border border-gray-500 bg-black mb-0" style={{ height: "auto", maxHeight: "450px" }}>
                         {isLoading ? (
-                        
-                            <div className="flex pt-10 justify-center items-center">
-                                {/* You can keep the loading indicator or remove it based on your preference */}
+                            <div className="flex pt-5 justify-center items-center">
+                                {/* Loading Indicator */}
                                 Loading..........
                             </div>
                         ) : (
-                            <video className="w-full h-full lg:w-[100%] lg:h-[100%] bg-black" src={videoSrc} controls />
+                            <video className="w-full h-full" src={videoSrc} controls />
                         )}
                     </div>
-
-                    {/* Right Image
-                    <div className="w-2/4 lg:w-1/2 border-2 border-black hidden lg:block ml-1" style={{ width: "400px", height: "400px" }}>
-                        <img
-                        src="https://wallpapercave.com/wp/wp5886498.jpg"
-                        alt="Right Image"
-                        className="w-full h-full object-cover"
-                        />
-                    </div> */}
                 </div>
             </div>
 
-            <div className="flex w-full justify-center mt-5" style={{ maxWidth: "80%", margin: "0 auto" }}>
+            <div className="flex w-full justify-center mt-0" style={{ maxWidth: "80%", margin: "0 auto" }}>
                 <Link href="/arabicTranslation" className="flex-1 pr-2">
                     <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center w-50%">
                     <FaArrowLeft className="mr-2" />
@@ -94,9 +74,8 @@ export default function arabicVideo() {
                     </div>
                     </button>
                 )}
-                </div>
             </div>
-
+        </div>
     </div>
     )
 }

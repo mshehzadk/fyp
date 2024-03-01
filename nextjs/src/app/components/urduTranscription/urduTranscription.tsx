@@ -4,6 +4,13 @@ import Urdutranscriptionlist from "./urduTranscriptionList";
 import Link from "next/link";
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
+function LoadingSpinner() {
+  return (
+    <div className="flex justify-center items-center h-screen">
+      <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-blue-500"></div>
+    </div>
+  );
+}
 
 export default function UrduTranscription() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -31,14 +38,12 @@ export default function UrduTranscription() {
   }
 
   return (
-  
+  <div className="w-full h-full p-0" style={{ backgroundImage: "url('https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg')" }}>
     <div className="container mx-auto px-4 mt-5 ">
       {isLoading ? (
-        <div className="flex flex-col items-center justify-center min-h-screen lg:max-h-screen-sm md:max-h-screen-md sm:max-h-screen-lg">
-          <div className="animate-spin rounded-full h-20 w-20 border-t-4 border-b-4 border-blue-500"></div>
-          <p className="text-white mt-4">Loading...URDU Transcription</p>
-        </div>
+         <LoadingSpinner />
       ) : (
+        <>
         <div className="flex flex-col lg:flex-row lg:max-h-[67vh] ">
           <div className="lg:w-1/2 lg:mr-4 bg-gray-700 border rounded-md border-gray-400 lg:overflow-y-auto md:overflow-y-auto overflow-y-hidden">
             <Urdutranscriptionlist />
@@ -56,24 +61,31 @@ export default function UrduTranscription() {
             </div>
           </div>
         </div>
-      )}
+      
 
       <div className="flex mt-6 space-x-4">
-        <Link href="/urduvideo" className="flex-1">
-          <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
-            <FaArrowLeft className="mr-2" />
-            Urdu Video
-          </div>
-        </Link>
+      <div className="w-1/2">
+          <Link href="/urduvideo" className="flex-1">
+            <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
+              <FaArrowLeft className="mr-2" />
+              Urdu Video
+            </div>
+          </Link>
+        </div>
         {!isLoading && (
+        <div className="w-1/2">
           <Link href="/arabicTranslation" onClick={() => generateTranslation()} className="flex-1">
             <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
               Arabic Translation
               <FaArrowRight className="ml-2" />
             </div>
           </Link>
+        </div>
         )}
       </div>
+      </>
+      )}
     </div>
+  </div>  
   );
 }
