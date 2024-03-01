@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
-function LoadingSpinner() {
+const LoadingSpinner = () => {
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-blue-500"></div>
+    <div className="flex justify-center items-center">
+      <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-blue-500 border-t-transparent"></div>
     </div>
   );
-}
+};
 
 export default function VideoUpload() {
   const [file, setFile] = useState<File | null>(null);
@@ -66,10 +66,7 @@ export default function VideoUpload() {
 
   return (
     <>
-      {isUploading ? (
-        <LoadingSpinner />
-      ) : (
-        <>
+
           {showUploadForm && (
             <header className="bg-gray-900 rounded-lg border border-gray-400 text-white py-6 mt-20 mb-10 mx-auto" style={{ width: "80%" }}>
               <div className="container mx-auto text-center">
@@ -116,7 +113,7 @@ export default function VideoUpload() {
             {/* Video Container */}
             <div className="w-full lg:w-1/2 border border-gray-400 bg-black mt-5 mb-5" style={{ width: "100%", height: "auto", maxHeight: "500px" }}>
               {isUploading ? (
-                <div>Loading...</div>
+                <div className="flex justify-center items-center h-full"><LoadingSpinner /></div>
               ) : videoUrl ? (
                 <div className="video-container" style={{ width: "100%", height: "100%" }}>
                   <video controls className="w-full h-full">
@@ -147,8 +144,7 @@ export default function VideoUpload() {
                 ) : null}
             </div>
       </div>
-        </>
-      )}
+
     </>
   );
 }

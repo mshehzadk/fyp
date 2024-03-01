@@ -26,13 +26,13 @@ const services: Service[] = [
   },
   {
     title: 'Speaker Diarization',
-    description: 'Leveraging cuttinglization.',
-    extraInfo: 'Speaker Diarization is a technology that identifies and categorizes speakers in audio content, Leveraging cutting-edge technology, our Speaker Diarization feature precisely identifies and categorizes speakers, ensuring seamless and natuLeveraging cutting-edge technology, our Speaker Diarization feature precisely identifies and categorizes speakers, ensuring seamless and natuLeveraging cutting-edge technology, our Speaker Diarization feature precisely identifies and categorizes speakers, ensuring seamless and natuLeveraging cutting-edge technology, our Speaker Diarization feature precisely identifies and categorizes speakers, ensuring seamless and natuLeveraging cutting-edge technology, our Speaker Diarization feature precisely identifies and categorizes speakers, ensuring seamless and natuLeveraging cutting-edge technology, our Speaker Diarization feature precisely identifies and categorizes speakers, ensuring seamless and natural transitions in dubbed content. This advanced analysis captures emotional tones and nuances, providing invaluable insights for content creators and marketers. Experience a seamless fusion of technology and creativity as we bring a new dimension to language  providing insights for content creators and marketers.',
+    description: 'Leveralessutting-edge voice cloning technology to replicate the original Arabic voice in Urdu. This process ensures a seamless transition from the source language.',
+    extraInfo: 'Speaker Diarization is a technology that identifies and categorizes speakers in audio content, Leveraging cutting-edge technology, our Speaker Diarization feature precisely identifies and categorizes speakers, ensuring seamless and natuLeveraging cutting-edge technology, our Speaker Utilize cutting-edge voice cloning technology to replicate the original Arabic voice in Urdu. Utilize cutting-edge voice cloning technology to replicate the original Arabic voice in Urdu. This process ensures a seamless transition from the source language This process ensures a seamless transition from the source language Diarization feature precisely identifies and categorizes speakers, ensuring seamless and natuLeveraging cutting-edge technology, our Speaker Diarization feature precisely identifies and categorizes speakers, ensuring seamless and natuLeveraging cutting-edge technology, our Speaker Diarization feature precisely identifies and categorizes speakers, ensuring seamless and natuLeveraging cutting-edge technology, our Speaker Diarization feature precisely identifies and categorizes speakers, ensuring seamless and natuLeveraging cutting-edge technology, our Speaker Diarization feature precisely identifies and categorizes speakers, ensuring seamless and natural transitions in dubbed content. This advanced analysis captures emotional tones and nuances, providing invaluable insights for content creators and marketers. Experience a seamless fusion of technology and creativity as we bring a new dimension to language  providing insights for content creators and marketers.',
     icon: 'https://picovoice.ai/static/138e9b91ba722a68d071fcc0634f5ea5/b5380/thumbnail_speaker-diarization-in-python.png',
   },
   {
     title: 'Voice Cloning',
-    description: 'Utilize cutting-edge voice cloning technology to replicate the original Arabic voice in Urdu. This process ensures a seamless transition from the source language to the target language, delivering a natural and authentic Urdu voiceover.',
+    description: 'Utiliplicate the original Arabic voice in Urdu. This process ensures a seamless transition from the source language.',
     extraInfo: 'Voice cloning technology replicates the original Arabic voice in Urdu, ensuring a seamless and authentic voiceover experience in the target language.',
     icon: 'https://www.idrnd.ai/wp-content/uploads/2020/03/VoiceCloning-DataCollection-scaled.jpeg',
   },
@@ -82,7 +82,7 @@ const Services = () => {
           <title>Our Services</title>
           <meta name="description" content="Explore our range of services for your business." />
         </Head>
-        <header className="bg-gray-900 rounded-lg border border-gray-500 text-white py-3 mt-0 mb-2 mx-auto" style={{ width: "80%" }}>
+        <header className="bg-gray-900 rounded-lg border border-gray-500 text-white py-3 mt-0 mb-2 mx-auto" style={{ width: "90%" }}>
             <div className="container mx-auto text-center">
               <h1 className="text-2xl font-bold mb-3">ARABIC DUBBED VIDEO</h1>
             </div>
@@ -90,34 +90,33 @@ const Services = () => {
 
       <div className="form mx-20">
         <section className="container mx-auto py-5">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
             {services.map((service, index) => (
               <div
                 key={index}
-                className="bg-transparent hover:bg-gray-900 p-6 rounded-lg shadow-md relative border border-gray-500 transition duration-300 hover:shadow-lg hover:scale-105"
-                style={{ height: '480px' }}
-              >
-                <div className="border-2 border-gray-500 rounded-md mb-4 p-4 mx-auto bg-black">
-                  <img
-                    src={service.icon}
-                    alt={service.title}
-                    className="w-full h-24 object-contain"
-                  />
-                </div>
-                <div className="flex-grow overflow-hidden">
-                  <h2 className="text-xl font-bold mb-2 text-center text-white">{service.title}</h2>
-                  <div className="max-h-40 overflow-auto mb-4">
-                    <p className="text-white">{service.description}</p>
+                className="bg-gray-700 hover:bg-gray-900 p-5 rounded-lg shadow-md relative border border-gray-500 transition duration-300 hover:shadow-lg hover:scale-105"
+                style={{ height: '455px' }}>
+                  <div className="border border-gray-400 rounded-md mb-4 p-4 mx-auto bg-black">
+                    <img
+                      src={service.icon}
+                      alt={service.title}
+                      className="w-full h-24 object-contain"
+                    />
                   </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <button
-                    onClick={() => handleViewMore(service)}
-                    className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 block mx-auto border border-gray-400 hover:shadow-md transform hover:scale-105 transition duration-300"
-                  >
-                    View More
-                  </button>
-                </div>
+                  <div className="flex-grow overflow-hidden">
+                    <h2 className="text-xl font-bold mb-5 text-center text-white">{service.title}</h2>
+                    <div className="max-h-40 overflow-auto mb-4">
+                      <p className="text-white">{service.description}</p>
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 pb-4">
+                    <button
+                      onClick={() => handleViewMore(service)}
+                      className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 block mx-auto border border-gray-400 hover:shadow-md transform hover:scale-105 transition duration-300"
+                    >
+                      View More
+                    </button>
+                  </div>
               </div>
             ))}
           </div>

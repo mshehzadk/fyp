@@ -62,17 +62,18 @@ export default function Team() {
   );
 
   return (
-    <div className="page " style={{ backgroundImage: "url('https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg')" }}>
+    <div className="page pt-7" style={{ backgroundImage: "url('https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg')" }}>
       <Head>
         <title>Our Team</title>
         <meta name="description" content="Learn more about the Dublingo team." />
       </Head>
-
-      <header className="text-center py-5 mb-2">
-        <h1 className="text-4xl font-bold mb-1 text-white">Team Members</h1>
+      <header className="bg-gray-900 rounded-lg border  border-gray-500 text-white py-3 mb-7 mt-0 mx-auto" style={{ width: "90%" }}>
+            <div className="container mx-auto text-center">
+              <h1 className="text-2xl font-bold mb-3">Team Members</h1>
+            </div>
       </header>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3 px-4">
+      <div className="grid grid-cols-1 gap-0 md:grid-cols-3 px-4">
         {teamMembers.map((member) => (
           <div key={member.name}>{generateColumnContent(member)}</div>
         ))}
