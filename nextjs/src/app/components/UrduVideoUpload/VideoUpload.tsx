@@ -70,8 +70,8 @@ export default function VideoUpload() {
           {showUploadForm && (
             <header className="bg-gray-900 rounded-lg border border-gray-400 text-white py-6 mt-20 mb-10 mx-auto" style={{ width: "80%" }}>
               <div className="container mx-auto text-center">
-                <h1 className="text-2xl font-bold mb-3">URDU VIDEO TO ARABIC VIDEOS</h1>
-                <h4>Convert video from Urdu to Arabic to your heart's content</h4>
+                <h1 className="text-2xl font-bold mb-3">DUB VIDEOS TO ANOTHER LANGUAGE</h1>
+                <h4>Convert video from one to another language to your heart's content</h4>
               </div>
             </header>
           )}
@@ -137,7 +137,7 @@ export default function VideoUpload() {
                 {isVideoUploaded ? (
                   <Link href="/urduTranscription" className="flex-1">
                     <div className="bg-slate-500 text-white py-2 px-10 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
-                      Urdu Transcription
+                      Transcription
                       <FaArrowRight className="ml-2" />
                     </div>
                   </Link>

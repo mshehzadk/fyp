@@ -255,7 +255,7 @@ export default function ArabicTranslation() {
                 <div ref={transcriptionRef} className="lg:w-1/2 lg:mr-4 bg-gray-700 border-2 rounded-md border-black lg:overflow-y-auto md:overflow-y-auto lg:max-h-[70vh]">
                     <div className="bg-slate-800 px-3 py-4">
                         <p className="text-white font-bold">
-                            Urdu Transcription
+                            Transcription
                         </p>
                     </div>
                     {urduTranscription && Array.isArray(urduTranscription) && urduTranscription.map((item: any, index: number) => (
@@ -276,7 +276,7 @@ export default function ArabicTranslation() {
                     <>
                         <div className="flex justify-between items-center bg-slate-800 px-3 py-2">
                             <p className="text-white font-bold text-lg">
-                                Arabic Translation
+                                Translation
                             </p>
                             <button
                                 className="bg-gray-200 px-4 py-2 flex items-center rounded-md text-slate-800 hover:bg-slate-700 hover:text-white transition-all duration-300"
@@ -421,7 +421,7 @@ export default function ArabicTranslation() {
                     <Link href='/urduTranscription' className="flex-1 text-right">
                         <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
                             <FaArrowLeft className="mr-2" />
-                            Urdu Transcription
+                            Transcription
                         </div>
                     </Link>
                 </div>
@@ -429,7 +429,7 @@ export default function ArabicTranslation() {
                     <div className="w-1/2">
                         <Link href='/arabicVideo' onClick={() => generateTragetVideo()} className="flex-1 text-left">
                             <div className="bg-slate-500 text-white py-2 px-4 mr-3 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">
-                                Arabic Video
+                                Dubbed Video
                                 <FaArrowRight className="ml-2" />
                             </div>
                         </Link>

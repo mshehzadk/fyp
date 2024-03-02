@@ -189,7 +189,7 @@ export default function urduTranscriptionList() {
         <div>
             <>
                 <div className="flex justify-between items-center bg-slate-800 px-4 py-2">
-                    <p className="text-white font-bold text-lg">Urdu Transcription</p>
+                    <p className="text-white font-bold text-lg">Transcription</p>
                     <button
                         className="bg-gray-200 px-4 py-2 flex items-center rounded-md text-slate-800 hover:bg-slate-700 hover:text-white transition-all duration-300"
                         onClick={addTranscription}>
