@@ -331,7 +331,7 @@ def combined_audio_music(json_file,audio_file,output_dir):
         end_time_ms = int(end_time_mm)
 
         # Ensure the overlay audio duration is at least as long as the specified time range
-        overlay_audio = overlay_audio[:end_time_ms - start_time_ms]
+        # overlay_audio = overlay_audio[:end_time_ms - start_time_ms]
 
         # Overwrite frames in the original audio with frames from the overlay audio
         combined_audio = original_audio.overlay(overlay_audio, position=start_time_ms)
@@ -450,6 +450,28 @@ def max_sentence_id(json_file):
             max_id = entry["sentence_id"]
     return max_id
 
+# Function to make copy of music file
+def copy_music_file(music_file_path, output_dir):
+    if not os.path.exists(output_dir+'musicCopy.wav'):
+        try:
+            # Load audio clip
+            audio_clip = AudioFileClip(output_dir+music_file_path)
+            # Write the result to the output file
+            audio_clip.write_audiofile(output_dir+"musicCopy.wav")
+            # Close the clips
+            audio_clip.close()
+        except Exception as e:
+            print(f"Error copying music file: {e}")
+    else:
+        try:
+            # Load audio clip
+            audio_clip = AudioFileClip(output_dir+"musicCopy.wav")
+            # Write the result to the output file
+            audio_clip.write_audiofile(output_dir+music_file_path)
+            # Close the clips
+            audio_clip.close()
+        except Exception as e:
+            print(f"Error copying music file: {e}")
 
 def process_urdu_video(spleeter_url,whisperX_url,video_path,output_dir,filename,source_wav_music_filename,source_wav_vocals_filename):
     music_vocals_separation(spleeter_url,video_path,output_dir,source_wav_vocals_filename,source_wav_music_filename)
@@ -458,6 +480,7 @@ def process_urdu_video(spleeter_url,whisperX_url,video_path,output_dir,filename,
 def process_arabic_video(voice_clone_url,target_json_filename,video_path,output_dir,output_video_path,source_wav_music_filename,source_wav_vocals_filename):
     # get_speaker_wise_audio(output_dir+source_wav_vocals_filename,output_dir+target_json_filename,output_dir)
     # generate_and_save_audio(output_dir+target_json_filename,output_dir,voice_clone_url)
+    copy_music_file(source_wav_music_filename, output_dir)
     generated_voices(voice_clone_url,output_dir,target_json_filename)
     combined_audio_music(output_dir+target_json_filename,output_dir+source_wav_music_filename,output_dir)
     replace_audio(video_path, output_dir+source_wav_music_filename, output_video_path)
