@@ -340,8 +340,8 @@ def combined_audio_music(json_file,audio_file,output_dir):
         audio_duration_ms = len(overlay_audio)
         if audio_duration_ms > overlay_audio_time and (audio_duration_ms-overlay_audio_time)>1000:
             # Calculate the speed change factor
-            speed_change = overlay_audio_time / audio_duration_ms
-            speed_change=speed_change+0.8
+            speed_change = audio_duration_ms/overlay_audio_time
+            speed_change=speed_change-0.1
             if speed_change>1.0:
                 # Speed up the audio
                 overlay_audio = overlay_audio.speedup(playback_speed=speed_change)
@@ -494,6 +494,6 @@ def process_arabic_video(voice_clone_url,target_json_filename,video_path,output_
     # get_speaker_wise_audio(output_dir+source_wav_vocals_filename,output_dir+target_json_filename,output_dir)
     # generate_and_save_audio(output_dir+target_json_filename,output_dir,voice_clone_url)
     copy_music_file(source_wav_music_filename, output_dir)
-    generated_voices(voice_clone_url,output_dir,target_json_filename)
+    # generated_voices(voice_clone_url,output_dir,target_json_filename)
     combined_audio_music(output_dir+target_json_filename,output_dir+source_wav_music_filename,output_dir)
     replace_audio(video_path, output_dir+source_wav_music_filename, output_video_path)
