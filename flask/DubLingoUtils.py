@@ -331,7 +331,10 @@ def combined_audio_music(json_file,audio_file,output_dir):
         end_time_ms = int(end_time_mm)
 
         # Ensure the overlay audio duration is at least as long as the specified time range
-        # overlay_audio = overlay_audio[:end_time_ms - start_time_ms]
+        overlay_audio_time=end_time_mm-start_time_mm+50
+        audio_time=len(overlay_audio)
+        if audio_time>=overlay_audio_time:
+            overlay_audio = overlay_audio[:overlay_audio_time]
 
         # Overwrite frames in the original audio with frames from the overlay audio
         combined_audio = original_audio.overlay(overlay_audio, position=start_time_ms)

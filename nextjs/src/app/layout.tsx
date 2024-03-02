@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 
 
 export const metadata: Metadata = {
-    title: 'Dublingo',
+    title: 'DubLingo',
     description: 'A dubbing web app for language learners',
 };
 
