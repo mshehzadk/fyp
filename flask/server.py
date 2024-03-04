@@ -7,8 +7,8 @@ import multiprocessing
 import DubLingoUtils as dl
 
 
-spleeter_url='https://b1d8-34-125-149-78.ngrok-free.app/'    # replace with your URL
-whisperX_url='https://b408-34-75-56-19.ngrok-free.app/'  # replace with your URL
+spleeter_url='https://eef7-35-237-34-169.ngrok-free.app/'    # replace with your URL
+whisperX_url='https://0c5e-34-125-51-97.ngrok-free.app/'  # replace with your URL
 voice_clone_url=spleeter_url  # replace with your URL
 output_dir='./data/'
 # Replace this with the actual path to your video file
@@ -18,7 +18,7 @@ source_json_filename='urduTranscription.json'
 source_wav_vocals_filename='vocals.wav'
 source_wav_music_filename='music.wav'
 output_video_path=output_dir+'arabicVideo.mp4'
-target_language='en'
+target_language='ar'
 
 app = Flask(__name__) 
 CORS(app)
@@ -43,9 +43,9 @@ def generateTranscription():
 @app.route('/uploadUrduVideo', methods=['POST'])
 def upload_file():
     # #check if path exist
-    # if dl.check_path_exist(output_dir):
-    #     # Remove existing files from data directory
-    #     dl.delete_all_files_in_folder(output_dir)
+    if dl.check_path_exist(output_dir):
+        # Remove existing files from data directory
+        dl.delete_all_files_in_folder(output_dir)
     # # Create a new directory for the current session
     dl.create_folder(output_dir)
     # Check if the post request has the file part
