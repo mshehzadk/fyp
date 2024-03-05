@@ -440,6 +440,7 @@ def generate_targetVideo():
         my_process = multiprocessing.Process(target=dl.process_arabic_video, args=args)
         # Start the process
         my_process.start()
+        return 'Video generation is in progress', 200
     elif not dl.check_path_exist(output_dir+target_json_filename) or not dl.check_path_exist(output_dir+source_json_filename) or not dl.check_path_exist(video_path):
         print('Video not found or Transcription not found or Translation not found')
         return 'Error', 400
