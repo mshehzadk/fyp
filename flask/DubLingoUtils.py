@@ -120,6 +120,8 @@ def Transcription(url,source_wav_vocals_filename,source_json_filename,output_dir
     with open(output_dir+source_json_filename, 'w', encoding='utf-8') as output_json_file:
         json.dump(formatted_results, output_json_file, ensure_ascii=False, indent=2)
 
+    print('Transcription saved!')
+
 # Function to translate the transcribed text
 def translate_text(text, target_language):
         translator = Translator()
@@ -155,6 +157,10 @@ def translation(output_dir,source_json_filename,target_json_filename,target_lang
 
 
     translate_json(output_dir+source_json_filename, output_dir+target_json_filename,target_language)
+    while not os.path.exists(output_dir+target_json_filename):
+        translation(output_dir,source_json_filename,target_json_filename,target_language)
+
+    print('Translation saved!')
 
 # Function to get speaker-wise audio
 def get_speaker_wise_audio(audio_file,json_file,output_dir):
@@ -493,6 +499,7 @@ def process_urdu_video(spleeter_url,whisperX_url,video_path,output_dir,filename,
     music_vocals_separation(spleeter_url,video_path,output_dir,source_wav_vocals_filename,source_wav_music_filename)
     Transcription(whisperX_url,source_wav_vocals_filename,filename,output_dir)
 
+
 def process_arabic_video(voice_clone_url,target_json_filename,video_path,output_dir,output_video_path,source_wav_music_filename,source_wav_vocals_filename):
     # get_speaker_wise_audio(output_dir+source_wav_vocals_filename,output_dir+target_json_filename,output_dir)
     # generate_and_save_audio(output_dir+target_json_filename,output_dir,voice_clone_url)
@@ -500,3 +507,4 @@ def process_arabic_video(voice_clone_url,target_json_filename,video_path,output_
     generated_voices(voice_clone_url,output_dir,target_json_filename)
     combined_audio_music(output_dir+target_json_filename,output_dir+source_wav_music_filename,output_dir)
     replace_audio(video_path, output_dir+source_wav_music_filename, output_video_path)
+    print("Process Completed")
