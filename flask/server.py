@@ -33,12 +33,20 @@ def home():
     return jsonify({'message': 'You are at home'})
 
 def generateTranscription():
-    if not dl.check_path_exist(output_dir+source_json_filename):
+    if not dl.check_path_exist(output_dir+source_json_filename) and dl.check_path_exist(video_path):
         args=[spleeter_url,whisperX_url,video_path,output_dir,source_json_filename,source_wav_music_filename,source_wav_vocals_filename]
         # separate music and vocals and transcribe vocals
         my_process = multiprocessing.Process(target=dl.process_urdu_video, args=args)
         # Start the process
         my_process.start()
+        return 'Transcription Generated Successfully', 200
+    elif not dl.check_path_exist(video_path):
+        print('Video not found')
+        return 'Video not found', 400
+    else:
+        print('Transcription already exists')
+        return 'Transcription already exists', 200
+
 
 @app.route('/uploadUrduVideo', methods=['POST'])
 def upload_file():
