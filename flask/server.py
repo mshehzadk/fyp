@@ -448,15 +448,9 @@ def generate_targetVideo():
 # Send Arabic video to the client
 @app.route('/get_arabicVideo')
 def get_video():
-    # filename='arabicVideo.mp4'
     filename=output_video_path
-    # # Check if the file exists
-    # if not dl.check_path_exist(filename):
-    #     dl.get_speaker_wise_audio(output_dir+source_wav_vocals_filename,output_dir+target_json_filename,output_dir)
-    #     dl.generate_and_save_audio(output_dir+target_json_filename,output_dir,voice_clone_url)
-    #     dl.combined_audio_music(output_dir+target_json_filename,output_dir+source_wav_music_filename,output_dir)
-    #     dl.replace_audio(video_path, output_dir+source_wav_music_filename, output_video_path)
     while(not dl.check_path_exist(filename)):{}
+    sleep(5)
     return send_file(filename, mimetype='video/mp4')
 
 if __name__ == '__main__':
