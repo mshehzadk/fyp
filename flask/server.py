@@ -432,13 +432,19 @@ def update_Translation():
 # Generate Arabic Video
 @app.route('/generateTargetVideo',methods=['GET'])
 def generate_targetVideo():
-    if not dl.check_path_exist(output_video_path):
+    if not dl.check_path_exist(output_video_path) and dl.check_path_exist(output_dir+target_json_filename) and dl.check_path_exist(video_path):
         args=[voice_clone_url,target_json_filename,video_path,output_dir,output_video_path,source_wav_music_filename,source_wav_vocals_filename]
         # separate music and vocals and transcribe vocals
         my_process = multiprocessing.Process(target=dl.process_arabic_video, args=args)
         # Start the process
         my_process.start()
-    return 'Success', 200
+        return 'Success', 200
+    elif not dl.check_path_exist(output_dir+target_json_filename) or not dl.check_path_exist(output_dir+source_json_filename) or not dl.check_path_exist(video_path):
+        print('Video not found or Transcription not found or Translation not found')
+        return 'Error', 400
+    else:
+        print('Video already exists')
+        return 'Video already exists', 200
 # Send Arabic video to the client
 @app.route('/get_arabicVideo')
 def get_video():
