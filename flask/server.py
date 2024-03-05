@@ -246,13 +246,13 @@ def update_transcription():
 # Generate Transaltion
 @app.route('/generateTranslation',methods=['GET'])
 def generate_arabicTranslation():
-    if not dl.check_path_exist(output_dir+target_json_filename):
+    while not dl.check_path_exist(output_dir+target_json_filename):
         args=[output_dir,source_json_filename,target_json_filename,target_language]
-        print('Zahid')
         # separate music and vocals and transcribe vocals
         my_process = multiprocessing.Process(target=dl.translation, args=args)
         # Start the process
         my_process.start()
+    print('Translation Generated Successfully')
     return 'Success', 200
 
 # Send data from JSON file to the client
