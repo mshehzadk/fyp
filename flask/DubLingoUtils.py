@@ -338,13 +338,16 @@ def combined_audio_music(json_file,audio_file,output_dir):
             overlay_audio = overlay_audio[:overlay_audio_time]
         # Check if the audio is longer than the maximum duration
         audio_duration_ms = len(overlay_audio)
-        if audio_duration_ms > overlay_audio_time and (audio_duration_ms-overlay_audio_time)>1000:
+        if abs(audio_duration_ms-overlay_audio_time)>1000:
             # Calculate the speed change factor
             speed_change = audio_duration_ms/overlay_audio_time
             speed_change=speed_change-0.1
             if speed_change>1.0:
                 # Speed up the audio
-                overlay_audio = overlay_audio.speedup(playback_speed=speed_change)
+                overlay_audio = overlay_audio.speedup(playback_speed=speed_change,crossfade=200)
+            elif speed_change<1.0:
+                # Slow down the audio
+                overlay_audio = overlay_audio.slowdown(playback_speed=speed_change,crossfade=200)
 
         # Overwrite frames in the original audio with frames from the overlay audio
         combined_audio = original_audio.overlay(overlay_audio, position=start_time_ms)
