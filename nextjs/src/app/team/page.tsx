@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 const teamMembers = [
-  { name: 'Ali Tajir', role: 'Developer', image: 'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', details: 'Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer', facebook: '#', instagram: '#', linkedin: 'https://www.linkedin.com/in/ali-tajir-a464891b8/?originalSubdomain=pk', twitter: '#' },
+  { name: 'Ali Tajir', role: 'Developer', image: 'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', details: 'Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer Ali is an experienced developer', facebook: '#', instagram: '#', linkedin: 'https://www.linkedin.com/in/ali-tajir-a464891b8/?originalSubdomain=pk', twitter: '#' },
   { name: 'Zahid Imran', role: 'Developer', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtkCxRMhDDsEHuGxaoGYwt2vprah0rIEfTfw&usqp=CAU', details: 'Zahid is a passionate developer', facebook: '#', instagram: '#', linkedin: '#', twitter: '#' },
   { name: 'Muhammad Shehzad', role: 'Developer', image: 'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', details: 'Shehzad is a skilled developer', facebook: '#', instagram: '#', linkedin: '#', twitter: '#' },
 ];
@@ -22,12 +22,14 @@ interface TeamMember {
 
 const MemberDetailsPopup = ({ member, onClose }: { member: TeamMember; onClose: () => void }) => {
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center overflow-auto">
-      <div className="bg-white p-6 rounded-lg shadow-md max-w-2xl w-full my-40 mx-auto">
-        <h2 className="text-2xl font-bold mb-2">{member.name} - {member.role}</h2>
-        <div className="mb-4">
-          <img src={member.image} alt={member.name} className="max-h-40 w-full object-cover mb-4"/>
-          <p className="text-gray-600">{member.details}</p>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center overflow-auto p-4">
+      <div className="bg-gray-900 border border-gray-400 p-4 md:p-6 rounded-lg shadow-md w-full max-w-lg md:max-w-2xl mx-auto my-8 md:my-20">
+        <h2 className="text-xl md:text-2xl text-white font-bold mb-2 text-center">{member.name} - {member.role}</h2>
+        <div className="overflow-auto max-h-[60vh]">
+          <div className="mb-4 text-center">
+            <img src={member.image} alt={member.name} className="mx-auto max-h-40 w-auto object-cover mb-4 border border-gray-500"/>
+            <p className="text-gray-600 text-white  max-h-20">{member.details}</p>
+          </div>
         </div>
         <button
           onClick={onClose}
@@ -39,6 +41,9 @@ const MemberDetailsPopup = ({ member, onClose }: { member: TeamMember; onClose: 
     </div>
   );
 };
+
+
+
 
 
 export default function Team() {
