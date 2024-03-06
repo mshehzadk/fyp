@@ -111,7 +111,7 @@ export default function VideoUpload() {
         <div className={`mt-0 flex items-center justify-center ${isVideoUploaded ? '' : 'hidden'}`} style={{ width: "80%", margin: "0 auto" }}>
           <div className="flex flex-col lg:flex-row">
             {/* Video Container */}
-            <div className="w-full lg:w-1/2 border border-gray-400 bg-black mt-5 mb-5" style={{ width: "100%", height: "auto", maxHeight: "500px" }}>
+            <div className="w-full lg:w-1/2 border border-gray-400 bg-black mt-5 mb-5 " style={{ width: "100%", height: "auto", maxHeight: "450px",minHeight: "250px", overflow: "hidden" }}>
               {isUploading ? (
                 <div className="flex justify-center items-center h-full"><LoadingSpinner /></div>
               ) : videoUrl ? (

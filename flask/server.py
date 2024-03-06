@@ -50,11 +50,11 @@ def generateTranscription():
 
 @app.route('/uploadUrduVideo', methods=['POST'])
 def upload_file():
-    # #check if path exist
-    if dl.check_path_exist(output_dir):
-        # Remove existing files from data directory
-        dl.delete_all_files_in_folder(output_dir)
-    # # Create a new directory for the current session
+    # # #check if path exist
+    # if dl.check_path_exist(output_dir):
+    #     # Remove existing files from data directory
+    #     dl.delete_all_files_in_folder(output_dir)
+    # # # Create a new directory for the current session
     dl.create_folder(output_dir)
     # Check if the post request has the file part
     if 'file' not in request.files:
