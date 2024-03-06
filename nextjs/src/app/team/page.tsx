@@ -28,7 +28,7 @@ export default function Team() {
   };
 
   const generateColumnContent = (member: TeamMember) => (
-    <div key={member.name} className="w-full md:w-80 mx-auto overflow-hidden bg-transparent rounded-lg shadow-md border border-gray-500 relative">
+    <div key={member.name} className="w-full md:w-80 mb-10 mx-auto overflow-hidden bg-transparent rounded-lg shadow-md border border-gray-500 relative">
       <div className="h-60 overflow-hidden">
         <img className="object-cover w-full h-full" src={member.image} alt={member.name} />
       </div>
@@ -73,7 +73,7 @@ export default function Team() {
             </div>
       </header>
 
-      <div className="grid grid-cols-1 gap-0 md:grid-cols-3 px-4">
+      <div className="grid grid-cols-1 gap-0 md:grid-cols-3 px-20 mb-10 pb-10">
         {teamMembers.map((member) => (
           <div key={member.name}>{generateColumnContent(member)}</div>
         ))}

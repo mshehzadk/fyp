@@ -42,14 +42,14 @@ export default function arabicVideo() {
     }
 
     return (
-        <div className="video w-full h-full"style={{ backgroundImage: "url('https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg')" }}>
+        <div className="video w-full h-full pb-20 pt-2"style={{ backgroundImage: "url('https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg')" }}>
           <header className="bg-gray-900 rounded-tl-lg rounded-tr-lg border border-gray-500 text-white py-3 mt-3 mb-0 mx-auto" style={{ width: "80%" }}>
             <div className="container mx-auto text-center">
               <h1 className="text-2xl font-bold mb-3">DUBBED VIDEO</h1>
             </div>
           </header>
 
-          <div className="w-screen flex flex-col justify-center items-center py-0">
+          <div className="w-full flex flex-col justify-center items-center mb-25">
             <div className="mt-4 flex items-center justify-center pb-5" style={{ width: "80%", margin: "0 auto" }}>
                 <div className="flex flex-col lg:flex-row w-full">
 
@@ -65,12 +65,10 @@ export default function arabicVideo() {
                             <video className="w-full h-full" src={videoSrc} controls />
                         )}
                     </div>
-
-
                 </div>
             </div>
 
-            <div className="flex w-full justify-center mt-0 " style={{ maxWidth: "80%", margin: "0 auto" }}>
+            <div className="flex w-full justify-center mt-2 " style={{ maxWidth: "80%", margin: "0 auto" }}>
                 <Link href="/arabicTranslation" className="flex-1 pr-2 ">
                     <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center w-50%">
                     <FaArrowLeft className="mr-2" />
