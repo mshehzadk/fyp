@@ -7,8 +7,8 @@ import multiprocessing
 import DubLingoUtils as dl
 
 
-spleeter_url='https://b53a-35-202-119-138.ngrok-free.app/'    # replace with your URL
-whisperX_url='https://fc2d-34-30-85-95.ngrok-free.app/'  # replace with your URL
+spleeter_url='https://5e75-34-87-80-111.ngrok-free.app/'    # replace with your URL
+whisperX_url='https://7fea-35-226-123-197.ngrok-free.app/'  # replace with your URL
 voice_clone_url=spleeter_url  # replace with your URL
 output_dir='./data/'
 # Replace this with the actual path to your video file
@@ -440,6 +440,7 @@ def generate_targetVideo():
         my_process = multiprocessing.Process(target=dl.process_arabic_video, args=args)
         # Start the process
         my_process.start()
+        return 'Video generation is in progress', 200
     elif not dl.check_path_exist(output_dir+target_json_filename) or not dl.check_path_exist(output_dir+source_json_filename) or not dl.check_path_exist(video_path):
         print('Video not found or Transcription not found or Translation not found')
         return 'Error', 400
