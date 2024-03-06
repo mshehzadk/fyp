@@ -41,17 +41,17 @@ const services: Service[] = [
 const ServicePopup = ({ service, onClose }: { service: Service; onClose: () => void }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center overflow-auto">
-      <div className="bg-white p-6 rounded-lg shadow-md max-w-2xl w-full my-40 mx-auto">
-        <h2 className="text-2xl font-bold mb-2">{service.title}</h2>
+      <div className="bg-gray-900 p-4 md:p-6 rounded-lg shadow-md max-w-2xl w-full my-8 md:my-20 border border-gray-400 mx-5">
+        <h2 className="text-lg md:text-2xl font-bold mb-2 text-white text-center">{service.title}</h2>
         <div className="mb-4">
-          <div className="max-h-60">
-            <p className="text-gray-600">{service.description}</p>
+          <div className="max-h-48 md:max-h-60 overflow-hidden">
+            <p className="text-white text-sm md:text-base">{service.description}</p>
           </div>
         </div>
-        <h3 className="text-lg font-bold mb-2">More Information:</h3>
+        <h3 className="text-md md:text-lg font-bold mb-2 text-white">More Information:</h3>
         <div className="mb-4">
-          <div className="max-h-60 overflow-auto">
-            <p className="text-gray-600">{service.extraInfo}</p>
+          <div className="max-h-48 md:max-h-60 overflow-auto">
+            <p className="text-white text-sm md:text-base">{service.extraInfo}</p>
           </div>
         </div>
         <button
@@ -64,6 +64,7 @@ const ServicePopup = ({ service, onClose }: { service: Service; onClose: () => v
     </div>
   );
 };
+
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
