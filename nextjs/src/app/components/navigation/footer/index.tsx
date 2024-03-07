@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-const Footer = ({ toggle }: { toggle: () => void }) => {
+const Footer = () => {
     const pathname = usePathname();
     const [active, setActive] = useState('Home');
 
@@ -18,8 +18,10 @@ const Footer = ({ toggle }: { toggle: () => void }) => {
         return <></>;
     }
     return (
-        <footer className="bg-black text-white py-6 mt-1">
-          <div className="container mx-auto px-4">
+      <>
+      <div className="w-full border-b border-gray-500"></div>
+        <footer className="bg-black text-white py-10">
+          <div className="container mx-auto px-5">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="md:col-span-2 p-4">
                 <h2 className="text-lg font-bold mb-2">Useful Links</h2>
@@ -53,6 +55,7 @@ const Footer = ({ toggle }: { toggle: () => void }) => {
           </div>
 
         </footer>
+        </>
       );
 };
 

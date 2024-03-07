@@ -52,7 +52,7 @@ export default function Home() {
             {/* <header className="text-blue-700 py-1 text-center mb-8">
               <h1 className="text-4xl font-bold mb-0 tracking-wide">DEMO VIDEO</h1>
             </header> */}
-            <video className="w-full h-auto lg:h-[400px] rounded-tl-xl rounded-bl-xl lg:rounded-tr-xl lg:rounded-br-xl border-t border-r border-b border-black-700" ref={videoRef} loop muted autoPlay controls style={{ width: '800px', height: '400px', border: ' solid black', background:'black' }}>
+            <video className="w-full h-auto  lg:h-[400px] rounded-tl-xl rounded-bl-xl lg:rounded-tr-xl lg:rounded-br-xl border-t border-r border-b border-black-700" ref={videoRef} loop muted autoPlay controls style={{ width: '800px', height: '400px', border: ' solid black', background:'black' }}>
               <source src="/video.mp4" />
             </video>
             <div className="lg:hidden z-10 absolute top-4 right-4 border border-gray-500 p-2 rounded-md">

@@ -126,7 +126,7 @@ export default function VideoUpload() {
           </div>
         </div>
 
-            <div className="flex flex-col lg:flex-row justify-between mb-0 mx-auto" style={{ width: "80%" }}>
+            <div className="flex flex-col lg:flex-row justify-between mx-auto mb-20" style={{ width: "80%" }}>
                 {isVideoUploaded && (
                   <button onClick={uploadMore} className="flex-1 mb-4 lg:mb-0 lg:mr-4">
                     <div className="bg-slate-500 text-white py-2 px-10 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">

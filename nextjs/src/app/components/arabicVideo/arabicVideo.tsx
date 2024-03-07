@@ -48,7 +48,7 @@ export default function arabicVideo() {
         <div className="mt-4 flex items-center justify-center pb-5" style={{ width: "80%", margin: "0 auto" }}>
           <div className="flex flex-col lg:flex-row w-full">
             {/* Video Container */}
-            <div className="w-full border border-gray-500 bg-black mb-0 items-center align-middle" style={{ height: "auto", maxHeight: "450px", minHeight: "250px", overflow: "hidden" }}>
+            <div className="w-full border border-gray-500 bg-black mb-0 items-center align-middle " style={{ height: "450px", maxHeight: "450px", minHeight: "450px", overflow: "hidden" }}>
               {isLoading ? (
                 <div className="flex justify-center items-center h-full">
                   {/* Loading Indicator */}
@@ -61,7 +61,7 @@ export default function arabicVideo() {
           </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row justify-between w-full mt-40 " style={{ maxWidth: "80%", margin: "0 auto" }}>
+        <div className="flex flex-col lg:flex-row justify-between w-full mt-40  mb-20 " style={{ maxWidth: "80%", margin: "0 auto" }}>
           <Link href="/arabicTranslation" className="flex-1  mb-4 lg:mb-0 lg:mr-4 ">
             <div className="bg-slate-500 text-white py-2 px-10 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center w-50%">
               <FaArrowLeft className="mr-2" />

@@ -416,7 +416,7 @@ export default function ArabicTranslation() {
             </div>
             
 
-            <div className="flex mt-6 space-x-4">
+            <div className="flex mt-6 space-x-4  mb-20">
                 <div className="w-1/2">
                     <Link href='/urduTranscription' className="flex-1 text-right">
                         <div className="bg-slate-500 text-white py-2 px-4 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center transform hover:scale-103s hover:border-blue-500 border border-transparent hover:border-2 focus:outline-none focus:ring focus:border-blue-300s">

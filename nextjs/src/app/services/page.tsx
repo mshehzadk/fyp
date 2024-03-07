@@ -89,7 +89,7 @@ const Services = () => {
             </div>
         </header>
 
-      <div className="form mx-20">
+      <div className="form mx-20  mb-10">
         <section className="container mx-auto py-5">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
             {services.map((service, index) => (
