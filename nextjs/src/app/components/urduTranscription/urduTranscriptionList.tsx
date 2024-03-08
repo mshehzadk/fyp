@@ -313,21 +313,23 @@ export default function urduTranscriptionList() {
                                 Save
                             </button>
                             :
-                            <>
-                                <button
-                                    className="bg-slate-800 text-white px-4 py-2 rounded-md m-2 hover:bg-slate-700 focus:outline-none focus:ring focus:border-blue-300 transition-all duration-300"
-                                    onClick={() => editTheRow(item.speaker, item.startTime, item.endTime, item.transcription, index)}
-                                >
-                                    Edit
-                                </button>
-                                {!editTrigger &&
-                                    <button
-                                        className="bg-slate-800 text-white px-4 py-2 rounded-md m-2 hover:bg-slate-700 focus:outline-none focus:ring focus:border-blue-300 transition-all duration-300"
-                                        onClick={() => DeleteTranscription(index)}
-                                    >
-                                        Delete
-                                    </button>}
-                            </>
+<div className="flex flex-wrap justify-between items-center m-2">
+    <button
+        className="bg-slate-800 text-white px-2 py-1 sm:px-4 sm:py-2 rounded-md mr-1 mb-1 sm:mr-2 sm:mb-2 hover:bg-slate-700 focus:outline-none focus:ring focus:border-blue-300 transition-all duration-300"
+        onClick={() => editTheRow(item.speaker, item.startTime, item.endTime, item.transcription, index)}
+    >
+        Edit
+    </button>
+    {!editTrigger &&
+        <button
+            className="bg-slate-800 text-white px-2 py-1 sm:px-4 sm:py-2 rounded-md mr-1 mb-1 sm:mr-2 sm:mb-2 hover:bg-slate-700 focus:outline-none focus:ring focus:border-blue-300 transition-all duration-300"
+            onClick={() => DeleteTranscription(index)}
+        >
+            Delete
+        </button>
+    }
+</div>
+
                         }
                     </div>
                 </div>

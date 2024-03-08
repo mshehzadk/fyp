@@ -259,17 +259,18 @@ export default function ArabicTranslation() {
                         </p>
                     </div>
                     {urduTranscription && Array.isArray(urduTranscription) && urduTranscription.map((item: any, index: number) => (
-                        <div key={index} className="p-4 border border-gray-400 my-5 flex gap-2 bg-cyan-700">
-                            <div className="flex">
-                                <div className="font-bold text-xl">{item.speaker}</div>
-                                <div className="m-2" >{item.startTime}</div>
-                                <div className="m-2" >{item.endTime}</div>
-                            </div>
-                            <div className="flex">
-                                <div>{item.transcription}</div>
-                            </div>
+                    <div key={index} className="p-2 border border-gray-400 my-5 flex flex-col gap-2 justify-between bg-cyan-700">
+                        <div className="flex">
+                            <div className="font-bold text-xl">{item.speaker}</div>
+                            <div className="m-2 mx-5">{item.startTime}</div>
+                            <div className="m-2 mx-5 ">{item.endTime}</div>
                         </div>
-                    ))}
+                        <div>
+                            {item.transcription}
+                        </div>
+                    </div>
+))}
+
                     {!urduTranscription && <div>Loading......</div>}
                 </div>
                 <div ref={translationRef} className="lg:w-1/2 lg:mr-4 bg-gray-700 border-2 rounded-md border-black lg:overflow-y-auto md:overflow-y-auto lg:max-h-[70vh]">
@@ -340,7 +341,7 @@ export default function ArabicTranslation() {
                         }
 
                         {data && Array.isArray(data) && data.map((item: any, index: number) => (
-                            <div key={index} className="p-4 border border-gray-400 my-5 flex gap-2 bg-cyan-700">
+                            <div key={index} className="p-4 border border-gray-400 my-5 flex gap bg-cyan-700 justify-between">
                                 {editTrigger && editIndex === index ?
                                 <div className="w-full">
                                     <div className="mb-4">
@@ -392,21 +393,23 @@ export default function ArabicTranslation() {
                                     </div>
                                 </div>
                             }
-                                <div className="flex ml-auto">
-                                    {editTrigger && editIndex === index ?
-                                        <button className="bg-gray-800 border border-gray-400 text-white px-4 py-2 mb-8 rounded-md m-2 hover:bg-slate-700"
-                                            onClick={(e) => saveEdit(e)}
-                                        >Save</button>
-                                        :
-                                        <button className="bg-slate-800 text-white px-4 py-2 rounded-md m-2 hover:bg-slate-700 focus:outline-none focus:ring focus:border-blue-300 transition-all duration-300"
-                                            onClick={() => editTheRow(item.speaker, item.startTime, item.endTime, item.translation, index)}
-                                        >Edit</button>
-                                    }
-                                    {!editTrigger &&
-                                        <button className="bg-slate-800 text-white px-4 py-2 rounded-md m-2 hover:bg-slate-700 focus:outline-none focus:ring focus:border-blue-300 transition-all duration-300" onClick={() => DeleteTranslation(index)}>
-                                            Delete
-                                        </button>}
-                                </div>
+                            <div className="flex flex-wrap m-0 justify-end">
+                                {editTrigger && editIndex === index ?
+                                    <button className="bg-gray-800 border border-gray-400 text-white px-2 py-1 sm:px-4 sm:py-2 mb-4 sm:mb-8 rounded-md m-1 sm:m-2 hover:bg-slate-700 transition-all duration-300"
+                                        onClick={(e) => saveEdit(e)}
+                                    >Save</button>
+                                    :
+                                    <button className="bg-slate-800 text-white px-2 py-1 sm:px-4 sm:py-2 rounded-md m-1 sm:m-2 hover:bg-slate-700 focus:outline-none focus:ring focus:border-blue-300 transition-all duration-300"
+                                        onClick={() => editTheRow(item.speaker, item.startTime, item.endTime, item.translation, index)}
+                                    >Edit</button>
+                                }
+                                {!editTrigger &&
+                                    <button className="bg-slate-800 text-white px-2 py-1 sm:px-4 sm:py-2 rounded-md m-1 sm:m-2 hover:bg-slate-700 focus:outline-none focus:ring focus:border-blue-300 transition-all duration-300" onClick={() => DeleteTranslation(index)}>
+                                        Delete
+                                    </button>}
+                            </div>
+
+
                             </div>
                         ))}
 
