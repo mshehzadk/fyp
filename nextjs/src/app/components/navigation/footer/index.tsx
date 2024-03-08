@@ -45,7 +45,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="mt-4 text-center">
+          <div className="mt-12 text-center">
               <p>
                   &copy; 2024{' '}
                   <span className="text-blue-700">Dub</span>

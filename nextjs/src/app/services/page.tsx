@@ -95,7 +95,7 @@ const Services = () => {
             {services.map((service, index) => (
               <div
                 key={index}
-                className="bg-gray-700 hover:bg-gray-900 p-5 rounded-lg shadow-md relative border border-gray-500 transition duration-300 hover:shadow-lg hover:scale-105"
+                className="backdrop-filter backdrop-blur-md hover:bg-gray-900 p-5 rounded-lg shadow-md relative border border-gray-500 transition duration-300 hover:shadow-lg hover:scale-105"
                 style={{ height: '455px' }}>
                   <div className="border border-gray-400 rounded-md mb-4 p-4 mx-auto bg-black">
                     <img

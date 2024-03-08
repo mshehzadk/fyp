@@ -67,7 +67,7 @@ export default function Team() {
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:gap-8 px-4 md:px-10 lg:px-20 mb-10 pb-10">
   {teamMembers.map((member) => (
-    <div key={member.name} className="w-full md:w-50 lg:w-80 mb-8 mx-auto overflow-hidden bg-transparent rounded-lg shadow-md border border-gray-500 relative">
+    <div key={member.name} className="w-full md:w-50 lg:w-80 mb-8 mx-auto overflow-hidden backdrop-filter backdrop-blur-sm rounded-lg shadow-md border border-gray-500 relative">
       <div className="h-64 md:h-60 overflow-hidden">
         <img className="object-cover w-full h-full" src={member.image} alt={member.name} />
       </div>
@@ -95,9 +95,7 @@ export default function Team() {
 
 
       {selectedMember && <MemberDetailsPopup member={selectedMember} onClose={() => setSelectedMember(null)} />}
-      <section className="px-4 py-10 text-center bg-black shadow-md border-2 border-gray-500 rounded-lg mt-10 mx-auto  mb-20" style={{ width: "90%" }}>
-            <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor urna nec diam fringilla hendrerit.</p>
-      </section>
+
     
           <br/>
           <br/>
