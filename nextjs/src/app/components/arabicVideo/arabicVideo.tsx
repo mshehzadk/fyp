@@ -11,7 +11,7 @@ const LoadingSpinner = () => {
   );
 };
 
-export default function arabicVideo() {
+export default function ArabicVideo() {
   const [isLoading, setIsLoading] = useState(true);
   const [videoSrc, setVideoSrc] = useState<string>("");
 

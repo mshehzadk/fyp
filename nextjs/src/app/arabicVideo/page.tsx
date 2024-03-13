@@ -1,12 +1,10 @@
-
-
 'use client';
 // Importing 'useEffect' hook from React
 import { useEffect } from 'react';
 import ArabicVideo from '../components/arabicVideo/arabicVideo';
 
 // Defining the component
-export default function arabicTransaltion() {
+export default function ArabicVideoPage() {
     // Using the useEffect hook to set the background image to the body element
     useEffect(() => {
         // Applying the background image to the body
