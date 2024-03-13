@@ -7,8 +7,8 @@ import multiprocessing
 import DubLingoUtils as dl
 
 
-spleeter_url='https://691c-34-125-181-199.ngrok-free.app/'    # replace with your URL
-whisperX_url='https://457a-34-125-7-220.ngrok-free.app/'  # replace with your URL
+spleeter_url='https://781e-34-125-43-229.ngrok-free.app/'    # replace with your URL
+whisperX_url='https://3146-35-227-152-202.ngrok-free.app/'  # replace with your URL
 voice_clone_url=spleeter_url  # replace with your URL
 output_dir='./data/'
 # Replace this with the actual path to your video file
@@ -52,10 +52,10 @@ def generateTranscription():
 
 @app.route('/uploadUrduVideo', methods=['POST'])
 def upload_file():
-    # # #check if path exist
-    # if dl.check_path_exist(output_dir):
-    #     # Remove existing files from data directory
-    #     dl.delete_all_files_in_folder(output_dir)
+    # #check if path exist
+    if dl.check_path_exist(output_dir):
+        # Remove existing files from data directory
+        dl.delete_all_files_in_folder(output_dir)
     # # # Create a new directory for the current session
     dl.create_folder(output_dir)
     # Check if the post request has the file part
@@ -444,7 +444,7 @@ def generate_targetVideo():
     else:
         dl.copy_json_file(output_dir+target_json_filename,output_dir+copy_target_json_filename)
     if (not dl.check_path_exist(output_video_path) and dl.check_path_exist(output_dir+target_json_filename) and dl.check_path_exist(video_path)) or condition:
-        args=[voice_clone_url,target_json_filename,video_path,output_dir,output_video_path,source_wav_music_filename,source_wav_vocals_filename,copy_json_file]
+        args=[voice_clone_url,target_json_filename,video_path,output_dir,output_video_path,source_wav_music_filename,source_wav_vocals_filename,copy_target_json_filename]
         # separate music and vocals and transcribe vocals
         my_process = multiprocessing.Process(target=dl.process_arabic_video, args=args)
         # Start the process
