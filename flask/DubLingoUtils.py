@@ -525,7 +525,7 @@ def compare_json_files(original_file, copy_file):
     return False
 
 # Function to delete unwanted files
-def delete_all_generated_files(directory,output_video_path, exceptions):    
+def delete_all_generated_files(directory, exceptions):    
     for filename in os.listdir(directory):
         filepath = os.path.join(directory, filename)
         if filename.endswith(".wav") and filename not in exceptions:
@@ -538,14 +538,14 @@ def process_urdu_video(spleeter_url,whisperX_url,video_path,output_dir,filename,
     Transcription(whisperX_url,source_wav_vocals_filename,filename,output_dir)
 
 
-def process_arabic_video(voice_clone_url,target_json_filename,video_path,output_dir,output_video_path,source_wav_music_filename,source_wav_vocals_filename,copy_json_file):
+def process_arabic_video(voice_clone_url,target_json_filename,video_path,output_dir,output_video_path,source_wav_music_filename,source_wav_vocals_filename,copy_json_file_path):
     # get_speaker_wise_audio(output_dir+source_wav_vocals_filename,output_dir+target_json_filename,output_dir)
     # generate_and_save_audio(output_dir+target_json_filename,output_dir,voice_clone_url)
     copy_music_file(source_wav_music_filename, output_dir)
     generated_voices(voice_clone_url,output_dir,target_json_filename)
     combined_audio_music(output_dir+target_json_filename,output_dir+source_wav_music_filename,output_dir)
     replace_audio(video_path, output_dir+source_wav_music_filename, output_video_path)
-    if check_path_exist(output_dir+copy_json_file):
-        delete_file(output_dir+copy_json_file)
-    copy_json_file(output_dir+target_json_filename, output_dir+copy_json_file)
+    if check_path_exist(output_dir+copy_json_file_path):
+        delete_file(output_dir+copy_json_file_path)
+    copy_json_file(output_dir+target_json_filename, output_dir+copy_json_file_path)
     print("Process Completed")

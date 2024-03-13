@@ -7,7 +7,7 @@ import multiprocessing
 import DubLingoUtils as dl
 
 
-spleeter_url='https://781e-34-125-43-229.ngrok-free.app/'    # replace with your URL
+spleeter_url='https://c860-34-125-43-229.ngrok-free.app/'    # replace with your URL
 whisperX_url='https://3146-35-227-152-202.ngrok-free.app/'  # replace with your URL
 voice_clone_url=spleeter_url  # replace with your URL
 output_dir='./data/'
