@@ -18,7 +18,7 @@ copy_target_json_filename='TranslationCopy.json'
 source_json_filename='urduTranscription.json'
 source_wav_vocals_filename='vocals.wav'
 source_wav_music_filename='music.wav'
-copy_source_wav_music_filename='music.wav'
+copy_source_wav_music_filename='musicCopy.wav'
 output_video_path=output_dir+'arabicVideo.mp4'
 target_language='ar'
 
