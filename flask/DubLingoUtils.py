@@ -7,6 +7,8 @@ import requests
 import base64
 import io
 import re
+import shutil
+from difflib import Differ
 from pydub import AudioSegment
 from googletrans import Translator
 from moviepy.editor import VideoFileClip, AudioFileClip
@@ -495,16 +497,49 @@ def copy_music_file(music_file_path, output_dir):
         except Exception as e:
             print(f"Error copying music file: {e}")
 
+# Function to make copy of json file
+def copy_json_file(json_file_path, copy_json_file_path):
+    try:
+        shutil.copy(json_file_path, copy_json_file_path)
+        print(f"File {json_file_path} copied successfully.")
+    except FileNotFoundError:
+        print(f"File {json_file_path} not found.")
+    except Exception as e:
+        print(f"Error copying file {json_file_path}: {e}")
+
+# Function to compare JSON files
+def compare_json_files(original_file, copy_file):
+    with open(original_file, 'r') as f1, open(copy_file, 'r') as f2:
+        original_data = json.load(f1)
+        copy_data = json.load(f2)
+
+    # Compare the contents
+    d = Differ()
+    for i, (orig_item, copy_item) in enumerate(zip(original_data, copy_data), start=1):
+        print(f"Comparing sentence {i}:")
+        orig_json = json.dumps(orig_item, indent=4, sort_keys=True)
+        copy_json = json.dumps(copy_item, indent=4, sort_keys=True)
+        diff = list(d.compare(orig_json.splitlines(), copy_json.splitlines()))
+        if any(line.startswith('-') or line.startswith('+') for line in diff):
+            print("Differences found:")
+            return True
+        else:
+            print("No differences found.")
+            return False
+
 def process_urdu_video(spleeter_url,whisperX_url,video_path,output_dir,filename,source_wav_music_filename,source_wav_vocals_filename):
     music_vocals_separation(spleeter_url,video_path,output_dir,source_wav_vocals_filename,source_wav_music_filename)
     Transcription(whisperX_url,source_wav_vocals_filename,filename,output_dir)
 
 
-def process_arabic_video(voice_clone_url,target_json_filename,video_path,output_dir,output_video_path,source_wav_music_filename,source_wav_vocals_filename):
+def process_arabic_video(voice_clone_url,target_json_filename,video_path,output_dir,output_video_path,source_wav_music_filename,source_wav_vocals_filename,copy_json_file):
     # get_speaker_wise_audio(output_dir+source_wav_vocals_filename,output_dir+target_json_filename,output_dir)
     # generate_and_save_audio(output_dir+target_json_filename,output_dir,voice_clone_url)
     copy_music_file(source_wav_music_filename, output_dir)
     generated_voices(voice_clone_url,output_dir,target_json_filename)
     combined_audio_music(output_dir+target_json_filename,output_dir+source_wav_music_filename,output_dir)
     replace_audio(video_path, output_dir+source_wav_music_filename, output_video_path)
+    if check_path_exist(output_dir+copy_json_file):
+        delete_file(output_dir+copy_json_file)
+    copy_json_file(output_dir+target_json_filename, output_dir+copy_json_file)
     print("Process Completed")

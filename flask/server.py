@@ -14,6 +14,7 @@ output_dir='./data/'
 # Replace this with the actual path to your video file
 video_path = output_dir+'video.mp4'
 target_json_filename='arabicTranslation.json'
+target_json_filename='TranslationCopy.json'
 source_json_filename='urduTranscription.json'
 source_wav_vocals_filename='vocals.wav'
 source_wav_music_filename='music.wav'
@@ -434,8 +435,13 @@ def update_Translation():
 # Generate Arabic Video
 @app.route('/generateTargetVideo',methods=['GET'])
 def generate_targetVideo():
+    condition=False
+    if dl.check_path_exist(output_dir+target_json_filename):
+        condition=dl.compare_json_files(output_dir+targer_json_filename,output_dir+copy_target_json_filename)
+    else:
+        dl.copy_json_file(output_dir+target_json_filename,output_dir+copy_target_json_filename)
     if not dl.check_path_exist(output_video_path) and dl.check_path_exist(output_dir+target_json_filename) and dl.check_path_exist(video_path):
-        args=[voice_clone_url,target_json_filename,video_path,output_dir,output_video_path,source_wav_music_filename,source_wav_vocals_filename]
+        args=[voice_clone_url,target_json_filename,video_path,output_dir,output_video_path,source_wav_music_filename,source_wav_vocals_filename,copy_json_file]
         # separate music and vocals and transcribe vocals
         my_process = multiprocessing.Process(target=dl.process_arabic_video, args=args)
         # Start the process
