@@ -509,23 +509,20 @@ def copy_json_file(json_file_path, copy_json_file_path):
 
 # Function to compare JSON files
 def compare_json_files(original_file, copy_file):
-    with open(original_file, 'r') as f1, open(copy_file, 'r') as f2:
+    with open(original_file, 'r', encoding='utf-8') as f1, open(copy_file, 'r', encoding='utf-8') as f2:
         original_data = json.load(f1)
         copy_data = json.load(f2)
 
     # Compare the contents
     d = Differ()
     for i, (orig_item, copy_item) in enumerate(zip(original_data, copy_data), start=1):
-        print(f"Comparing sentence {i}:")
         orig_json = json.dumps(orig_item, indent=4, sort_keys=True)
         copy_json = json.dumps(copy_item, indent=4, sort_keys=True)
         diff = list(d.compare(orig_json.splitlines(), copy_json.splitlines()))
         if any(line.startswith('-') or line.startswith('+') for line in diff):
             print("Differences found:")
             return True
-        else:
-            print("No differences found.")
-            return False
+    return False
 
 # Function to delete unwanted files
 def delete_all_generated_files(directory,output_video_path, exceptions):    

@@ -437,8 +437,8 @@ def update_Translation():
 @app.route('/generateTargetVideo',methods=['GET'])
 def generate_targetVideo():
     condition=False
-    if dl.check_path_exist(output_dir+target_json_filename):
-        condition=dl.compare_json_files(output_dir+targer_json_filename,output_dir+copy_target_json_filename)
+    if dl.check_path_exist(output_dir+copy_target_json_filename):
+        condition=dl.compare_json_files(output_dir+target_json_filename,output_dir+copy_target_json_filename)
         if condition:
             dl.delete_all_generated_files(output_dir,[source_wav_music_filename,copy_source_wav_music_filename,source_wav_vocals_filename])
     else:
