@@ -65,7 +65,7 @@ export default function arabicVideo() {
           <Link href="/arabicTranslation" className="flex-1  mb-4 lg:mb-0 lg:mr-4 ">
             <div className="bg-slate-500 text-white py-2 px-10 rounded-md text-center hover:bg-blue-400 transition-all duration-300 flex items-center justify-center w-50%">
               <FaArrowLeft className="mr-2" />
-              Arabic Translation
+              Translation
             </div>
           </Link>
           {!isLoading && (
