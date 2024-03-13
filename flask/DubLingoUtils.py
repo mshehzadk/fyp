@@ -353,9 +353,9 @@ def combined_audio_music(json_file,audio_file,output_dir):
             if speed_change>1.0:
                 # Speed up the audio
                 overlay_audio = overlay_audio.speedup(playback_speed=speed_change,crossfade=200)
-            elif speed_change<1.0:
-                # Slow down the audio
-                overlay_audio = overlay_audio.slowdown(playback_speed=speed_change,crossfade=200)
+            # elif speed_change<1.0:
+            #     # Slow down the audio
+            #     overlay_audio = overlay_audio.slowdown(playback_speed=speed_change,crossfade=200)
 
         # Overwrite frames in the original audio with frames from the overlay audio
         combined_audio = original_audio.overlay(overlay_audio, position=start_time_ms)
