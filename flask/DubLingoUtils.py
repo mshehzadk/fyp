@@ -527,6 +527,15 @@ def compare_json_files(original_file, copy_file):
             print("No differences found.")
             return False
 
+# Function to delete unwanted files
+def delete_all_generated_files(directory,output_video_path, exceptions):    
+    for filename in os.listdir(directory):
+        filepath = os.path.join(directory, filename)
+        if filename.endswith(".wav") and filename not in exceptions:
+            os.remove(filepath)
+        elif filename == "arabicVideo.mp4":
+            os.remove(filepath)
+
 def process_urdu_video(spleeter_url,whisperX_url,video_path,output_dir,filename,source_wav_music_filename,source_wav_vocals_filename):
     music_vocals_separation(spleeter_url,video_path,output_dir,source_wav_vocals_filename,source_wav_music_filename)
     Transcription(whisperX_url,source_wav_vocals_filename,filename,output_dir)
