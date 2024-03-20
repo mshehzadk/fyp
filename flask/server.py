@@ -94,11 +94,6 @@ def checkFileExistence():
 def get_urduTranscription():
     # filename='urduTranscription.json'
     filename=source_json_filename
-    # # Check if the file exists
-    # if not dl.check_path_exist(output_dir+filename):
-    #     dl.music_vocals_separation(spleeter_url,video_path,output_dir,source_wav_vocals_filename,source_wav_music_filename)
-    #     dl.Transcription(whisperX_url,source_wav_vocals_filename,filename,output_dir)
-    #
     while(not dl.check_path_exist(output_dir+filename)):{}
     with open(output_dir+filename, 'r', encoding='utf8') as f:
         data = json.load(f)
@@ -276,9 +271,6 @@ def generate_arabicTranslation():
 def get_arabicTranslation():
     # filename='arabicTranslation.json'
     filename=target_json_filename
-    # Check if the file exists
-    # if not dl.check_path_exist(output_dir+filename):
-    #     dl.translation(output_dir,source_json_filename,target_json_filename,target_language)
     while(not dl.check_path_exist(output_dir+filename)):{}
     with open(output_dir+filename, 'r', encoding='utf8') as f:
         data = json.load(f)
