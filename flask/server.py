@@ -7,8 +7,8 @@ import multiprocessing
 import DubLingoUtils as dl
 
 
-spleeter_url='https://f477-34-90-148-215.ngrok-free.app/'    # replace with your URL
-whisperX_url='https://4798-34-87-4-121.ngrok-free.app/'  # replace with your URL
+spleeter_url='https://b740-35-240-159-186.ngrok-free.app/'    # replace with your URL
+whisperX_url='https://6ebc-34-125-37-134.ngrok-free.app/'  # replace with your URL
 voice_clone_url=spleeter_url  # replace with your URL
 output_dir='./data/'
 # Replace this with the actual path to your video file
@@ -428,23 +428,23 @@ def update_Translation():
 # Generate Arabic Video
 @app.route('/generateTargetVideo',methods=['GET'])
 def generate_targetVideo():
-    # condition=False
-    # if dl.check_path_exist(output_dir+copy_target_json_filename):
-    #     condition=dl.compare_json_files(output_dir+target_json_filename,output_dir+copy_target_json_filename)
-    #     if condition:
-    #         dl.delete_all_generated_files(output_dir,[source_wav_music_filename,copy_source_wav_music_filename,source_wav_vocals_filename])
-    # else:
-    #     dl.copy_json_file(output_dir+target_json_filename,output_dir+copy_target_json_filename)
-    if not dl.check_path_exist(output_video_path): # and dl.check_path_exist(output_dir+target_json_filename) and dl.check_path_exist(video_path)) or condition:
+    condition=False
+    if dl.check_path_exist(output_dir+copy_target_json_filename):
+        condition=dl.compare_json_files(output_dir+target_json_filename,output_dir+copy_target_json_filename)
+        if condition:
+            dl.delete_all_generated_files(output_dir,[source_wav_music_filename,copy_source_wav_music_filename,source_wav_vocals_filename])
+    else:
+        dl.copy_json_file(output_dir+target_json_filename,output_dir+copy_target_json_filename)
+    if not dl.check_path_exist(output_video_path) and (dl.check_path_exist(output_dir+target_json_filename) and dl.check_path_exist(video_path)) or condition:
         args=[voice_clone_url,target_json_filename,video_path,output_dir,output_video_path,source_wav_music_filename,source_wav_vocals_filename,copy_target_json_filename]
         # separate music and vocals and transcribe vocals
         my_process = multiprocessing.Process(target=dl.process_arabic_video, args=args)
         # Start the process
         my_process.start()
         return 'Video generation is in progress', 200
-    # elif not dl.check_path_exist(output_dir+target_json_filename) or not dl.check_path_exist(output_dir+source_json_filename) or not dl.check_path_exist(video_path):
-    #     print('Video not found or Transcription not found or Translation not found')
-    #     return 'Error', 400
+    elif not dl.check_path_exist(output_dir+target_json_filename) or not dl.check_path_exist(output_dir+source_json_filename) or not dl.check_path_exist(video_path):
+        print('Video not found or Transcription not found or Translation not found')
+        return 'Error', 400
     else:
         print('Video already exists')
         return 'Video already exists', 200
