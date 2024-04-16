@@ -52,11 +52,11 @@ def generateTranscription():
 
 @app.route('/uploadUrduVideo', methods=['POST'])
 def upload_file():
-    # #check if path exist
-    # if dl.check_path_exist(output_dir):
-    #     # Remove existing files from data directory
-    #     dl.delete_all_files_in_folder(output_dir)
-    # # Create a new directory for the current session
+    #check if path exist
+    if dl.check_path_exist(output_dir):
+        # Remove existing files from data directory
+        dl.delete_all_files_in_folder(output_dir)
+    # Create a new directory for the current session
     dl.create_folder(output_dir)
     # Check if the post request has the file part
     if 'file' not in request.files:
@@ -429,13 +429,16 @@ def update_Translation():
 @app.route('/generateTargetVideo',methods=['GET'])
 def generate_targetVideo():
     condition=False
+    # Check if there is change in file
     if dl.check_path_exist(output_dir+copy_target_json_filename):
         condition=dl.compare_json_files(output_dir+target_json_filename,output_dir+copy_target_json_filename)
         if condition:
             dl.delete_all_generated_files(output_dir,[source_wav_music_filename,copy_source_wav_music_filename,source_wav_vocals_filename])
     else:
         dl.copy_json_file(output_dir+target_json_filename,output_dir+copy_target_json_filename)
-    if not dl.check_path_exist(output_video_path) and (dl.check_path_exist(output_dir+target_json_filename) and dl.check_path_exist(video_path)) or condition:
+    # True if the video does not exist and required o files to generate video
+    # There is chnage in video
+    if ( not dl.check_path_exist(output_video_path) and dl.check_path_exist(output_dir+target_json_filename) and dl.check_path_exist(video_path)) or condition:
         args=[voice_clone_url,target_json_filename,video_path,output_dir,output_video_path,source_wav_music_filename,source_wav_vocals_filename,copy_target_json_filename]
         # separate music and vocals and transcribe vocals
         my_process = multiprocessing.Process(target=dl.process_arabic_video, args=args)
