@@ -7,8 +7,8 @@ import multiprocessing
 import DubLingoUtils as dl
 
 
-spleeter_url='https://fac8-34-41-123-183.ngrok-free.app/'    # replace with your URL
-whisperX_url='https://09ff-34-125-137-248.ngrok-free.app/'  # replace with your URL
+spleeter_url='https://e74f-34-28-148-147.ngrok-free.app/'    # replace with your URL
+whisperX_url='https://7b09-34-125-146-152.ngrok-free.app/'  # replace with your URL
 voice_clone_url=spleeter_url  # replace with your URL
 output_dir='./data/'
 # Replace this with the actual path to your video file
@@ -20,7 +20,7 @@ source_wav_vocals_filename='vocals.wav'
 source_wav_music_filename='music.wav'
 copy_source_wav_music_filename='musicCopy.wav'
 output_video_path=output_dir+'arabicVideo.mp4'
-target_language='es'
+target_language='hi'
 
 app = Flask(__name__) 
 CORS(app)
