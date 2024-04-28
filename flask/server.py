@@ -7,8 +7,8 @@ import multiprocessing
 import DubLingoUtils as dl
 
 
-spleeter_url='https://8c87-35-233-191-160.ngrok-free.app/'    # replace with your URL
-whisperX_url='https://12b6-35-238-188-62.ngrok-free.app/'  # replace with your URL
+spleeter_url='https://798a-34-135-34-0.ngrok-free.app/'    # replace with your URL
+whisperX_url='https://6435-34-126-134-15.ngrok-free.app/'  # replace with your URL
 voice_clone_url=spleeter_url  # replace with your URL
 output_dir='./data/'
 # Replace this with the actual path to your video file
@@ -53,9 +53,9 @@ def generateTranscription():
 @app.route('/uploadUrduVideo', methods=['POST'])
 def upload_file():
     #check if path exist
-    if dl.check_path_exist(output_dir):
-        # Remove existing files from data directory
-        dl.delete_all_files_in_folder(output_dir)
+    # if dl.check_path_exist(output_dir):
+    #     # Remove existing files from data directory
+    #     dl.delete_all_files_in_folder(output_dir)
     # Create a new directory for the current session
     dl.create_folder(output_dir)
     # Check if the post request has the file part
@@ -429,13 +429,13 @@ def update_Translation():
 @app.route('/generateTargetVideo',methods=['GET'])
 def generate_targetVideo():
     condition=False
-    # Check if there is change in file
-    if dl.check_path_exist(output_dir+copy_target_json_filename):
-        condition=dl.compare_json_files(output_dir+target_json_filename,output_dir+copy_target_json_filename)
-        if condition:
-            dl.delete_all_generated_files(output_dir,[source_wav_music_filename,copy_source_wav_music_filename,source_wav_vocals_filename])
-    else:
-        dl.copy_json_file(output_dir+target_json_filename,output_dir+copy_target_json_filename)
+    # # Check if there is change in file
+    # if dl.check_path_exist(output_dir+copy_target_json_filename):
+    #     condition=dl.compare_json_files(output_dir+target_json_filename,output_dir+copy_target_json_filename)
+    #     if condition:
+    #         dl.delete_all_generated_files(output_dir,[source_wav_music_filename,copy_source_wav_music_filename,source_wav_vocals_filename])
+    # else:
+    #     dl.copy_json_file(output_dir+target_json_filename,output_dir+copy_target_json_filename)
     # True if the video does not exist and required o files to generate video
     # There is chnage in video
     if ( not dl.check_path_exist(output_video_path) and dl.check_path_exist(output_dir+target_json_filename) and dl.check_path_exist(video_path)) or condition:
@@ -456,7 +456,7 @@ def generate_targetVideo():
 def get_video():
     filename=output_video_path
     while(not dl.check_path_exist(filename)):{}
-    sleep(5)
+    sleep(1)
     return send_file(filename, mimetype='video/mp4')
 
 if __name__ == '__main__':

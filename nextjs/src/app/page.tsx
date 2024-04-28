@@ -51,7 +51,7 @@ export default function Home() {
 
         <div className="order-2 lg:order-1 w-full lg:w-[50%] lg:max-w-[50%] relative border-2 border-gray-400 bg-transparent p-6 lg:rounded-xl shadow-lg mb-10 lg:mb-0 lg:mt-0" style={{ marginTop: "-6rem" }}>
             <video className="w-full h-auto lg:h-[400px] rounded-tl-xl rounded-bl-xl lg:rounded-tr-xl lg:rounded-br-xl border-t border-r border-b border-black-700" ref={videoRef} loop muted autoPlay controls style={{ width: '100%', height: 'auto', maxWidth: '800px', maxHeight: '400px', border: ' solid black', background:'black' }}>
-                <source src="/video.mp4" />
+                <source src="/DubLingoSecondAd.mp4" />
             </video>
             <div className="lg:hidden z-10 absolute top-4 right-4 border border-gray-500 p-2 rounded-md">
                 <VideoPlayerControls
