@@ -542,7 +542,7 @@ def process_arabic_video(voice_clone_url,target_json_filename,video_path,output_
     # get_speaker_wise_audio(output_dir+source_wav_vocals_filename,output_dir+target_json_filename,output_dir)
     # generate_and_save_audio(output_dir+target_json_filename,output_dir,voice_clone_url)
     copy_music_file(source_wav_music_filename, output_dir)
-    # generated_voices(voice_clone_url,output_dir,target_json_filename)
+    generated_voices(voice_clone_url,output_dir,target_json_filename)
     combined_audio_music(output_dir+target_json_filename,output_dir+source_wav_music_filename,output_dir)
     replace_audio(video_path, output_dir+source_wav_music_filename, output_video_path)
     if check_path_exist(output_dir+copy_json_file_path):
