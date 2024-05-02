@@ -1,11 +1,11 @@
 # DubLingo: Automated Urdu to Arabic Dubbing
 
-# Demo Video
+## Demo Video
 
 
-# Note: This README have two parts
-# First Part focus on Local Setup
-# Second Part focus on Model Setup 
+## Note: This README have two parts
+### First Part focus on Local Setup
+### Second Part focus on Model Setup 
 
 ## README_SetupGuide_for_local_setup.md
 
