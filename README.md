@@ -1,11 +1,14 @@
 # DubLingo: Automated Urdu to Arabic Dubbing
 
-# Demo Video
+## Demo Video
+Here is a demo video showing how the project works:
+
+![Demo Video](./nextjs/public/DubLingoSecondAd.mp4)
 
 
-# Note: This README have two parts
-# First Part focus on Local Setup
-# Second Part focus on Model Setup 
+## Note: This README have two parts
+### First Part focus on Local Setup
+### Second Part focus on Model Setup 
 
 ## README_SetupGuide_for_local_setup.md
 
