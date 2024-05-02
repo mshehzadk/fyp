@@ -7,6 +7,10 @@ Here is a demo video showing how the project works:
 
 
 
+https://github.com/mshehzadk/fyp/assets/76274596/581698e4-c012-4626-9990-da66edab4741
+
+
+
 ## Note: This README have two parts
 ### First Part focus on Local Setup
 ### Second Part focus on Model Setup 
