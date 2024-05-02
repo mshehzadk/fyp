@@ -3,7 +3,8 @@
 ## Demo Video
 Here is a demo video showing how the project works:
 
-![Demo Video](./nextjs/public/DubLingoSecondAd.mp4)
+[![Video Thumbnail]](./nextjs/demo/DubLingoSecondAd.mp4)
+
 
 
 ## Note: This README have two parts
