@@ -1,4 +1,4 @@
-# DubLingo: Automated Urdu to Arabic Dubbing
+# DubLingo: Automated Video Dubbing
 
 ## Demo Video
 Here is a demo video showing the results of dubbing Urdu Video to English:
