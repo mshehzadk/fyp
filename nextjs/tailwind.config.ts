@@ -17,13 +17,18 @@ const config: Config = {
         'nav-blue': '#76B6DA59',
       },
       fontFamily: {
-        ubuntu: ['Ubuntu', 'sans-serif']
+        ubuntu: ['Ubuntu', 'sans-serif'],
+        'black-north': ['Black North', 'Ubuntu'], // Add Black North font
       },
       boxShadow: {
         '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
       }
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-animated')],
+  // plugins: [require('daisyui')],
+  // daisyui: {
+  //   themes: ["light", "dark", "cupcake"],
+  // },
 }
 export default config
